@@ -1,0 +1,7 @@
+$tf/
+.vs/
+*.dll
+cambios.txt
+RT Management/bin/
+RT Management/obj/
+RT Management/App.config

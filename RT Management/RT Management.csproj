@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3CBF2497-E739-4FC4-8457-368647A9548B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RT_Management</RootNamespace>
+    <AssemblyName>RT Management</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>vector_309_13-32.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <Prefer32Bit>True</Prefer32Bit>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\RT Management\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="conexionBD.cs" />
+    <Compile Include="frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddComment.Designer.cs">
+      <DependentUpon>frmAddComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdminDeducibles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminDeducibles.Designer.cs">
+      <DependentUpon>frmAdminDeducibles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdminModificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminModificaciones.Designer.cs">
+      <DependentUpon>frmAdminModificaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCorreccionesGpoInt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCorreccionesGpoInt.Designer.cs">
+      <DependentUpon>frmCorreccionesGpoInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCorreccionesGpoIntAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCorreccionesGpoIntAgregar.Designer.cs">
+      <DependentUpon>frmCorreccionesGpoIntAgregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeduciblesAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeduciblesAgregar.Designer.cs">
+      <DependentUpon>frmDeduciblesAgregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeduciblesCambioStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeduciblesCambioStatus.Designer.cs">
+      <DependentUpon>frmDeduciblesCambioStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeducibles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeducibles.Designer.cs">
+      <DependentUpon>frmDeducibles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInstalaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInstalaciones.Designer.cs">
+      <DependentUpon>frmInstalaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInstalacionesVer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInstalacionesVer.Designer.cs">
+      <DependentUpon>frmInstalacionesVer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLlamadasAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLlamadasAgregar.Designer.cs">
+      <DependentUpon>frmLlamadasAgregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLlamadasHistorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLlamadasHistorial.Designer.cs">
+      <DependentUpon>frmLlamadasHistorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoginDesbloquea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoginDesbloquea.Designer.cs">
+      <DependentUpon>frmLoginDesbloquea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPasswordCambio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPasswordCambio.Designer.cs">
+      <DependentUpon>frmPasswordCambio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPendientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPendientes.Designer.cs">
+      <DependentUpon>frmPendientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPendientesAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPendientesAgregar.Designer.cs">
+      <DependentUpon>frmPendientesAgregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStats.Designer.cs">
+      <DependentUpon>frmStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuarios.Designer.cs">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuariosAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuariosAgregar.Designer.cs">
+      <DependentUpon>frmUsuariosAgregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuariosVer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuariosVer.Designer.cs">
+      <DependentUpon>frmUsuariosVer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="passEncrypt.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddComment.resx">
+      <DependentUpon>frmAddComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdminDeducibles.resx">
+      <DependentUpon>frmAdminDeducibles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdminModificaciones.resx">
+      <DependentUpon>frmAdminModificaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCorreccionesGpoInt.resx">
+      <DependentUpon>frmCorreccionesGpoInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCorreccionesGpoIntAgregar.resx">
+      <DependentUpon>frmCorreccionesGpoIntAgregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeduciblesAgregar.resx">
+      <DependentUpon>frmDeduciblesAgregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeduciblesCambioStatus.resx">
+      <DependentUpon>frmDeduciblesCambioStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeducibles.resx">
+      <DependentUpon>frmDeducibles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInstalaciones.resx">
+      <DependentUpon>frmInstalaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInstalacionesVer.resx">
+      <DependentUpon>frmInstalacionesVer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLlamadasAgregar.resx">
+      <DependentUpon>frmLlamadasAgregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLlamadasHistorial.resx">
+      <DependentUpon>frmLlamadasHistorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoginDesbloquea.resx">
+      <DependentUpon>frmLoginDesbloquea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPasswordCambio.resx">
+      <DependentUpon>frmPasswordCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPendientes.resx">
+      <DependentUpon>frmPendientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPendientesAgregar.resx">
+      <DependentUpon>frmPendientesAgregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStats.resx">
+      <DependentUpon>frmStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuariosAgregar.resx">
+      <DependentUpon>frmUsuariosAgregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuariosVer.resx">
+      <DependentUpon>frmUsuariosVer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="vector_309_13-32.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
