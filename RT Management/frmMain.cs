@@ -170,67 +170,90 @@ namespace RT_Management
             fixMenu();
         }
 
+        /// <summary>
+        /// Realiza un respaldo de las bases de datos usando mysqldump.
+        /// </summary>
+        /// <param name="tablas">Parámetro con el nombre de las tablas al respaldar y sus opciones.</param>
+        /// <param name="tipo">Tipo de respaldo: data o instalaciones.</param>
         public void backup(string tablas, string tipo)
         {
             try
             {
-                ProcessStartInfo psi = new ProcessStartInfo(@"C:\xampp\mysql\bin\mysqldump", tablas);
+                //Localización del programa mysqldump
+                ProcessStartInfo psi = new ProcessStartInfo(@"C:\Program Files\MariaDB 10.1\bin\mysqldump", tablas);
 
-                string directorio = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+               // string directorio = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                 string nombreArchivo = DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss");
                 string filename = "";
 
-                if (tipo == "Instalaciones")
-                {
-                    filename = directorio + "\\Dropbox\\Backup\\Instalaciones\\" + tipo + " " + nombreArchivo + ".sql";
-                }
-                else
-                {
-                    filename = directorio + "\\Dropbox\\Backup\\data " + nombreArchivo + ".sql";
-                }
-                //string filename = Path.Combine(@"C:\Documents and Settings\Josue\Escritorio\", "RESPALDO_PRUEBA_TABLAS" + DateTime.Now.ToString(@"yyyy-MM-dd.\sql"));
+                filename = getRutaBackup(tipo);
 
-                using (StreamWriter writer = new StreamWriter(filename, false, Encoding.UTF8))
+                if (filename != "")
                 {
-                    using (Process process = new Process())
+                    this.Cursor = Cursors.WaitCursor;
+                    using (StreamWriter writer = new StreamWriter(filename, false, Encoding.UTF8))
                     {
-                        //psi.FileName = @"C:\Archivos de programa\bin\mysqldump";
-
-                        psi.CreateNoWindow = true; // Evita que el proceso se inicie en una nueva ventana.
-                        psi.UseShellExecute = false; // Evita que se use el shell del sistema operativo para iniciar el proceso.
-                        psi.RedirectStandardOutput = true; // Escribir la salida en Process.StandarOuput
-                        psi.StandardOutputEncoding = Encoding.UTF8; // Codificación de los datos de salida
-                        process.StartInfo = psi;
-
-                        process.OutputDataReceived +=
-
-                        delegate (object sender, DataReceivedEventArgs e)
+                        using (Process process = new Process())
                         {
-                            writer.WriteLine(e.Data);
-                        };
+                            psi.CreateNoWindow = true; // Evita que el proceso se inicie en una nueva ventana.
+                            psi.UseShellExecute = false; // Evita que se use el shell del sistema operativo para iniciar el proceso.
+                            psi.RedirectStandardOutput = true; // Escribir la salida en Process.StandarOuput
+                            psi.StandardOutputEncoding = Encoding.UTF8; // Codificación de los datos de salida
+                            process.StartInfo = psi;
 
-                        process.Start();
-                        process.BeginOutputReadLine(); // Lectura asincrónica del stream de salida
-                        process.WaitForExit(); // Esperar a que el proceso termine.
+                            process.OutputDataReceived +=
+
+                            delegate (object sender, DataReceivedEventArgs e)
+                            {
+                                writer.WriteLine(e.Data);
+                            };
+
+                            process.Start();
+                            process.BeginOutputReadLine(); // Lectura asincrónica del stream de salida
+                            process.WaitForExit(); // Esperar a que el proceso termine.
+                        }
                     }
-                }
-                MessageBox.Show("Copia de seguridad realizada con exito", "Respaldo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show("Copia de seguridad realizada con exito", "Respaldo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }             
             }
             catch (Exception exc)
             {
                 MessageBox.Show("Se ha producido un error al realizar la copia de seguridad: " + exc, "Respaldo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         } //Backup
+
+        /// <summary>
+        /// Solicita al usuario nombre y directorio para guardar el respaldo.
+        /// </summary>
+        /// <param name="tipo">Tipo de respaldo: data o instalaciones.</param>
+        /// <returns>Ruta del archivo a guardar</returns>
+        private string getRutaBackup(string tipo)
+        {
+            SaveFileDialog dlGuardar = new SaveFileDialog();
+            dlGuardar.Filter = "Archivo SQL (*.sql)|*.sql";
+            dlGuardar.FileName = tipo + " " + DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss");
+            dlGuardar.Title = "Copia de seguridad";
+            string filename = "";
+            if (dlGuardar.ShowDialog() == DialogResult.OK)
+            {
+                filename = dlGuardar.FileName;
+            }
+            else 
+            {
+                filename = "";
+            }
+            return filename;
+        }
 
         private void menuBackupInfo_Click(object sender, EventArgs e)
         {
-            backup("-u jsaucedo -p\"#4Hd&F&&y2K*yf%\" rtmanagement --add-drop-table --complete-insert --ignore-table=rtmanagement.instalaciones", "Información");
+            backup("-u jsaucedo -p\"PiQuFIx1Wi\" rtmanagement --add-drop-table --complete-insert --ignore-table=rtmanagement.instalaciones", "data");
         }
 
         private void menuBackupInstalaciones_Click(object sender, EventArgs e)
         {
-            backup("-u jsaucedo -p\"#4Hd&F&&y2K*yf%\" rtmanagement --add-drop-table --complete-insert --extended-insert --tables instalaciones", "Instalaciones");
+            backup("-u jsaucedo -p\"PiQuFIx1Wi\" rtmanagement --add-drop-table --complete-insert --extended-insert --tables instalaciones", "instalaciones");
         }
 
         private void correccionesSolicitadasToolStripMenuItem_Click(object sender, EventArgs e)
