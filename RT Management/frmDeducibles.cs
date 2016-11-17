@@ -260,8 +260,8 @@ namespace RT_Management
                 DateTime inicio = fechaInicio.Value;
                 DateTime fin = fechaFin.Value;
 
-                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaDictamen AS 'Envio de dictamen', " 
-                    + "aseguradora AS Aseguradora,  platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE fechaDictamen BETWEEN '"
+                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, fechaDictamen AS 'Envio de dictamen', "
+                    + " platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE fechaDictamen BETWEEN '"
                     + inicio.ToString("yyyy-MM-dd") + " 00:00:00' AND '" + fin.ToString("yyyy-MM-dd") + " 23:59:59' ORDER BY fechaDictamen ASC;";
             }
             else if (tipo == "fechaVisita")
@@ -269,8 +269,8 @@ namespace RT_Management
                 DateTime inicio = fechaInicio.Value; 
                 DateTime fin = fechaFin.Value;
 
-                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaVisita AS 'Fecha de visita', "
-                    + "aseguradora AS Aseguradora,  platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE fechaVisita BETWEEN '"
+                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, fechaVisita AS 'Fecha de visita', "
+                    + "platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE fechaVisita BETWEEN '"
                     + inicio.ToString("yyyy-MM-dd") + " 00:00:00' AND '" + fin.ToString("yyyy-MM-dd") + " 23:59:59' ORDER BY fechaVisita ASC;";
             }
             else if (tipo == "fechaRecepcion")
@@ -278,8 +278,8 @@ namespace RT_Management
                 DateTime inicio = fechaInicio.Value;
                 DateTime fin = fechaFin.Value;
 
-                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaRecepcion AS 'Recepcion', "
-                    + "aseguradora AS Aseguradora,  platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE fechaRecepcion BETWEEN '"
+                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, fechaRecepcion AS 'Recepcion', "
+                    + "platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE fechaRecepcion BETWEEN '"
                     + inicio.ToString("yyyy-MM-dd") + " 00:00:00' AND '" + fin.ToString("yyyy-MM-dd") + " 23:59:59' ORDER BY fechaRecepcion ASC;";
             }
             else if (tipo == "Good Will")
@@ -348,6 +348,11 @@ namespace RT_Management
 
         }
 
+        /// <summary>
+        /// Devuelve el número de mes de acuerdo al nombre.
+        /// </summary>
+        /// <param name="cmb">Combobox con la lista de meses</param>
+        /// <returns>Número de mes 1-12</returns>
         private string obtenNumeroDeMes(ComboBox cmb)
         {
             string mes = "";
@@ -400,7 +405,6 @@ namespace RT_Management
             {
                 mes = "12";
             }
-
             return mes;
         }
 
@@ -689,14 +693,17 @@ namespace RT_Management
 
         private void loadDataMod()
         {
-            loadComment();
-            loadCallData();
-            loadFile();
+            loadComment();   //Carga de comentarios
+            loadCallData();  //Carga de registro de llamadas
+            loadFile();      //Carga de expediente
             toolsEditar.Enabled = true;
             toolsCambio.Enabled = true;
             toolsAddComment.Enabled = true;
         }
 
+        /// <summary>
+        /// Carga la lista de comentarios de acuerdo al id del expediente.
+        /// </summary>
         private void loadComment()
         {
 
@@ -736,6 +743,9 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Carga la lista de llamadas de acuerdo al id del expediente.
+        /// </summary>
         private void loadCallData()
         {
             string query = $"SELECT * FROM llamadas WHERE idExpediente='{idDeducible}' ORDER BY fecha DESC;";
@@ -782,6 +792,9 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Carga los datos del expediente.
+        /// </summary>
         private void loadFile()
         {
             conexionBD db = new conexionBD();
@@ -964,7 +977,6 @@ namespace RT_Management
                         comboGWdataYear.Visible = true;
                         lblGoodWillMes.Visible = true;
                         comboGWdataMes.Visible = true;
-                        //dateGoodWillFecha.Text = String.Format("{0:dd/MM/yyyy HH:mm:ss}", respuesta[39].ToString());
                         lblGoodWillPorc.Visible = true;
                         numGoodWillPorc.Value = Convert.ToInt32(respuesta[40]);
                         comboGWdataYear.Text = fecha[0];
@@ -1049,7 +1061,7 @@ namespace RT_Management
                         toolCgoodWillC.Visible = true;
                     }
                 }
-                else if (this.statusExpediente == (int)status.ENTREGADO) //Entregado a PQR
+                else if (this.statusExpediente == (int)status.ENTREGADO)
                 {
                     boxEstado.BackColor = Color.Chartreuse;
                     numDiasProceso.Value = 0;
@@ -1198,6 +1210,11 @@ namespace RT_Management
             }
         }
 
+
+        /// <summary>
+        /// Gerera consulta SQL de acuerdo al estado del expediente.
+        /// </summary>
+        /// <returns>Consulta SQL para carga de expediente.</returns>
         private string getConsulta()
         {
             string texto = "";
@@ -1270,7 +1287,7 @@ namespace RT_Management
                     + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
                     + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible + "';";
             }
-            else if (this.statusExpediente == (int)status.PROCEDENTE) //Procedente
+            else if (this.statusExpediente == (int)status.PROCEDENTE)
             {
                 montoPendiente = isMontoPendiente();
 
@@ -1289,7 +1306,7 @@ namespace RT_Management
                     + numSumaA.Value + ", " + getDocs() + ", montoPendiente=" + montoPendiente + " WHERE clave='" 
                     + this.idDeducible + "';";
             }
-            else if (this.statusExpediente == (int)status.NOPROCEDENTE) // No procedente
+            else if (this.statusExpediente == (int)status.NOPROCEDENTE)
             {
                 if (checkGoodWill.Checked) // Si tiene Good Will otorgado
                 {
@@ -1342,7 +1359,7 @@ namespace RT_Management
                     + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada=" 
                     + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible + "';";
             }
-            else if (this.statusExpediente == (int)status.ENTREGADO) //Entregado a PQR
+            else if (this.statusExpediente == (int)status.ENTREGADO)
             {
                 texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                    + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='" 
@@ -1379,6 +1396,12 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Calcula fecha aproximada de respuesta de un expediente.
+        /// El tiempo máximo de respuesta es de 30 días hábiles.
+        /// </summary>
+        /// <param name="fecha"></param>
+        /// <returns></returns>
         private DateTime diasLaborales(DateTime fecha)
         {
             int dias = 30;
@@ -1394,6 +1417,12 @@ namespace RT_Management
             return fecha;
         }
 
+        /// <summary>
+        /// Calcula los días hábiles transcurridos entre dos fechas.
+        /// </summary>
+        /// <param name="inicio">Fecha de inicio.</param>
+        /// <param name="fin">Fecha final.</param>
+        /// <returns>Días hábiles transcurridos.</returns>
         private int diasProceso(DateTime inicio, DateTime fin)
         {
             TimeSpan diferencia = fin - inicio;
@@ -1407,6 +1436,11 @@ namespace RT_Management
             return i;
         }
 
+        /// <summary>
+        /// Genera cadena para la carga de lista de documentos.
+        /// Se usa para no sobrecargar el código en las consultas.
+        /// </summary>
+        /// <returns>Consulta para lista de documentos.</returns>
         private string getDocs()
         {
             string queryDocs = "";
@@ -1430,6 +1464,10 @@ namespace RT_Management
             return queryDocs;
         }
 
+
+        /// <summary>
+        /// Calcula el monto a pagar por deducible.
+        /// </summary>
         private void calculaPago()
         {
             decimal porcentaje = numDeducible.Value;
@@ -1439,7 +1477,7 @@ namespace RT_Management
             decimal montoPago = 0;
             decimal IVA = 1.16m;
 
-            if (porcentaje > 0) //¿Porcentaje mayor a cero?
+            if (porcentaje > 0)
             {
                 if (sumaAsegurada > 0)
                 {
@@ -1556,7 +1594,6 @@ namespace RT_Management
                 loadDataMod();
                 toolsCancelar.Enabled = false;
                 toolsGuardar.Enabled = false;
-                //repiteConsulta();
             }            
         }
 
@@ -1790,7 +1827,6 @@ namespace RT_Management
             verRegistros("candidato");
         }
 
-        /*************************************************************/
         private void radioGWtodos_CheckedChanged(object sender, EventArgs e)
         {
             comboGWmes.Enabled = false;
@@ -1883,7 +1919,6 @@ namespace RT_Management
             {
                 if (e.Value.ToString() == "Inbound")
                 {
-                    //e.CellStyle.BackColor = Color.Teal;
                     e.CellStyle.ForeColor = Color.Red;
                 }
             }
