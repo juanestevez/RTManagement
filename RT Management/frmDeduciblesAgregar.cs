@@ -509,7 +509,7 @@ namespace RT_Management
                 else if (cmbAseguradora.Text == "GNP")
                 {
                     numDeducible.Value = 10;
-                    txtExpediente.Text = "G-";
+                    txtExpediente.Text = "GNP-";
                 }
                 else
                 {

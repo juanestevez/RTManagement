@@ -24,6 +24,10 @@ namespace RT_Management
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// Propiedad para guardar el nombre del usuario activo.
+        /// </summary>
         public static string UsuarioActivo
         {
             set
@@ -36,6 +40,9 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Propiedad para guardar el nivel de permiso del usuario.
+        /// </summary>
         public static int levelUser
         {
             set
@@ -48,6 +55,9 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Evita que se abra una segunda instancia del formulario.
+        /// </summary>
         public static frmDeducibles DefInstance
         {
             get
@@ -104,6 +114,9 @@ namespace RT_Management
 
         /********************** NN **********************/
 
+        /// <summary>
+        /// Genera la búsqueda a través del campo buscar y de acuerdo al filtro seleccionado.
+        /// </summary>
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             lblResultados.Text = "";
@@ -196,6 +209,9 @@ namespace RT_Management
             }            
         }
 
+        /// <summary>
+        /// Abre formulario para agregar un nuevo expediente.
+        /// </summary>
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             btnNuevo.Enabled = false;
@@ -204,6 +220,10 @@ namespace RT_Management
             btnNuevo.Enabled = true;
         }
 
+        /// <summary>
+        /// Muestra los registros de acuerdo a los botones de la barra de herramientas.
+        /// </summary>
+        /// <param name="tipo">Tipo de búsqueda.</param>
         private void verRegistros(string tipo)
         {
             resetControles();
@@ -490,6 +510,9 @@ namespace RT_Management
             txtBusqueda.SelectionLength = txtBusqueda.Text.Length;
         }        
 
+        /// <summary>
+        /// Realiza búsqueda de expedientes de acuerdo a las fechas seleccionadas.
+        /// </summary>
         private void btnBuscarfecha_Click(object sender, EventArgs e)
         {
             lblResultados.Text = "";
@@ -518,6 +541,9 @@ namespace RT_Management
             
         }
 
+        /// <summary>
+        /// Regresa los campos a sus valores predeterminados.
+        /// </summary>
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {            
             gridDatos.DataSource = null;
@@ -553,6 +579,9 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Realiza el formato por color de acuerdo al status del expediente.
+        /// </summary>
         private void gridDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {            
             if (gridDatos.Columns[e.ColumnIndex].Name == "status")
@@ -632,6 +661,9 @@ namespace RT_Management
             loadDataMod();
         }
         
+        /// <summary>
+        /// Reestablece los campos a sus valores predeterminados al cambiar de expediente o realizar busquedas.
+        /// </summary>
         private void resetControles()
         {
             panelFile.Visible = false;
@@ -691,6 +723,9 @@ namespace RT_Management
 
         /********************** EDICION DE EXPEDIENTES **********************/
 
+        /// <summary>
+        /// Realiza la carga de expediente, comentarios y registros de llamadas.
+        /// </summary>
         private void loadDataMod()
         {
             loadComment();   //Carga de comentarios
@@ -859,7 +894,9 @@ namespace RT_Management
                     {
                         toolCgoodWill.Visible = false;
                         toolCgoodWillC.Visible = true;
-                    }                
+                    }
+
+                    marcaMontoPendiente(montoPendiente);
                 }
                 else if (this.statusExpediente == (int)status.INCOMPLETO)
                 {
@@ -937,10 +974,7 @@ namespace RT_Management
                     toolCgoodWill.Visible = false;
                     toolCgoodWillC.Visible = false;
 
-                    if (montoPendiente == "0")
-                        toolCmontoPendiente.Visible = true;
-                    else if (montoPendiente == "1")
-                        toolCmontoPendiente.Visible = false;
+                    marcaMontoPendiente(montoPendiente);
                 }
                 else if (this.statusExpediente == (int)status.NOPROCEDENTE)
                 {
@@ -983,10 +1017,7 @@ namespace RT_Management
                         comboGWdataMes.Text = mesAnumero(fecha[1]);
                         toolCgoodWill.Visible = false;
                         toolCgoodWillC.Visible = false;
-                        if (montoPendiente == "0")
-                            toolCmontoPendiente.Visible = true;
-                        else if (montoPendiente == "1")
-                            toolCmontoPendiente.Visible = false;
+                        marcaMontoPendiente(montoPendiente);
                     }
                     else
                     {
@@ -1210,6 +1241,17 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Activa o desactiva el botón de monto pendiente.
+        /// </summary>
+        /// <param name="estado">0: Muestra botón. 1: Oculta botón.</param>
+        private void marcaMontoPendiente(string estado)
+        {
+            if (estado == "0")
+                toolCmontoPendiente.Visible = true;
+            else if (estado == "1")
+                toolCmontoPendiente.Visible = false;
+        }
 
         /// <summary>
         /// Gerera consulta SQL de acuerdo al estado del expediente.
@@ -1262,6 +1304,8 @@ namespace RT_Management
 
             if (this.statusExpediente == (int)status.ENPROCESO)
             {
+                montoPendiente = isMontoPendiente();
+
                 texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                     + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                     + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
@@ -1272,7 +1316,7 @@ namespace RT_Management
                     + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='" + cmbAseguradora.Text
                     + "', valorFactura=" + numValorFactura.Value + ", valorDeducible=" + numDeducible.Value + ", montoPago="
                     + numMonto.Value + ", expediente='" + txtExpediente.Text + "', acuse =" + acuse + ", finiquito="
-                    + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible
+                    + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + ", montoPendiente=" + montoPendiente + " WHERE clave='" + this.idDeducible
                     + "';";
             }
             else if ((this.statusExpediente == (int)status.INCOMPLETO) || (this.statusExpediente == (int)status.ARCHIVADO))
@@ -1597,6 +1641,10 @@ namespace RT_Management
             }            
         }
 
+        /// <summary>
+        /// Activa o desactiva los controles.
+        /// </summary>
+        /// <param name="status">True o False</param>
         private void estadoControles(Boolean status)
         {
             dateDictamen.Enabled = status;
@@ -1932,6 +1980,11 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Ver registros archivados.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnArchivados_Click(object sender, EventArgs e)
         {
             tabControlSecciones.SelectedIndex = 0;
@@ -1939,6 +1992,12 @@ namespace RT_Management
             verRegistros("archivados");
         }
 
+        /// <summary>
+        /// Convierte un número a su correspondencia con el nombre de mes.
+        /// Ejemplo: 11 - Noviembre.
+        /// </summary>
+        /// <param name="num">Número de mes</param>
+        /// <returns></returns>
         private string mesAnumero(string num)
         {
             string mes = "";
@@ -1991,9 +2050,7 @@ namespace RT_Management
             {
                 mes = "Diciembre";
             }
-
             return mes;
-
         }
         
         private void toolCgoodWill_Click(object sender, EventArgs e)
@@ -2006,6 +2063,11 @@ namespace RT_Management
             candidatoAgoodWill(0);
         }
 
+        /// <summary>
+        /// Marca o desmarca un expediente como candidato a Good Will.
+        /// Genera una marca en la tabla de modificaciones.
+        /// </summary>
+        /// <param name="op">1: Marca como candidato. 0: Quita la marca.</param>
         private void candidatoAgoodWill(int op)
         {
             conexionBD db = new conexionBD();
@@ -2043,6 +2105,10 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// MArca un expediente con una señal para tenerlo como monto pendiente de solicitar.
+        /// </summary>
+        /// <param name="op">1: Marca como pendiente. 0: Quita la marca.</param>
         private void montoPendiente(int op)
         {
             conexionBD db = new conexionBD();
@@ -2080,6 +2146,11 @@ namespace RT_Management
             }
         }
 
+        /// <summary>
+        /// Abre el gestor de correo electrónico predeterminado para enviar email a la dirección registrada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void linkEmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (String.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "pendiente")
