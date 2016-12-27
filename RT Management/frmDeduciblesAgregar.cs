@@ -20,6 +20,10 @@ namespace RT_Management
             this.Close();
         }
 
+        /// <summary>
+        /// Valida si los campos obligatorios están capturados.
+        /// </summary>
+        /// <returns></returns>
         private Boolean validaCampos() 
         {
             //Comprueba si alguno de los campos obligatorios está vacío
@@ -36,6 +40,9 @@ namespace RT_Management
             return valido;
         }
 
+        /// <summary>
+        /// Muestra y oculta los campos de acuerdo al estado del expediente.
+        /// </summary>
         private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
             if ((cmbEstado.SelectedIndex == 2) || (cmbEstado.SelectedIndex == 3)) //Procedente, No procedente
@@ -534,7 +541,7 @@ namespace RT_Management
                 {
                     if (porcentaje > 20)
                     {
-                        montoDeducible =(sumaAsegurada) * 0.20m;
+                        montoDeducible = (sumaAsegurada) * 0.20m;
                         montoPago = montoDeducible / IVA;
                         numMonto.Value = (sumaAsegurada) * (porcentaje / 100);
                         MessageBox.Show("El valor máximo a pagar es del 20%.\nEl monto del deducible al 20% es de " + montoDeducible.ToString("c2") 

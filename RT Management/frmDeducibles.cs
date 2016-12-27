@@ -2168,5 +2168,11 @@ namespace RT_Management
         {
             montoPendiente(1);
         }
+
+        private void txtEmail_DoubleClick(object sender, EventArgs e)
+        {
+            txtEmail.SelectionStart = 0;
+            txtEmail.SelectionLength = txtEmail.Text.Length;
+        }
     }
 }

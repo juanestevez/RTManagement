@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDeducibles));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnParaEnvio = new System.Windows.Forms.ToolStripButton();
@@ -62,6 +62,7 @@
             this.toolsCambio = new System.Windows.Forms.ToolStripButton();
             this.toolCgoodWill = new System.Windows.Forms.ToolStripButton();
             this.toolCgoodWillC = new System.Windows.Forms.ToolStripButton();
+            this.toolCmontoPendiente = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolsAddComment = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -173,7 +174,6 @@
             this.layoutBase = new System.Windows.Forms.TableLayoutPanel();
             this.panelFile = new System.Windows.Forms.Panel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.toolCmontoPendiente = new System.Windows.Forms.ToolStripButton();
             this.toolMain.SuspendLayout();
             this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxEstado)).BeginInit();
@@ -493,6 +493,17 @@
             this.toolCgoodWillC.Visible = false;
             this.toolCgoodWillC.Click += new System.EventHandler(this.toolCgoodWillC_Click);
             // 
+            // toolCmontoPendiente
+            // 
+            this.toolCmontoPendiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolCmontoPendiente.Image = ((System.Drawing.Image)(resources.GetObject("toolCmontoPendiente.Image")));
+            this.toolCmontoPendiente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCmontoPendiente.Name = "toolCmontoPendiente";
+            this.toolCmontoPendiente.Size = new System.Drawing.Size(23, 22);
+            this.toolCmontoPendiente.Text = "Marcar monto pendiente";
+            this.toolCmontoPendiente.Visible = false;
+            this.toolCmontoPendiente.Click += new System.EventHandler(this.toolCmontoPendiente_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -697,14 +708,14 @@
             this.gridComentarios.AllowUserToDeleteRows = false;
             this.gridComentarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridComentarios.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridComentarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridComentarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridComentarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridComentarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridComentarios.Location = new System.Drawing.Point(3, 16);
@@ -742,14 +753,14 @@
             this.gridLlamadas.AllowUserToDeleteRows = false;
             this.gridLlamadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridLlamadas.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridLlamadas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridLlamadas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridLlamadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridLlamadas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridLlamadas.Location = new System.Drawing.Point(3, 16);
@@ -987,6 +998,7 @@
             this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(145, 20);
             this.txtEmail.TabIndex = 3;
+            this.txtEmail.DoubleClick += new System.EventHandler(this.txtEmail_DoubleClick);
             // 
             // groupDeducibles
             // 
@@ -1194,7 +1206,7 @@
             // 
             this.dateC3.Enabled = false;
             this.dateC3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateC3.Location = new System.Drawing.Point(95, 133);
+            this.dateC3.Location = new System.Drawing.Point(94, 131);
             this.dateC3.Name = "dateC3";
             this.dateC3.Size = new System.Drawing.Size(94, 20);
             this.dateC3.TabIndex = 4;
@@ -1203,7 +1215,7 @@
             // 
             this.dateDictamen.Enabled = false;
             this.dateDictamen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateDictamen.Location = new System.Drawing.Point(94, 161);
+            this.dateDictamen.Location = new System.Drawing.Point(94, 158);
             this.dateDictamen.Name = "dateDictamen";
             this.dateDictamen.Size = new System.Drawing.Size(94, 20);
             this.dateDictamen.TabIndex = 5;
@@ -1212,7 +1224,7 @@
             // 
             this.lblFechaDictamen.AutoSize = true;
             this.lblFechaDictamen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaDictamen.Location = new System.Drawing.Point(6, 164);
+            this.lblFechaDictamen.Location = new System.Drawing.Point(6, 161);
             this.lblFechaDictamen.Name = "lblFechaDictamen";
             this.lblFechaDictamen.Size = new System.Drawing.Size(64, 13);
             this.lblFechaDictamen.TabIndex = 17;
@@ -1222,7 +1234,7 @@
             // lblFechaC3
             // 
             this.lblFechaC3.AutoSize = true;
-            this.lblFechaC3.Location = new System.Drawing.Point(6, 136);
+            this.lblFechaC3.Location = new System.Drawing.Point(6, 134);
             this.lblFechaC3.Name = "lblFechaC3";
             this.lblFechaC3.Size = new System.Drawing.Size(51, 13);
             this.lblFechaC3.TabIndex = 19;
@@ -1251,7 +1263,7 @@
             // 
             this.datePqr.Enabled = false;
             this.datePqr.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePqr.Location = new System.Drawing.Point(94, 107);
+            this.datePqr.Location = new System.Drawing.Point(94, 104);
             this.datePqr.Name = "datePqr";
             this.datePqr.Size = new System.Drawing.Size(94, 20);
             this.datePqr.TabIndex = 3;
@@ -1278,7 +1290,7 @@
             // lblFechaPqr
             // 
             this.lblFechaPqr.AutoSize = true;
-            this.lblFechaPqr.Location = new System.Drawing.Point(6, 110);
+            this.lblFechaPqr.Location = new System.Drawing.Point(6, 107);
             this.lblFechaPqr.Name = "lblFechaPqr";
             this.lblFechaPqr.Size = new System.Drawing.Size(64, 13);
             this.lblFechaPqr.TabIndex = 11;
@@ -1322,16 +1334,16 @@
             this.groupDocumentacion.Controls.Add(this.checkCartaPerdida);
             this.groupDocumentacion.Location = new System.Drawing.Point(459, 142);
             this.groupDocumentacion.Name = "groupDocumentacion";
-            this.groupDocumentacion.Size = new System.Drawing.Size(247, 192);
+            this.groupDocumentacion.Size = new System.Drawing.Size(379, 192);
             this.groupDocumentacion.TabIndex = 70;
             this.groupDocumentacion.TabStop = false;
-            this.groupDocumentacion.Text = "Documentación";
+            this.groupDocumentacion.Text = "Documentación recibida";
             // 
             // checkFiniquito
             // 
             this.checkFiniquito.AutoSize = true;
             this.checkFiniquito.Enabled = false;
-            this.checkFiniquito.Location = new System.Drawing.Point(178, 31);
+            this.checkFiniquito.Location = new System.Drawing.Point(202, 32);
             this.checkFiniquito.Name = "checkFiniquito";
             this.checkFiniquito.Size = new System.Drawing.Size(65, 17);
             this.checkFiniquito.TabIndex = 12;
@@ -1342,7 +1354,7 @@
             // 
             this.checkAcuse.AutoSize = true;
             this.checkAcuse.Enabled = false;
-            this.checkAcuse.Location = new System.Drawing.Point(178, 15);
+            this.checkAcuse.Location = new System.Drawing.Point(202, 50);
             this.checkAcuse.Name = "checkAcuse";
             this.checkAcuse.Size = new System.Drawing.Size(56, 17);
             this.checkAcuse.TabIndex = 11;
@@ -1353,7 +1365,7 @@
             // 
             this.checkContrato.AutoSize = true;
             this.checkContrato.Enabled = false;
-            this.checkContrato.Location = new System.Drawing.Point(7, 174);
+            this.checkContrato.Location = new System.Drawing.Point(7, 168);
             this.checkContrato.Name = "checkContrato";
             this.checkContrato.Size = new System.Drawing.Size(120, 17);
             this.checkContrato.TabIndex = 10;
@@ -1364,7 +1376,7 @@
             // 
             this.checkPfp.AutoSize = true;
             this.checkPfp.Enabled = false;
-            this.checkPfp.Location = new System.Drawing.Point(7, 158);
+            this.checkPfp.Location = new System.Drawing.Point(202, 15);
             this.checkPfp.Name = "checkPfp";
             this.checkPfp.Size = new System.Drawing.Size(138, 17);
             this.checkPfp.TabIndex = 9;
@@ -1375,7 +1387,7 @@
             // 
             this.checkIdentificacion.AutoSize = true;
             this.checkIdentificacion.Enabled = false;
-            this.checkIdentificacion.Location = new System.Drawing.Point(7, 142);
+            this.checkIdentificacion.Location = new System.Drawing.Point(7, 151);
             this.checkIdentificacion.Name = "checkIdentificacion";
             this.checkIdentificacion.Size = new System.Drawing.Size(89, 17);
             this.checkIdentificacion.TabIndex = 8;
@@ -1386,7 +1398,7 @@
             // 
             this.checkActa.AutoSize = true;
             this.checkActa.Enabled = false;
-            this.checkActa.Location = new System.Drawing.Point(7, 62);
+            this.checkActa.Location = new System.Drawing.Point(7, 66);
             this.checkActa.Name = "checkActa";
             this.checkActa.Size = new System.Drawing.Size(91, 17);
             this.checkActa.TabIndex = 3;
@@ -1397,7 +1409,7 @@
             // 
             this.checkFactura.AutoSize = true;
             this.checkFactura.Enabled = false;
-            this.checkFactura.Location = new System.Drawing.Point(7, 46);
+            this.checkFactura.Location = new System.Drawing.Point(7, 49);
             this.checkFactura.Name = "checkFactura";
             this.checkFactura.Size = new System.Drawing.Size(134, 17);
             this.checkFactura.TabIndex = 2;
@@ -1408,7 +1420,7 @@
             // 
             this.checkBaja.AutoSize = true;
             this.checkBaja.Enabled = false;
-            this.checkBaja.Location = new System.Drawing.Point(7, 94);
+            this.checkBaja.Location = new System.Drawing.Point(7, 100);
             this.checkBaja.Name = "checkBaja";
             this.checkBaja.Size = new System.Drawing.Size(127, 17);
             this.checkBaja.TabIndex = 5;
@@ -1419,7 +1431,7 @@
             // 
             this.checkAcred.AutoSize = true;
             this.checkAcred.Enabled = false;
-            this.checkAcred.Location = new System.Drawing.Point(7, 78);
+            this.checkAcred.Location = new System.Drawing.Point(7, 83);
             this.checkAcred.Name = "checkAcred";
             this.checkAcred.Size = new System.Drawing.Size(161, 17);
             this.checkAcred.TabIndex = 4;
@@ -1430,7 +1442,7 @@
             // 
             this.checkTenencia.AutoSize = true;
             this.checkTenencia.Enabled = false;
-            this.checkTenencia.Location = new System.Drawing.Point(7, 126);
+            this.checkTenencia.Location = new System.Drawing.Point(7, 134);
             this.checkTenencia.Name = "checkTenencia";
             this.checkTenencia.Size = new System.Drawing.Size(71, 17);
             this.checkTenencia.TabIndex = 7;
@@ -1441,7 +1453,7 @@
             // 
             this.checkPagoBaja.AutoSize = true;
             this.checkPagoBaja.Enabled = false;
-            this.checkPagoBaja.Location = new System.Drawing.Point(7, 110);
+            this.checkPagoBaja.Location = new System.Drawing.Point(7, 117);
             this.checkPagoBaja.Name = "checkPagoBaja";
             this.checkPagoBaja.Size = new System.Drawing.Size(89, 17);
             this.checkPagoBaja.TabIndex = 6;
@@ -1452,7 +1464,7 @@
             // 
             this.checkPoliza.AutoSize = true;
             this.checkPoliza.Enabled = false;
-            this.checkPoliza.Location = new System.Drawing.Point(7, 30);
+            this.checkPoliza.Location = new System.Drawing.Point(7, 32);
             this.checkPoliza.Name = "checkPoliza";
             this.checkPoliza.Size = new System.Drawing.Size(104, 17);
             this.checkPoliza.TabIndex = 1;
@@ -1762,18 +1774,18 @@
             this.gridDatos.AllowUserToAddRows = false;
             this.gridDatos.AllowUserToDeleteRows = false;
             this.gridDatos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gridDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.gridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridDatos.Location = new System.Drawing.Point(3, 68);
@@ -1823,17 +1835,6 @@
             this.panelFile.Size = new System.Drawing.Size(916, 520);
             this.panelFile.TabIndex = 35;
             this.panelFile.Visible = false;
-            // 
-            // toolCmontoPendiente
-            // 
-            this.toolCmontoPendiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolCmontoPendiente.Image = ((System.Drawing.Image)(resources.GetObject("toolCmontoPendiente.Image")));
-            this.toolCmontoPendiente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolCmontoPendiente.Name = "toolCmontoPendiente";
-            this.toolCmontoPendiente.Size = new System.Drawing.Size(23, 22);
-            this.toolCmontoPendiente.Text = "Marcar monto pendiente";
-            this.toolCmontoPendiente.Visible = false;
-            this.toolCmontoPendiente.Click += new System.EventHandler(this.toolCmontoPendiente_Click);
             // 
             // frmDeducibles
             // 
