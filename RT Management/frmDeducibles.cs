@@ -689,7 +689,7 @@ namespace RT_Management
             dateVisita.Value = DateTime.Today;
             numDeducible.Value = 0;
             numDiasProceso.Value = 0;
-            numGoodWillPorc.Value = 0;
+            numGoodWillPorc.Value = 50;
             numMonto.Value = 0;
             numSumaA.Value = 0;
             numValorFactura.Value = 0;
@@ -1761,7 +1761,7 @@ namespace RT_Management
                 comboGWdataYear.Visible = true;
                 lblGoodWillMes.Visible = true;
                 comboGWdataMes.Visible = true;
-                comboGWdataMes.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
+                comboGWdataMes.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month-1);
                 comboGWdataYear.Text = DateTime.Now.Year.ToString();
             }
             else 
@@ -2106,7 +2106,7 @@ namespace RT_Management
         }
 
         /// <summary>
-        /// MArca un expediente con una señal para tenerlo como monto pendiente de solicitar.
+        /// Marca un expediente para tenerlo como monto pendiente de solicitar.
         /// </summary>
         /// <param name="op">1: Marca como pendiente. 0: Quita la marca.</param>
         private void montoPendiente(int op)
