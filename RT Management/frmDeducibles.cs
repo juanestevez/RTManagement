@@ -237,8 +237,8 @@ namespace RT_Management
             }
             else if(tipo == "incompleto")
             {
-                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaVisita AS 'Fecha de visita', "
-                    + "aseguradora AS Aseguradora, platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE status=1 ORDER BY fechaVisita";
+                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, fechaVisita AS 'Fecha de visita', "
+                    + "platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE status=1 ORDER BY fechaVisita";
             }
             else if (tipo == "procedente")
             {

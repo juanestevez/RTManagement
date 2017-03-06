@@ -326,159 +326,189 @@ namespace RT_Management
 
             if (validaCampos())
             {
-                try
+                if (checkVIN(txtVin.Text))
                 {
-                    conexion.Conectar();
+                    try
+                    {
+                        conexion.Conectar();
 
-                    cmd = conexion.Insertar(cadena);
+                        cmd = conexion.Insertar(cadena);
 
-                    if (cmbEstado.SelectedIndex == 0)
-                    {
-                        valor = 0;
-                    }
-                    else if (cmbEstado.SelectedIndex == 1)
-                    {
-                        valor = 1;
-                    }
-                    else if (cmbEstado.SelectedIndex == 2)
-                    {
-                        valor = 2;
-                    }
-                    else if (cmbEstado.SelectedIndex == 3)
-                    {
-                        valor = 3;
-                    }
-                    else if (cmbEstado.SelectedIndex == 4)
-                    {
-                        valor = 4;
-                    }
-                    else if (cmbEstado.SelectedIndex == 5)
-                    {
-                        valor = 5;
-                    }
+                        if (cmbEstado.SelectedIndex == 0)
+                        {
+                            valor = 0;
+                        }
+                        else if (cmbEstado.SelectedIndex == 1)
+                        {
+                            valor = 1;
+                        }
+                        else if (cmbEstado.SelectedIndex == 2)
+                        {
+                            valor = 2;
+                        }
+                        else if (cmbEstado.SelectedIndex == 3)
+                        {
+                            valor = 3;
+                        }
+                        else if (cmbEstado.SelectedIndex == 4)
+                        {
+                            valor = 4;
+                        }
+                        else if (cmbEstado.SelectedIndex == 5)
+                        {
+                            valor = 5;
+                        }
 
-                    cmd.Parameters.AddWithValue("clave", idNuevo);
+                        cmd.Parameters.AddWithValue("clave", idNuevo);
 
-                    cmd.Parameters.AddWithValue("status", valor);
-                    cmd.Parameters.AddWithValue("titular", txtTitular.Text);
-                    cmd.Parameters.AddWithValue("grupo", Convert.ToInt32(txtGrupo.Text));
-                    cmd.Parameters.AddWithValue("platinum", txtPlatinum.Text);
-                    cmd.Parameters.AddWithValue("vin", txtVin.Text);
+                        cmd.Parameters.AddWithValue("status", valor);
+                        cmd.Parameters.AddWithValue("titular", txtTitular.Text);
+                        cmd.Parameters.AddWithValue("grupo", Convert.ToInt32(txtGrupo.Text));
+                        cmd.Parameters.AddWithValue("platinum", txtPlatinum.Text);
+                        cmd.Parameters.AddWithValue("vin", txtVin.Text);
 
-                    cmd.Parameters.AddWithValue("fechaVisita", dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("fechaVisita", dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss"));
 
-                    if (cmbEstado.SelectedIndex == 0) //En proceso
-                    {
-                        cmd.Parameters.AddWithValue("fechaRecepcion", dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                        cmd.Parameters.AddWithValue("fechaPQR", datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                        cmd.Parameters.AddWithValue("fechaDictamen", "0000-00-00 00:00:00");
-                        cmd.Parameters.AddWithValue("fechaC3", dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                    }
-                    else if (cmbEstado.SelectedIndex == 1) //Incompleto
-                    {
-                        cmd.Parameters.AddWithValue("fechaRecepcion", "0000-00-00 00:00:00");
-                        cmd.Parameters.AddWithValue("fechaPQR", "0000-00-00 00:00:00");
-                        cmd.Parameters.AddWithValue("fechaDictamen", "0000-00-00 00:00:00");
-                        cmd.Parameters.AddWithValue("fechaC3", "0000-00-00 00:00:00");
-                    }
-                    else if ((cmbEstado.SelectedIndex == 2) || (cmbEstado.SelectedIndex == 3)) //Procedente y no procedente
-                    {
-                        cmd.Parameters.AddWithValue("fechaRecepcion", dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                        cmd.Parameters.AddWithValue("fechaPQR", datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                        cmd.Parameters.AddWithValue("fechaDictamen", dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                        cmd.Parameters.AddWithValue("fechaC3", dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                    }
-                    else if (cmbEstado.SelectedIndex == 4) //Para envío
-                    {
-                        cmd.Parameters.AddWithValue("fechaRecepcion", dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                        cmd.Parameters.AddWithValue("fechaPQR", "0000-00-00 00:00:00");
-                        cmd.Parameters.AddWithValue("fechaDictamen", "0000-00-00 00:00:00");
-                        cmd.Parameters.AddWithValue("fechaC3", "0000-00-00 00:00:00");
-                    }
-                    else if (cmbEstado.SelectedIndex == 5) //Entregado a PQR
-                    {
-                        cmd.Parameters.AddWithValue("fechaRecepcion", dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                        cmd.Parameters.AddWithValue("fechaPQR", datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-                        cmd.Parameters.AddWithValue("fechaDictamen", "0000-00-00 00:00:00");
-                        cmd.Parameters.AddWithValue("fechaC3", "0000-00-00 00:00:00");
-                    }
+                        if (cmbEstado.SelectedIndex == 0) //En proceso
+                        {
+                            cmd.Parameters.AddWithValue("fechaRecepcion", dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("fechaPQR", datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("fechaDictamen", "0000-00-00 00:00:00");
+                            cmd.Parameters.AddWithValue("fechaC3", dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+                        else if (cmbEstado.SelectedIndex == 1) //Incompleto
+                        {
+                            cmd.Parameters.AddWithValue("fechaRecepcion", "0000-00-00 00:00:00");
+                            cmd.Parameters.AddWithValue("fechaPQR", "0000-00-00 00:00:00");
+                            cmd.Parameters.AddWithValue("fechaDictamen", "0000-00-00 00:00:00");
+                            cmd.Parameters.AddWithValue("fechaC3", "0000-00-00 00:00:00");
+                        }
+                        else if ((cmbEstado.SelectedIndex == 2) || (cmbEstado.SelectedIndex == 3)) //Procedente y no procedente
+                        {
+                            cmd.Parameters.AddWithValue("fechaRecepcion", dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("fechaPQR", datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("fechaDictamen", dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("fechaC3", dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+                        else if (cmbEstado.SelectedIndex == 4) //Para envío
+                        {
+                            cmd.Parameters.AddWithValue("fechaRecepcion", dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("fechaPQR", "0000-00-00 00:00:00");
+                            cmd.Parameters.AddWithValue("fechaDictamen", "0000-00-00 00:00:00");
+                            cmd.Parameters.AddWithValue("fechaC3", "0000-00-00 00:00:00");
+                        }
+                        else if (cmbEstado.SelectedIndex == 5) //Entregado a PQR
+                        {
+                            cmd.Parameters.AddWithValue("fechaRecepcion", dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("fechaPQR", datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("fechaDictamen", "0000-00-00 00:00:00");
+                            cmd.Parameters.AddWithValue("fechaC3", "0000-00-00 00:00:00");
+                        }
 
-                    if ((cmbEstado.SelectedIndex == 0) || (cmbEstado.SelectedIndex == 1))
-                    {
-                        cmd.Parameters.AddWithValue("diasProceso", -1);
+                        if ((cmbEstado.SelectedIndex == 0) || (cmbEstado.SelectedIndex == 1))
+                        {
+                            cmd.Parameters.AddWithValue("diasProceso", -1);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("diasProceso", numDiasProceso.Value);
+                        }
+
+                        if (txtTelDomicilio.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("telefonoDomicilio", 0);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("telefonoDomicilio", Convert.ToInt64(txtTelDomicilio.Text));
+                        }
+
+                        cmd.Parameters.AddWithValue("telefonoCelular", Convert.ToInt64(txtTelCelular.Text));
+
+
+                        if (txtTelAlterno.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("telefonoAdicional", 0);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("telefonoAdicional", Convert.ToInt64(txtTelAlterno.Text));
+                        }
+                        cmd.Parameters.AddWithValue("email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("fechaRobo", dateRobo.Value.ToString("yyyy-MM-dd hh:mm:ss"));
+                        cmd.Parameters.AddWithValue("aseguradora", cmbAseguradora.Text);
+                        cmd.Parameters.AddWithValue("valorFactura", numValorFactura.Value);
+                        cmd.Parameters.AddWithValue("valorDeducible", numDeducible.Value);
+                        cmd.Parameters.AddWithValue("montoPago", numMonto.Value);
+                        cmd.Parameters.AddWithValue("expediente", txtExpediente.Text);
+
+                        cmd.Parameters.AddWithValue("acuse", checkAcuse.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("finiquito", checkFiniquito.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("sumaAsegurada", numSumaA.Value);
+                        cmd.Parameters.AddWithValue("cartaPerdida", checkCartaPerdida.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("poliza", checkPoliza.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("factura", checkFactura.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("acta", checkActa.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("acred", checkAcred.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("baja", checkBaja.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("pagoBaja", checkPagoBaja.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("tenencia", checkTenencia.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("identificacion", checkIdentificacion.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("pfp", checkPfp.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("contrato", checkContrato.Checked ? 1 : 0);
+
+                        cmd.Parameters.AddWithValue("goodWill", 0);
+                        cmd.Parameters.AddWithValue("fechaGoodWill", "0000-00");
+                        cmd.Parameters.AddWithValue("porcentajeGoodWill", 0);
+
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Registro añadido correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        conexion.lastModify(idNuevo, this.usuario, "Created", cmbEstado.Text);
+                        limpiarCampos();
+                        conexion.Desconectar();
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        cmd.Parameters.AddWithValue("diasProceso", numDiasProceso.Value);
+                        MessageBox.Show(ex.Message, "Error en el guardado.\n", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        conexion.Desconectar();
                     }
-
-                    if (txtTelDomicilio.Text == "")
+                    finally
                     {
-                        cmd.Parameters.AddWithValue("telefonoDomicilio", 0);
+                        conexion.Desconectar();
                     }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("telefonoDomicilio", Convert.ToInt64(txtTelDomicilio.Text));
-                    }
-
-                    cmd.Parameters.AddWithValue("telefonoCelular", Convert.ToInt64(txtTelCelular.Text));
-
-
-                    if (txtTelAlterno.Text == "")
-                    {
-                        cmd.Parameters.AddWithValue("telefonoAdicional", 0);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("telefonoAdicional", Convert.ToInt64(txtTelAlterno.Text));
-                    }
-                    cmd.Parameters.AddWithValue("email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("fechaRobo", dateRobo.Value.ToString("yyyy-MM-dd hh:mm:ss"));
-                    cmd.Parameters.AddWithValue("aseguradora", cmbAseguradora.Text);
-                    cmd.Parameters.AddWithValue("valorFactura", numValorFactura.Value);
-                    cmd.Parameters.AddWithValue("valorDeducible", numDeducible.Value);
-                    cmd.Parameters.AddWithValue("montoPago", numMonto.Value);
-                    cmd.Parameters.AddWithValue("expediente", txtExpediente.Text);
-
-                    cmd.Parameters.AddWithValue("acuse", checkAcuse.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("finiquito", checkFiniquito.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("sumaAsegurada", numSumaA.Value);
-                    cmd.Parameters.AddWithValue("cartaPerdida", checkCartaPerdida.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("poliza", checkPoliza.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("factura", checkFactura.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("acta", checkActa.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("acred", checkAcred.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("baja", checkBaja.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("pagoBaja", checkPagoBaja.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("tenencia", checkTenencia.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("identificacion", checkIdentificacion.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("pfp", checkPfp.Checked ? 1 : 0);
-                    cmd.Parameters.AddWithValue("contrato", checkContrato.Checked ? 1 : 0);
-
-                    cmd.Parameters.AddWithValue("goodWill", 0);
-                    cmd.Parameters.AddWithValue("fechaGoodWill", "0000-00");
-                    cmd.Parameters.AddWithValue("porcentajeGoodWill", 0);
-
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Registro añadido correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    conexion.lastModify(idNuevo, this.usuario, "Created", cmbEstado.Text);
-                    limpiarCampos();
-                    conexion.Desconectar();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message, "Error en el guardado.\n", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    conexion.Desconectar();
-                }
-                finally
-                {
-                    conexion.Desconectar();
+                    MessageBox.Show("El VIN ya se encuentra registrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 MessageBox.Show("Los campos marcados con asterisco no pueden estar vacíos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Verifica si el VIN capturado se encuentra en la base de datos.
+        /// </summary>
+        /// <param name="vin"></param>
+        /// <returns></returns>
+        private bool checkVIN(string vin)
+        {
+            conexionBD db = new conexionBD();
+            db.Conectar();
+            string consulta = $"SELECT vin FROM deducibles WHERE vin ='{vin}'";
+            int registros = db.BuscarNum(consulta);
+            if (registros > 0)
+            {
+                return false;
+                db.Desconectar();
+            }
+            else
+            {
+                return true;
+                db.Desconectar();
+            }            
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
