@@ -19,7 +19,7 @@ namespace RT_Management
         /// <returns>Cadena de conexión</returns>
         private string getCadenaConexion()
         {
-            return Settings.Default.BdRtmanagement;
+            return "server=127.0.0.1;user id=manux;password=PiQuFIx1Wi;database=rtmanagement;Convert Zero Datetime=True";
         }
 
         /// <summary>

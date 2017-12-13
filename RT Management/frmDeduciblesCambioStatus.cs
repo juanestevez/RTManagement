@@ -54,6 +54,7 @@ namespace RT_Management
             {
                 lblStatus.Text = "Para envío";
                 comboEstado.Items.Add("Entregado a PQR");
+                comboEstado.Items.Add("Incompleto");
                 comboEstado.Items.Add("Archivado");
             }
             else if (this.status == (int)estado.ENTREGADO)
@@ -113,6 +114,10 @@ namespace RT_Management
             {
                 texto = $"UPDATE deducibles SET status=5, fechaPqr='{datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{idDeducible}';";
             }
+            else if ((this.status == 4) && (getEstado() == 1)) //Para envío - Incompleto
+            {
+                texto = $"UPDATE deducibles SET status=1, fechaPqr='0000-00-00 00:00:00' WHERE clave='{idDeducible}';";
+            }
             else if ((this.status == 5) && (getEstado() == 0)) //Entregado a PQR - En proceso
             {
                 texto = $"UPDATE deducibles SET status=0, fechaC3='{dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{idDeducible}';";
@@ -132,7 +137,7 @@ namespace RT_Management
             {
                 texto = $"UPDATE deducibles SET status=1, fechaRecepcion='0000-00-00 00:00:00' WHERE clave='{idDeducible}';";
             }
-            else if (getEstado() == 6)
+            else if (getEstado() == (int)estado.ARCHIVADO)
             {
                 texto = $"UPDATE deducibles SET status=6, candidato=0 WHERE clave='{idDeducible}';";
             }

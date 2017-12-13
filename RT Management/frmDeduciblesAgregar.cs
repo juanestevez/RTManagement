@@ -495,20 +495,21 @@ namespace RT_Management
         /// <returns></returns>
         private bool checkVIN(string vin)
         {
-            conexionBD db = new conexionBD();
-            db.Conectar();
+            bool resultado = false;
             string consulta = $"SELECT vin FROM deducibles WHERE vin ='{vin}'";
+            conexionBD db = new conexionBD();
+            db.Conectar();            
             int registros = db.BuscarNum(consulta);
             if (registros > 0)
             {
-                return false;
-                db.Desconectar();
+                resultado = false;
             }
             else
             {
-                return true;
-                db.Desconectar();
-            }            
+                resultado = true;
+            }
+            db.Desconectar();
+            return resultado;
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)

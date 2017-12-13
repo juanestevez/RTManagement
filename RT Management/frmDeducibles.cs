@@ -34,7 +34,7 @@ namespace RT_Management
             {
                 user = value;
             }
-            get 
+            get
             {
                 return user;
             }
@@ -79,7 +79,7 @@ namespace RT_Management
             comboTipo.SelectedIndex = 0;
             this.WindowState = FormWindowState.Maximized;
             txtBusqueda.Focus();
-            if (level != 0) 
+            if (level != 0)
             {
                 btnTodos.Visible = false;
                 separadorTodo.Visible = false;
@@ -127,11 +127,11 @@ namespace RT_Management
             string consulta;
             conexionBD db = new conexionBD();
 
-            if (comboFiltro.SelectedIndex == 0) 
+            if (comboFiltro.SelectedIndex == 0)
             {
                 filtroColumna = "titular";
-            } 
-            else if (comboFiltro.SelectedIndex == 1) 
+            }
+            else if (comboFiltro.SelectedIndex == 1)
             {
                 filtroColumna = "grupo";
             }
@@ -149,7 +149,7 @@ namespace RT_Management
             {
                 MessageBox.Show("Ingrese el término a buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else 
+            else
             {
                 if (comboTipo.SelectedIndex == 0)
                 {
@@ -168,7 +168,7 @@ namespace RT_Management
                     if (i < 1)
                     {
                         gridDatos.DataSource = null;
-                        MessageBox.Show("No se encontraron registros.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);                        
+                        MessageBox.Show("No se encontraron registros.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtBusqueda.SelectionStart = 0;
                         txtBusqueda.SelectionLength = txtBusqueda.Text.Length;
                         db.Desconectar();
@@ -205,8 +205,8 @@ namespace RT_Management
                 finally
                 {
                     db.Desconectar();
-                }            
-            }            
+                }
+            }
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace RT_Management
 
             if(tipo == "proceso")
             {
-               consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaC3 As 'Entrega a C3', " 
+               consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaC3 As 'Entrega a C3', "
                     + "aseguradora AS Aseguradora, platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE status=0 ORDER BY fechaC3";
             }
             else if(tipo == "incompleto")
@@ -250,9 +250,9 @@ namespace RT_Management
                 consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaDictamen AS 'Envio de dictamen', "
                     + "aseguradora AS Aseguradora, platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE status=3 ORDER BY fechaDictamen";
             }
-            else if (tipo == "para envio") 
+            else if (tipo == "para envio")
             {
-                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaRecepcion AS 'Recepcion', " 
+                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaRecepcion AS 'Recepcion', "
                     + "aseguradora AS Aseguradora, platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE status=4 ORDER BY fechaRecepcion";
             }
             else if (tipo == "entregado")
@@ -274,7 +274,7 @@ namespace RT_Management
             {
                 consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaVisita AS 'Fecha de visita',"
                     + "aseguradora AS Aseguradora,  platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles ORDER BY fechaVisita";
-            }            
+            }
             else if (tipo == "fechaDictamen")
             {
                 DateTime inicio = fechaInicio.Value;
@@ -286,7 +286,7 @@ namespace RT_Management
             }
             else if (tipo == "fechaVisita")
             {
-                DateTime inicio = fechaInicio.Value; 
+                DateTime inicio = fechaInicio.Value;
                 DateTime fin = fechaFin.Value;
 
                 consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, fechaVisita AS 'Fecha de visita', "
@@ -307,7 +307,7 @@ namespace RT_Management
                 string mes = obtenNumeroDeMes(comboGWmes);
 
                 consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, platinum AS Platinum, "
-                    + "vin AS VIN, fechaDictamen AS 'Envio de dictamen', montoPendiente FROM deducibles WHERE goodWill=1 " + "AND fechaGoodWill='" + comboGWyear.Text + "-" + mes 
+                    + "vin AS VIN, fechaDictamen AS 'Envio de dictamen', montoPendiente FROM deducibles WHERE goodWill=1 " + "AND fechaGoodWill='" + comboGWyear.Text + "-" + mes
                     + "' ORDER BY fechaGoodWill;";
             }
             else if (tipo == "Good Will Todo")
@@ -332,8 +332,8 @@ namespace RT_Management
                 db.Conectar();
                 MySqlDataAdapter datos = db.Adaptar(consulta);
                 DataTable tabla = new DataTable();
-                
-                datos.Fill(tabla);                
+
+                datos.Fill(tabla);
                 gridDatos.DataSource = tabla;
                 formatoEncabezados();
 
@@ -343,17 +343,17 @@ namespace RT_Management
                 {
                     lblResultados.Text = i.ToString() + " resultado";
                     gridDatos.Focus();
-					gridDatos.CurrentCell = gridDatos[2, 0];
+                    gridDatos.CurrentCell = gridDatos[2, 0];
                 }
-                else if (i == 0) 
+                else if (i == 0)
                 {
                     lblResultados.Text = "No se encontraron registros";
                 }
-                else if (i > 1) 
+                else if (i > 1)
                 {
                     lblResultados.Text = i.ToString() + " resultados";
                     gridDatos.Focus();
-					gridDatos.CurrentCell = gridDatos[2, 0];
+                    gridDatos.CurrentCell = gridDatos[2, 0];
                 }
 
             }
@@ -428,9 +428,9 @@ namespace RT_Management
             return mes;
         }
 
-        private void formatoEncabezados() 
-        {      
-            gridDatos.Columns[0].Visible = false; 
+        private void formatoEncabezados()
+        {
+            gridDatos.Columns[0].Visible = false;
             gridDatos.Columns[1].HeaderText = "";
             gridDatos.Columns[8].Visible = false;
         }
@@ -508,7 +508,7 @@ namespace RT_Management
         {
             txtBusqueda.SelectionStart = 0;
             txtBusqueda.SelectionLength = txtBusqueda.Text.Length;
-        }        
+        }
 
         /// <summary>
         /// Realiza búsqueda de expedientes de acuerdo a las fechas seleccionadas.
@@ -517,7 +517,7 @@ namespace RT_Management
         {
             lblResultados.Text = "";
             DateTime inicio = Convert.ToDateTime(fechaInicio.Value.ToString("yyyy-MM-dd") + " 00:00:00");
-            DateTime fin = Convert.ToDateTime(fechaFin.Value.ToString("yyyy-MM-dd") + " 23:59:59");            
+            DateTime fin = Convert.ToDateTime(fechaFin.Value.ToString("yyyy-MM-dd") + " 23:59:59");
 
             if (inicio < fin)
             {
@@ -534,18 +534,18 @@ namespace RT_Management
                     verRegistros("fechaRecepcion");
                 }
             }
-            else 
+            else
             {
                 MessageBox.Show("La fecha de inicio debe ser menor a la fecha final.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         /// <summary>
         /// Regresa los campos a sus valores predeterminados.
         /// </summary>
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
             gridDatos.DataSource = null;
             resetControles();
 
@@ -561,7 +561,7 @@ namespace RT_Management
                 fechaInicio.MaxDate = DateTime.Today;
                 fechaFin.MaxDate = DateTime.Today;
                 fechaFin.Value = DateTime.Today;
-                fechaInicio.Value = DateTime.Today;                
+                fechaInicio.Value = DateTime.Today;
                 lblResultados.Text = "";
                 comboFiltroFecha.SelectedIndex = 0;
             }
@@ -583,7 +583,7 @@ namespace RT_Management
         /// Realiza el formato por color de acuerdo al status del expediente.
         /// </summary>
         private void gridDatos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {            
+        {
             if (gridDatos.Columns[e.ColumnIndex].Name == "status")
             {
                 if (e.Value.ToString() == "0") //En proceso
@@ -660,7 +660,7 @@ namespace RT_Management
             tools.Visible = true;
             loadDataMod();
         }
-        
+
         /// <summary>
         /// Reestablece los campos a sus valores predeterminados al cambiar de expediente o realizar busquedas.
         /// </summary>
@@ -765,7 +765,7 @@ namespace RT_Management
                     gridComentarios.Columns[1].HeaderText = "Comentario";
                     gridComentarios.Columns[2].HeaderText = "Usuario";
                     db.Desconectar();
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -1210,7 +1210,7 @@ namespace RT_Management
                 {
                     dateFechaProbable.Value = DateTime.Now;
                 }
-                
+
                 checkAcuse.Checked = respuesta[24].ToString() == "1" ? true : false;
                 checkFiniquito.Checked = respuesta[25].ToString() == "1" ? true : false;
 
@@ -1316,7 +1316,8 @@ namespace RT_Management
                     + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='" + cmbAseguradora.Text
                     + "', valorFactura=" + numValorFactura.Value + ", valorDeducible=" + numDeducible.Value + ", montoPago="
                     + numMonto.Value + ", expediente='" + txtExpediente.Text + "', acuse =" + acuse + ", finiquito="
-                    + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + ", montoPendiente=" + montoPendiente + " WHERE clave='" + this.idDeducible
+                    + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + ", montoPendiente="
+                    + montoPendiente + " WHERE clave='" + this.idDeducible
                     + "';";
             }
             else if ((this.statusExpediente == (int)status.INCOMPLETO) || (this.statusExpediente == (int)status.ARCHIVADO))
@@ -1345,9 +1346,9 @@ namespace RT_Management
                     + ", telefonoDomicilio=" + telCasa + ", telefonoCelular=" + telCel + ", telefonoAdicional=" + telAlt
                     + ", email='" + txtEmail.Text + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss")
                     + "', aseguradora='" + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value
-                    + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='" 
-                    + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada=" 
-                    + numSumaA.Value + ", " + getDocs() + ", montoPendiente=" + montoPendiente + " WHERE clave='" 
+                    + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
+                    + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
+                    + numSumaA.Value + ", " + getDocs() + ", montoPendiente=" + montoPendiente + " WHERE clave='"
                     + this.idDeducible + "';";
             }
             else if (this.statusExpediente == (int)status.NOPROCEDENTE)
@@ -1366,13 +1367,13 @@ namespace RT_Management
                         + ", telefonoDomicilio=" + telCasa + ", telefonoCelular=" + telCel + ", telefonoAdicional=" + telAlt
                         + ", email='" + txtEmail.Text + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss")
                         + "', aseguradora='" + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value
-                        + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='" 
-                        + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada=" 
-                        + numSumaA.Value + ", " + getDocs() + ", goodWill=1, fechaGoodWill='" + comboGWdataYear.Text 
-                        + "-" + obtenNumeroDeMes(comboGWdataMes) + "', porcentajeGoodWill=" + numGoodWillPorc.Value 
+                        + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
+                        + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
+                        + numSumaA.Value + ", " + getDocs() + ", goodWill=1, fechaGoodWill='" + comboGWdataYear.Text
+                        + "-" + obtenNumeroDeMes(comboGWdataMes) + "', porcentajeGoodWill=" + numGoodWillPorc.Value
                         + ", candidato=0, montoPendiente=" + montoPendiente + " WHERE clave='" + this.idDeducible + "';";
                 }
-                else 
+                else
                 {
                     texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                         + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
@@ -1384,40 +1385,40 @@ namespace RT_Management
                         + ", telefonoDomicilio=" + telCasa + ", telefonoCelular=" + telCel + ", telefonoAdicional=" + telAlt
                         + ", email='" + txtEmail.Text + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss")
                         + "', aseguradora='" + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value
-                        + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='" 
-                        + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada=" 
-                        + numSumaA.Value + ", " + getDocs() + ", goodWill=0, fechaGoodWill='0000-00', porcentajeGoodWill=0 WHERE clave='" 
+                        + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
+                        + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
+                        + numSumaA.Value + ", " + getDocs() + ", goodWill=0, fechaGoodWill='0000-00', porcentajeGoodWill=0 WHERE clave='"
                         + this.idDeducible + "';";
-                }                
+                }
             }
             else if (this.statusExpediente == (int)status.PARAENVIO)
             {
                 texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
-                    + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='" 
+                    + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                     + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
-                    + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', telefonoDomicilio=" + telCasa 
-                    + ", telefonoCelular=" + telCel + ", telefonoAdicional=" + telAlt + ", email='" + txtEmail.Text 
-                    + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='" 
-                    + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value + ", valorDeducible=" 
-                    + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='" 
-                    + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada=" 
+                    + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', telefonoDomicilio=" + telCasa
+                    + ", telefonoCelular=" + telCel + ", telefonoAdicional=" + telAlt + ", email='" + txtEmail.Text
+                    + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='"
+                    + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value + ", valorDeducible="
+                    + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
+                    + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
                     + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible + "';";
             }
             else if (this.statusExpediente == (int)status.ENTREGADO)
             {
                 texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
-                   + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='" 
-                   + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='" 
-                   + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaPqr='" 
-                   + datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', telefonoDomicilio=" + telCasa + ", telefonoCelular=" 
-                   + telCel + ", telefonoAdicional=" + telAlt + ", email='" + txtEmail.Text + "', fechaRobo='" 
+                   + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
+                   + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
+                   + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaPqr='"
+                   + datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', telefonoDomicilio=" + telCasa + ", telefonoCelular="
+                   + telCel + ", telefonoAdicional=" + telAlt + ", email='" + txtEmail.Text + "', fechaRobo='"
                    + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='" + cmbAseguradora.Text
-                   + "', valorFactura=" + numValorFactura.Value + ", valorDeducible=" + numDeducible.Value + ", montoPago=" 
+                   + "', valorFactura=" + numValorFactura.Value + ", valorDeducible=" + numDeducible.Value + ", montoPago="
                    + numMonto.Value + ", expediente='" + txtExpediente.Text + "', acuse =" + acuse + ", finiquito="
-                   + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible 
+                   + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible
                    + "';";
             }
-            
+
             return texto;
         }
 
@@ -1532,21 +1533,21 @@ namespace RT_Management
                         if (toolsEditar.Enabled == false)
                         {
                             numMonto.Value = (sumaAsegurada) * (porcentaje / 100);
-                        }                        
-                        MessageBox.Show("El valor máximo a pagar es del 20%.\nEl monto del deducible al 20% es de " 
-                            + montoDeducible.ToString("c2") + "\nEl monto a pagar es de " + montoPago.ToString("c2"), 
+                        }
+                        MessageBox.Show("El valor máximo a pagar es del 20%.\nEl monto del deducible al 20% es de "
+                            + montoDeducible.ToString("c2") + "\nEl monto a pagar es de " + montoPago.ToString("c2"),
                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         montoDeducible = (sumaAsegurada) * (porcentaje / 100);
-                        montoPago = montoDeducible / IVA;                        
+                        montoPago = montoDeducible / IVA;
                         if (toolsEditar.Enabled == false)
                         {
                             numMonto.Value = montoDeducible;
                         }
-                        MessageBox.Show("El monto del deducible es de " + montoDeducible.ToString("c2") 
-                            + "\nEl monto a pagar es de " + montoPago.ToString("c2"), "Información", MessageBoxButtons.OK, 
+                        MessageBox.Show("El monto del deducible es de " + montoDeducible.ToString("c2")
+                            + "\nEl monto a pagar es de " + montoPago.ToString("c2"), "Información", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                     }
                 }
@@ -1558,7 +1559,7 @@ namespace RT_Management
             }
             else //Porcentaje es cero
             {
-                MessageBox.Show("Es necesario capturar el porcentaje del deducible.", "No es posible realizar el cálculo", 
+                MessageBox.Show("Es necesario capturar el porcentaje del deducible.", "No es posible realizar el cálculo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -1576,9 +1577,9 @@ namespace RT_Management
             }
             else
             {
-                MessageBox.Show("No hay número que registrar. Seleccione otro teléfono.", "Error", MessageBoxButtons.OK, 
+                MessageBox.Show("No hay número que registrar. Seleccione otro teléfono.", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            }     
+            }
         }
 
         private void bntMakeCallCell_Click(object sender, EventArgs e)
@@ -1593,9 +1594,9 @@ namespace RT_Management
             }
             else
             {
-                MessageBox.Show("No hay número que registrar. Seleccione otro teléfono.", "Error", MessageBoxButtons.OK, 
+                MessageBox.Show("No hay número que registrar. Seleccione otro teléfono.", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            }       
+            }
         }
 
         private void btnMakeCallAlt_Click(object sender, EventArgs e)
@@ -1610,7 +1611,7 @@ namespace RT_Management
             }
             else
             {
-                MessageBox.Show("No hay número que registrar. Seleccione otro teléfono.", "Error", MessageBoxButtons.OK, 
+                MessageBox.Show("No hay número que registrar. Seleccione otro teléfono.", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
@@ -1626,19 +1627,19 @@ namespace RT_Management
         {
             if ((this.statusExpediente == (int)status.PROCEDENTE) || (this.statusExpediente == (int)status.NOPROCEDENTE) || (this.statusExpediente == (int)status.ARCHIVADO))
             {
-                MessageBox.Show("No se puede cambiar el estado. El expediente se encuentra cerrado.", "Información", 
+                MessageBox.Show("No se puede cambiar el estado. El expediente se encuentra cerrado.", "Información",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 estadoControles(false);
-                frmDeduciblesCambioStatus cambiaStatus = new frmDeduciblesCambioStatus(this.idDeducible, this.statusExpediente, 
+                frmDeduciblesCambioStatus cambiaStatus = new frmDeduciblesCambioStatus(this.idDeducible, this.statusExpediente,
                     this.titular, UsuarioActivo);
                 cambiaStatus.ShowDialog();
                 loadDataMod();
                 toolsCancelar.Enabled = false;
                 toolsGuardar.Enabled = false;
-            }            
+            }
         }
 
         /// <summary>
@@ -1732,7 +1733,7 @@ namespace RT_Management
                 if (i > 0)
                 {
                     db.lastModify(this.idDeducible, UsuarioActivo, "Edited", "");
-                    MessageBox.Show("Registro modificado correctamente.", "Información", MessageBoxButtons.OK, 
+                    MessageBox.Show("Registro modificado correctamente.", "Información", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     db.Desconectar();
                     loadDataMod();
@@ -1764,7 +1765,7 @@ namespace RT_Management
                 comboGWdataMes.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month-1);
                 comboGWdataYear.Text = DateTime.Now.Year.ToString();
             }
-            else 
+            else
             {
                 lblGoodWillPorc.Visible = false;
                 numGoodWillPorc.Visible = false;
@@ -1885,7 +1886,7 @@ namespace RT_Management
         {
             comboGWmes.Enabled = true;
             comboGWyear.Enabled = true;
-        }        
+        }
 
         private void toolsLlamadaEntrante_Click(object sender, EventArgs e)
         {
@@ -1896,7 +1897,7 @@ namespace RT_Management
 
         private void btnExecuteQuery_Click(object sender, EventArgs e)
         {
-            ejecutarConsulta();     
+            ejecutarConsulta();
         }
 
         private void ejecutarConsulta()
@@ -1915,7 +1916,7 @@ namespace RT_Management
                     if (i < 1)
                     {
                         gridDatos.DataSource = null;
-                        MessageBox.Show("No se encontraron registros.", "Información", MessageBoxButtons.OK, 
+                        MessageBox.Show("No se encontraron registros.", "Información", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                         txtQuery.SelectionStart = 0;
                         txtQuery.SelectionLength = txtBusqueda.Text.Length;
@@ -2052,7 +2053,7 @@ namespace RT_Management
             }
             return mes;
         }
-        
+
         private void toolCgoodWill_Click(object sender, EventArgs e)
         {
             candidatoAgoodWill(1);
@@ -2080,7 +2081,7 @@ namespace RT_Management
                 i = db.Modificar(consulta);
                 if (i > 0)
                 {
-                    MessageBox.Show("Registro modificado correctamente.", "Marcar como good will", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
+                    MessageBox.Show("Registro modificado correctamente.", "Marcar como good will", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadDataMod();
 
                     if (op == 0)

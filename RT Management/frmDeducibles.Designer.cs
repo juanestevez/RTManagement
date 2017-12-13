@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDeducibles));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnParaEnvio = new System.Windows.Forms.ToolStripButton();
@@ -330,7 +330,7 @@
             this.lblResultados});
             this.toolMain.Location = new System.Drawing.Point(0, 0);
             this.toolMain.Name = "toolMain";
-            this.toolMain.Size = new System.Drawing.Size(1362, 25);
+            this.toolMain.Size = new System.Drawing.Size(1284, 25);
             this.toolMain.TabIndex = 0;
             this.toolMain.Text = "toolStrip1";
             // 
@@ -383,9 +383,9 @@
             this.panelStatus.Controls.Add(this.lblDiasProceso);
             this.panelStatus.Controls.Add(this.dateFechaProbable);
             this.panelStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelStatus.Location = new System.Drawing.Point(443, 3);
+            this.panelStatus.Location = new System.Drawing.Point(411, 3);
             this.panelStatus.Name = "panelStatus";
-            this.panelStatus.Size = new System.Drawing.Size(916, 59);
+            this.panelStatus.Size = new System.Drawing.Size(870, 59);
             this.panelStatus.TabIndex = 33;
             this.panelStatus.Visible = false;
             // 
@@ -423,7 +423,7 @@
             this.toolsLlamadaEntrante});
             this.tools.Location = new System.Drawing.Point(0, 0);
             this.tools.Name = "tools";
-            this.tools.Size = new System.Drawing.Size(916, 25);
+            this.tools.Size = new System.Drawing.Size(870, 25);
             this.tools.TabIndex = 7;
             this.tools.Text = "toolStrip1";
             // 
@@ -714,14 +714,14 @@
             this.gridComentarios.AllowUserToDeleteRows = false;
             this.gridComentarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridComentarios.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridComentarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridComentarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridComentarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridComentarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridComentarios.Location = new System.Drawing.Point(3, 16);
@@ -759,14 +759,14 @@
             this.gridLlamadas.AllowUserToDeleteRows = false;
             this.gridLlamadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridLlamadas.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridLlamadas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridLlamadas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridLlamadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridLlamadas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridLlamadas.Location = new System.Drawing.Point(3, 16);
@@ -1499,7 +1499,7 @@
             this.tabControlSecciones.Location = new System.Drawing.Point(3, 3);
             this.tabControlSecciones.Name = "tabControlSecciones";
             this.tabControlSecciones.SelectedIndex = 0;
-            this.tabControlSecciones.Size = new System.Drawing.Size(434, 59);
+            this.tabControlSecciones.Size = new System.Drawing.Size(402, 59);
             this.tabControlSecciones.TabIndex = 2;
             this.tabControlSecciones.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
@@ -1512,7 +1512,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(426, 30);
+            this.tabPage1.Size = new System.Drawing.Size(394, 30);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Búsqueda";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1520,7 +1520,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(399, 3);
+            this.btnBuscar.Location = new System.Drawing.Point(366, 3);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(24, 25);
             this.btnBuscar.TabIndex = 7;
@@ -1532,7 +1532,7 @@
             this.txtBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBusqueda.Location = new System.Drawing.Point(171, 7);
             this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(223, 20);
+            this.txtBusqueda.Size = new System.Drawing.Size(192, 20);
             this.txtBusqueda.TabIndex = 6;
             // 
             // comboTipo
@@ -1572,7 +1572,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(426, 30);
+            this.tabPage2.Size = new System.Drawing.Size(394, 30);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Rango de fechas";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1645,7 +1645,7 @@
             this.tabPage3.Controls.Add(this.btnBuscarGW);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(426, 30);
+            this.tabPage3.Size = new System.Drawing.Size(394, 30);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Good Will";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1667,15 +1667,15 @@
             "Octubre",
             "Noviembre",
             "Diciembre"});
-            this.comboGWmes.Location = new System.Drawing.Point(128, 6);
+            this.comboGWmes.Location = new System.Drawing.Point(117, 6);
             this.comboGWmes.Name = "comboGWmes";
-            this.comboGWmes.Size = new System.Drawing.Size(111, 21);
+            this.comboGWmes.Size = new System.Drawing.Size(95, 21);
             this.comboGWmes.TabIndex = 21;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(93, 10);
+            this.label6.Location = new System.Drawing.Point(87, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 13);
             this.label6.TabIndex = 20;
@@ -1690,7 +1690,7 @@
             "2015",
             "2016",
             "2017"});
-            this.comboGWyear.Location = new System.Drawing.Point(38, 6);
+            this.comboGWyear.Location = new System.Drawing.Point(31, 6);
             this.comboGWyear.Name = "comboGWyear";
             this.comboGWyear.Size = new System.Drawing.Size(49, 21);
             this.comboGWyear.TabIndex = 19;
@@ -1698,7 +1698,7 @@
             // radioGWtodos
             // 
             this.radioGWtodos.AutoSize = true;
-            this.radioGWtodos.Location = new System.Drawing.Point(321, 8);
+            this.radioGWtodos.Location = new System.Drawing.Point(293, 8);
             this.radioGWtodos.Name = "radioGWtodos";
             this.radioGWtodos.Size = new System.Drawing.Size(70, 17);
             this.radioGWtodos.TabIndex = 15;
@@ -1710,7 +1710,7 @@
             // 
             this.radioGWfecha.AutoSize = true;
             this.radioGWfecha.Checked = true;
-            this.radioGWfecha.Location = new System.Drawing.Point(245, 8);
+            this.radioGWfecha.Location = new System.Drawing.Point(221, 8);
             this.radioGWfecha.Name = "radioGWfecha";
             this.radioGWfecha.Size = new System.Drawing.Size(71, 17);
             this.radioGWfecha.TabIndex = 14;
@@ -1722,7 +1722,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 10);
+            this.label7.Location = new System.Drawing.Point(2, 10);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 13);
             this.label7.TabIndex = 17;
@@ -1731,7 +1731,7 @@
             // btnBuscarGW
             // 
             this.btnBuscarGW.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarGW.Image")));
-            this.btnBuscarGW.Location = new System.Drawing.Point(397, 4);
+            this.btnBuscarGW.Location = new System.Drawing.Point(367, 4);
             this.btnBuscarGW.Name = "btnBuscarGW";
             this.btnBuscarGW.Size = new System.Drawing.Size(24, 25);
             this.btnBuscarGW.TabIndex = 16;
@@ -1745,7 +1745,7 @@
             this.tabConsulta.Controls.Add(this.label12);
             this.tabConsulta.Location = new System.Drawing.Point(4, 25);
             this.tabConsulta.Name = "tabConsulta";
-            this.tabConsulta.Size = new System.Drawing.Size(426, 30);
+            this.tabConsulta.Size = new System.Drawing.Size(394, 30);
             this.tabConsulta.TabIndex = 3;
             this.tabConsulta.Text = "Consulta";
             this.tabConsulta.UseVisualStyleBackColor = true;
@@ -1753,7 +1753,7 @@
             // btnExecuteQuery
             // 
             this.btnExecuteQuery.Image = ((System.Drawing.Image)(resources.GetObject("btnExecuteQuery.Image")));
-            this.btnExecuteQuery.Location = new System.Drawing.Point(400, 5);
+            this.btnExecuteQuery.Location = new System.Drawing.Point(367, 5);
             this.btnExecuteQuery.Name = "btnExecuteQuery";
             this.btnExecuteQuery.Size = new System.Drawing.Size(24, 25);
             this.btnExecuteQuery.TabIndex = 17;
@@ -1764,7 +1764,7 @@
             // 
             this.txtQuery.Location = new System.Drawing.Point(60, 8);
             this.txtQuery.Name = "txtQuery";
-            this.txtQuery.Size = new System.Drawing.Size(334, 20);
+            this.txtQuery.Size = new System.Drawing.Size(301, 20);
             this.txtQuery.TabIndex = 1;
             // 
             // label12
@@ -1781,25 +1781,25 @@
             this.gridDatos.AllowUserToAddRows = false;
             this.gridDatos.AllowUserToDeleteRows = false;
             this.gridDatos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gridDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.gridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridDatos.Location = new System.Drawing.Point(3, 68);
             this.gridDatos.Name = "gridDatos";
             this.gridDatos.ReadOnly = true;
             this.gridDatos.RowHeadersVisible = false;
-            this.gridDatos.Size = new System.Drawing.Size(434, 520);
+            this.gridDatos.Size = new System.Drawing.Size(402, 545);
             this.gridDatos.TabIndex = 3;
             this.gridDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDatos_CellClick);
             this.gridDatos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDatos_CellClick);
@@ -1809,7 +1809,7 @@
             // 
             this.layoutBase.AutoScroll = true;
             this.layoutBase.ColumnCount = 2;
-            this.layoutBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 440F));
+            this.layoutBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutBase.Controls.Add(this.gridDatos, 0, 1);
             this.layoutBase.Controls.Add(this.tabControlSecciones);
@@ -1821,7 +1821,7 @@
             this.layoutBase.RowCount = 2;
             this.layoutBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.layoutBase.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutBase.Size = new System.Drawing.Size(1362, 504);
+            this.layoutBase.Size = new System.Drawing.Size(1284, 616);
             this.layoutBase.TabIndex = 1;
             // 
             // panelFile
@@ -1837,9 +1837,9 @@
             this.panelFile.Controls.Add(this.groupDatos);
             this.panelFile.Controls.Add(this.groupVehiculos);
             this.panelFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFile.Location = new System.Drawing.Point(443, 68);
+            this.panelFile.Location = new System.Drawing.Point(411, 68);
             this.panelFile.Name = "panelFile";
-            this.panelFile.Size = new System.Drawing.Size(916, 520);
+            this.panelFile.Size = new System.Drawing.Size(870, 545);
             this.panelFile.TabIndex = 35;
             this.panelFile.Visible = false;
             // 
@@ -1848,7 +1848,7 @@
             this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 529);
+            this.ClientSize = new System.Drawing.Size(1284, 641);
             this.Controls.Add(this.layoutBase);
             this.Controls.Add(this.toolMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
