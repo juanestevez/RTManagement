@@ -46,9 +46,6 @@ namespace RT_Management
                     txtUsuario.SelectionStart = 0;
                     txtUsuario.SelectionLength = txtUsuario.Text.Length;
                     break;
-                case 4:
-                    ///
-                    break;
             }
         }
 

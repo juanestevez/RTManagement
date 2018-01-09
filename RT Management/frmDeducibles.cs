@@ -1766,7 +1766,6 @@ namespace RT_Management
                 {
                     comboGWdataMes.Text = "Diciembre";
                     comboGWdataYear.Text = DateTime.Now.AddYears(-1).ToString().Substring(6,4);
-                    MessageBox.Show(DateTime.Now.AddYears(-1).ToString().Substring(6, 4));
                 }
                 else
                 {
