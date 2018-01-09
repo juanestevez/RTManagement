@@ -1762,8 +1762,18 @@ namespace RT_Management
                 comboGWdataYear.Visible = true;
                 lblGoodWillMes.Visible = true;
                 comboGWdataMes.Visible = true;
-                comboGWdataMes.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month-1);
-                comboGWdataYear.Text = DateTime.Now.Year.ToString();
+                if (DateTime.Now.Month == 1)
+                {
+                    comboGWdataMes.Text = "Diciembre";
+                    comboGWdataYear.Text = DateTime.Now.AddYears(-1).ToString().Substring(6,4);
+                    MessageBox.Show(DateTime.Now.AddYears(-1).ToString().Substring(6, 4));
+                }
+                else
+                {
+                    comboGWdataMes.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month - 1);
+                    comboGWdataYear.Text = DateTime.Now.Year.ToString();
+                }
+                
             }
             else
             {

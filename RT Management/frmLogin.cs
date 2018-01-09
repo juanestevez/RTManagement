@@ -124,7 +124,7 @@ namespace RT_Management
 
         private void btnDesbloquea_Click(object sender, EventArgs e)
         {
-            frmLoginDesbloquea w = new frmLoginDesbloquea(this);
+            frmLoginDesbloquea w = new frmLoginDesbloquea(this, txtUser.Text);
             w.Show();
             this.Hide();
         }

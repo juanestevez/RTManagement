@@ -33,18 +33,19 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
             this.btnDesbloquea = new System.Windows.Forms.Button();
+            this.lblUsuarioDes = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(86, 9);
+            this.txtUsuario.Location = new System.Drawing.Point(86, 34);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtUsuario.TabIndex = 0;
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(86, 38);
+            this.txtPass.Location = new System.Drawing.Point(86, 63);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(100, 20);
             this.txtPass.TabIndex = 1;
@@ -53,7 +54,7 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(13, 13);
+            this.lblUsuario.Location = new System.Drawing.Point(13, 38);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(46, 13);
             this.lblUsuario.TabIndex = 2;
@@ -62,7 +63,7 @@
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(13, 42);
+            this.lblPass.Location = new System.Drawing.Point(13, 67);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(64, 13);
             this.lblPass.TabIndex = 3;
@@ -70,7 +71,7 @@
             // 
             // btnDesbloquea
             // 
-            this.btnDesbloquea.Location = new System.Drawing.Point(111, 68);
+            this.btnDesbloquea.Location = new System.Drawing.Point(111, 93);
             this.btnDesbloquea.Name = "btnDesbloquea";
             this.btnDesbloquea.Size = new System.Drawing.Size(75, 23);
             this.btnDesbloquea.TabIndex = 4;
@@ -78,12 +79,22 @@
             this.btnDesbloquea.UseVisualStyleBackColor = true;
             this.btnDesbloquea.Click += new System.EventHandler(this.btnDesbloquea_Click);
             // 
+            // lblUsuarioDes
+            // 
+            this.lblUsuarioDes.AutoSize = true;
+            this.lblUsuarioDes.Location = new System.Drawing.Point(13, 9);
+            this.lblUsuarioDes.Name = "lblUsuarioDes";
+            this.lblUsuarioDes.Size = new System.Drawing.Size(119, 13);
+            this.lblUsuarioDes.TabIndex = 5;
+            this.lblUsuarioDes.Text = "Usuario a desbloquear: ";
+            // 
             // frmLoginDesbloquea
             // 
             this.AcceptButton = this.btnDesbloquea;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(205, 98);
+            this.ClientSize = new System.Drawing.Size(205, 125);
+            this.Controls.Add(this.lblUsuarioDes);
             this.Controls.Add(this.btnDesbloquea);
             this.Controls.Add(this.lblPass);
             this.Controls.Add(this.lblUsuario);
@@ -110,5 +121,6 @@
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblPass;
         private System.Windows.Forms.Button btnDesbloquea;
+        private System.Windows.Forms.Label lblUsuarioDes;
     }
 }

@@ -1,6 +1,11 @@
 # RT Management CHANGELOG
 
-### 1.5.1.9  2017-10-24
+### 1.5.1.10 - 2018-01-09
+##### Fixed
+- **[Deducibles]** Se corrige comportamiento al calcular las fechas en los campos Good Will, si el mes actual es enero se muestra correctamente el año anterior y el mes de diciembre. Con esto se elimina el mensaje de error al cargar el expediente.
+- **[Login]** Se corrige el comportamiento del desbloqueo de usuarios, ya se desbloquea el usuario deseado y no el administrador.
+
+### 1.5.1.9 - 2017-10-24
 ##### Changed
 - **[Deducibles]** Ajuste en la barra de resultados, todos los elementos quedan visibles. 
 
