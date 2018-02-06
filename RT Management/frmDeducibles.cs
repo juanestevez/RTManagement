@@ -701,7 +701,6 @@ namespace RT_Management
             lblStatusComment.Visible = false;
             checkAcred.Checked = false;
             checkActa.Checked = false;
-            checkAcuse.Checked = false;
             checkBaja.Checked = false;
             checkCartaPerdida.Checked = false;
             checkContrato.Checked = false;
@@ -1211,7 +1210,6 @@ namespace RT_Management
                     dateFechaProbable.Value = DateTime.Now;
                 }
 
-                checkAcuse.Checked = respuesta[24].ToString() == "1" ? true : false;
                 checkFiniquito.Checked = respuesta[25].ToString() == "1" ? true : false;
 
                 numSumaA.Value = Convert.ToDecimal(respuesta[26]);
@@ -1260,18 +1258,8 @@ namespace RT_Management
         private string getConsulta()
         {
             string texto = "";
-            int acuse = 9;
             int finiquito = 9;
             int montoPendiente = -1;
-
-            if (checkAcuse.Checked)
-            {
-                acuse = 1;
-            }
-            else
-            {
-                acuse = 0;
-            }
 
             if (checkFiniquito.Checked)
             {
@@ -1315,7 +1303,7 @@ namespace RT_Management
                     + telCel + ", telefonoAdicional=" + telAlt + ", email='" + txtEmail.Text + "', fechaRobo='"
                     + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='" + cmbAseguradora.Text
                     + "', valorFactura=" + numValorFactura.Value + ", valorDeducible=" + numDeducible.Value + ", montoPago="
-                    + numMonto.Value + ", expediente='" + txtExpediente.Text + "', acuse =" + acuse + ", finiquito="
+                    + numMonto.Value + ", expediente='" + txtExpediente.Text + "', finiquito="
                     + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + ", montoPendiente="
                     + montoPendiente + " WHERE clave='" + this.idDeducible
                     + "';";
@@ -1329,7 +1317,7 @@ namespace RT_Management
                     + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='"
                     + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value + ", valorDeducible="
                     + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
-                    + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
+                    + txtExpediente.Text + "', finiquito=" + finiquito + ", sumaAsegurada="
                     + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible + "';";
             }
             else if (this.statusExpediente == (int)status.PROCEDENTE)
@@ -1347,7 +1335,7 @@ namespace RT_Management
                     + ", email='" + txtEmail.Text + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss")
                     + "', aseguradora='" + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value
                     + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
-                    + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
+                    + txtExpediente.Text + "', finiquito=" + finiquito + ", sumaAsegurada="
                     + numSumaA.Value + ", " + getDocs() + ", montoPendiente=" + montoPendiente + " WHERE clave='"
                     + this.idDeducible + "';";
             }
@@ -1368,7 +1356,7 @@ namespace RT_Management
                         + ", email='" + txtEmail.Text + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss")
                         + "', aseguradora='" + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value
                         + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
-                        + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
+                        + txtExpediente.Text + "', finiquito=" + finiquito + ", sumaAsegurada="
                         + numSumaA.Value + ", " + getDocs() + ", goodWill=1, fechaGoodWill='" + comboGWdataYear.Text
                         + "-" + obtenNumeroDeMes(comboGWdataMes) + "', porcentajeGoodWill=" + numGoodWillPorc.Value
                         + ", candidato=0, montoPendiente=" + montoPendiente + " WHERE clave='" + this.idDeducible + "';";
@@ -1386,7 +1374,7 @@ namespace RT_Management
                         + ", email='" + txtEmail.Text + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss")
                         + "', aseguradora='" + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value
                         + ", valorDeducible=" + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
-                        + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
+                        + txtExpediente.Text + "', finiquito=" + finiquito + ", sumaAsegurada="
                         + numSumaA.Value + ", " + getDocs() + ", goodWill=0, fechaGoodWill='0000-00', porcentajeGoodWill=0 WHERE clave='"
                         + this.idDeducible + "';";
                 }
@@ -1401,7 +1389,7 @@ namespace RT_Management
                     + "', fechaRobo='" + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='"
                     + cmbAseguradora.Text + "', valorFactura=" + numValorFactura.Value + ", valorDeducible="
                     + numDeducible.Value + ", montoPago=" + numMonto.Value + ", expediente='"
-                    + txtExpediente.Text + "', acuse =" + acuse + ", finiquito=" + finiquito + ", sumaAsegurada="
+                    + txtExpediente.Text + "', finiquito=" + finiquito + ", sumaAsegurada="
                     + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible + "';";
             }
             else if (this.statusExpediente == (int)status.ENTREGADO)
@@ -1414,7 +1402,7 @@ namespace RT_Management
                    + telCel + ", telefonoAdicional=" + telAlt + ", email='" + txtEmail.Text + "', fechaRobo='"
                    + dateRobo.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', aseguradora='" + cmbAseguradora.Text
                    + "', valorFactura=" + numValorFactura.Value + ", valorDeducible=" + numDeducible.Value + ", montoPago="
-                   + numMonto.Value + ", expediente='" + txtExpediente.Text + "', acuse =" + acuse + ", finiquito="
+                   + numMonto.Value + ", expediente='" + txtExpediente.Text + "', finiquito="
                    + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + " WHERE clave='" + this.idDeducible
                    + "';";
             }
@@ -1670,7 +1658,6 @@ namespace RT_Management
             txtVin.ReadOnly = !status;
             cmbAseguradora.Enabled = status;
             txtExpediente.Enabled = status;
-            checkAcuse.Enabled = status;
             checkFiniquito.Enabled = status;
             checkCartaPerdida.Enabled = status;
             checkPoliza.Enabled = status;

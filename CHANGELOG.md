@@ -1,5 +1,20 @@
 # RT Management CHANGELOG
 
+### 1.5.3 - 2018-02-06
+##### Changed
+- Se elimina el campo 'acuse' de los formuilarios deducibles y la ventana 'agregar registro'.
+
+##### Added
+- Se agrega botón para limpar los campos de la ventana 'agregar registro'.
+
+### 1.5.3 - 2018-01-09
+##### Fixed
+- Se eliminan mensajes de debug que quedaron de la versión de desarrollo.
+
+### 1.5.2 - 2018-01-09
+##### Fixed
+- Se corrige el desbloqueo de usuarios, ahora se puede desbloquear cualquier usuario y no sólo el administrador.
+
 ### 1.5.1.10 - 2018-01-09
 ##### Fixed
 - **[Deducibles]** Se corrige comportamiento al calcular las fechas en los campos Good Will, si el mes actual es enero se muestra correctamente el año anterior y el mes de diciembre. Con esto se elimina el mensaje de error al cargar el expediente.

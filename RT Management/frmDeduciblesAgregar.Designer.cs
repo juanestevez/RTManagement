@@ -77,7 +77,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtExpediente = new System.Windows.Forms.TextBox();
             this.checkFiniquito = new System.Windows.Forms.CheckBox();
-            this.checkAcuse = new System.Windows.Forms.CheckBox();
             this.lblExpediente = new System.Windows.Forms.Label();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -612,7 +611,6 @@
             // 
             this.groupBox5.Controls.Add(this.txtExpediente);
             this.groupBox5.Controls.Add(this.checkFiniquito);
-            this.groupBox5.Controls.Add(this.checkAcuse);
             this.groupBox5.Controls.Add(this.lblExpediente);
             this.groupBox5.Controls.Add(this.cmbEstado);
             this.groupBox5.Controls.Add(this.label18);
@@ -646,22 +644,12 @@
             // checkFiniquito
             // 
             this.checkFiniquito.AutoSize = true;
-            this.checkFiniquito.Location = new System.Drawing.Point(7, 218);
+            this.checkFiniquito.Location = new System.Drawing.Point(7, 196);
             this.checkFiniquito.Name = "checkFiniquito";
             this.checkFiniquito.Size = new System.Drawing.Size(65, 17);
             this.checkFiniquito.TabIndex = 12;
             this.checkFiniquito.Text = "Finiquito";
             this.checkFiniquito.UseVisualStyleBackColor = true;
-            // 
-            // checkAcuse
-            // 
-            this.checkAcuse.AutoSize = true;
-            this.checkAcuse.Location = new System.Drawing.Point(7, 200);
-            this.checkAcuse.Name = "checkAcuse";
-            this.checkAcuse.Size = new System.Drawing.Size(56, 17);
-            this.checkAcuse.TabIndex = 11;
-            this.checkAcuse.Text = "Acuse";
-            this.checkAcuse.UseVisualStyleBackColor = true;
             // 
             // lblExpediente
             // 
@@ -702,7 +690,7 @@
             // checkContrato
             // 
             this.checkContrato.AutoSize = true;
-            this.checkContrato.Location = new System.Drawing.Point(7, 174);
+            this.checkContrato.Location = new System.Drawing.Point(7, 178);
             this.checkContrato.Name = "checkContrato";
             this.checkContrato.Size = new System.Drawing.Size(120, 17);
             this.checkContrato.TabIndex = 10;
@@ -712,7 +700,7 @@
             // checkPfp
             // 
             this.checkPfp.AutoSize = true;
-            this.checkPfp.Location = new System.Drawing.Point(7, 158);
+            this.checkPfp.Location = new System.Drawing.Point(7, 214);
             this.checkPfp.Name = "checkPfp";
             this.checkPfp.Size = new System.Drawing.Size(138, 17);
             this.checkPfp.TabIndex = 9;
@@ -722,7 +710,7 @@
             // checkIdentificacion
             // 
             this.checkIdentificacion.AutoSize = true;
-            this.checkIdentificacion.Location = new System.Drawing.Point(7, 142);
+            this.checkIdentificacion.Location = new System.Drawing.Point(7, 160);
             this.checkIdentificacion.Name = "checkIdentificacion";
             this.checkIdentificacion.Size = new System.Drawing.Size(89, 17);
             this.checkIdentificacion.TabIndex = 8;
@@ -732,7 +720,7 @@
             // checkActa
             // 
             this.checkActa.AutoSize = true;
-            this.checkActa.Location = new System.Drawing.Point(7, 62);
+            this.checkActa.Location = new System.Drawing.Point(7, 124);
             this.checkActa.Name = "checkActa";
             this.checkActa.Size = new System.Drawing.Size(91, 17);
             this.checkActa.TabIndex = 3;
@@ -742,7 +730,7 @@
             // checkFactura
             // 
             this.checkFactura.AutoSize = true;
-            this.checkFactura.Location = new System.Drawing.Point(7, 46);
+            this.checkFactura.Location = new System.Drawing.Point(7, 16);
             this.checkFactura.Name = "checkFactura";
             this.checkFactura.Size = new System.Drawing.Size(134, 17);
             this.checkFactura.TabIndex = 2;
@@ -752,7 +740,7 @@
             // checkBaja
             // 
             this.checkBaja.AutoSize = true;
-            this.checkBaja.Location = new System.Drawing.Point(7, 94);
+            this.checkBaja.Location = new System.Drawing.Point(7, 88);
             this.checkBaja.Name = "checkBaja";
             this.checkBaja.Size = new System.Drawing.Size(127, 17);
             this.checkBaja.TabIndex = 5;
@@ -762,7 +750,7 @@
             // checkAcred
             // 
             this.checkAcred.AutoSize = true;
-            this.checkAcred.Location = new System.Drawing.Point(7, 78);
+            this.checkAcred.Location = new System.Drawing.Point(7, 142);
             this.checkAcred.Name = "checkAcred";
             this.checkAcred.Size = new System.Drawing.Size(161, 17);
             this.checkAcred.TabIndex = 4;
@@ -772,7 +760,7 @@
             // checkTenencia
             // 
             this.checkTenencia.AutoSize = true;
-            this.checkTenencia.Location = new System.Drawing.Point(7, 126);
+            this.checkTenencia.Location = new System.Drawing.Point(7, 70);
             this.checkTenencia.Name = "checkTenencia";
             this.checkTenencia.Size = new System.Drawing.Size(71, 17);
             this.checkTenencia.TabIndex = 7;
@@ -782,7 +770,7 @@
             // checkPagoBaja
             // 
             this.checkPagoBaja.AutoSize = true;
-            this.checkPagoBaja.Location = new System.Drawing.Point(7, 110);
+            this.checkPagoBaja.Location = new System.Drawing.Point(7, 106);
             this.checkPagoBaja.Name = "checkPagoBaja";
             this.checkPagoBaja.Size = new System.Drawing.Size(89, 17);
             this.checkPagoBaja.TabIndex = 6;
@@ -792,7 +780,7 @@
             // checkPoliza
             // 
             this.checkPoliza.AutoSize = true;
-            this.checkPoliza.Location = new System.Drawing.Point(7, 30);
+            this.checkPoliza.Location = new System.Drawing.Point(7, 34);
             this.checkPoliza.Name = "checkPoliza";
             this.checkPoliza.Size = new System.Drawing.Size(104, 17);
             this.checkPoliza.TabIndex = 1;
@@ -802,7 +790,7 @@
             // checkCartaPerdida
             // 
             this.checkCartaPerdida.AutoSize = true;
-            this.checkCartaPerdida.Location = new System.Drawing.Point(7, 15);
+            this.checkCartaPerdida.Location = new System.Drawing.Point(7, 52);
             this.checkCartaPerdida.Name = "checkCartaPerdida";
             this.checkCartaPerdida.Size = new System.Drawing.Size(127, 17);
             this.checkCartaPerdida.TabIndex = 0;
@@ -837,7 +825,7 @@
             this.toolStripCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripCancelar.Name = "toolStripCancelar";
             this.toolStripCancelar.Size = new System.Drawing.Size(23, 22);
-            this.toolStripCancelar.Text = "Cancelar";
+            this.toolStripCancelar.Text = "Limpiar campos";
             this.toolStripCancelar.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // contextMenuStrip1
@@ -934,7 +922,6 @@
         private System.Windows.Forms.Label lblSumaA;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox checkFiniquito;
-        private System.Windows.Forms.CheckBox checkAcuse;
         private System.Windows.Forms.Label lblExpediente;
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.Label label18;

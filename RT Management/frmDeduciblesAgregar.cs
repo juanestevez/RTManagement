@@ -165,7 +165,6 @@ namespace RT_Management
             cmbEstado.SelectedIndex = -1;
             txtTitular.Focus();
             txtExpediente.Text = "";
-            checkAcuse.Checked = false;
             checkFiniquito.Checked = false;
             checkCartaPerdida.Checked = false;
             checkPoliza.Checked = false;
@@ -442,7 +441,7 @@ namespace RT_Management
                         cmd.Parameters.AddWithValue("montoPago", numMonto.Value);
                         cmd.Parameters.AddWithValue("expediente", txtExpediente.Text);
 
-                        cmd.Parameters.AddWithValue("acuse", checkAcuse.Checked ? 1 : 0);
+                        cmd.Parameters.AddWithValue("acuse", 0);
                         cmd.Parameters.AddWithValue("finiquito", checkFiniquito.Checked ? 1 : 0);
                         cmd.Parameters.AddWithValue("sumaAsegurada", numSumaA.Value);
                         cmd.Parameters.AddWithValue("cartaPerdida", checkCartaPerdida.Checked ? 1 : 0);
@@ -514,7 +513,7 @@ namespace RT_Management
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            limpiarCampos();
         }
 
         private void frmDeduciblesAgregar_KeyDown(object sender, KeyEventArgs e)
