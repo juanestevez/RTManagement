@@ -2052,12 +2052,18 @@ namespace RT_Management
 
         private void toolCgoodWill_Click(object sender, EventArgs e)
         {
-            candidatoAgoodWill(1);
+            if (MessageBox.Show("¿Marcar como candidato a Good Will?", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                candidatoAgoodWill(1);
+            }            
         }
 
         private void toolCgoodWillC_Click(object sender, EventArgs e)
         {
-            candidatoAgoodWill(0);
+            if (MessageBox.Show("¿Quitar marca de Good Will?", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                candidatoAgoodWill(0);
+            }                
         }
 
         /// <summary>
@@ -2077,7 +2083,7 @@ namespace RT_Management
                 i = db.Modificar(consulta);
                 if (i > 0)
                 {
-                    MessageBox.Show("Registro modificado correctamente.", "Marcar como good will", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Operación exitosa.", "Marcar como good will", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadDataMod();
 
                     if (op == 0)

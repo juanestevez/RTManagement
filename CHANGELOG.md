@@ -6,6 +6,7 @@
 
 ##### Added
 - Se agrega botón para limpar los campos de la ventana 'agregar registro'.
+- Se agrega dialogo para confirmar el marcado de expedientes como candidato a good will.
 
 ### 1.5.3 - 2018-01-09
 ##### Fixed
