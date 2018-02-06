@@ -1613,7 +1613,7 @@ namespace RT_Management
 
         private void toolsCambio_Click(object sender, EventArgs e)
         {
-            if ((this.statusExpediente == (int)status.PROCEDENTE) || (this.statusExpediente == (int)status.NOPROCEDENTE) || (this.statusExpediente == (int)status.ARCHIVADO))
+            if ((this.statusExpediente == (int)status.PROCEDENTE) || (this.statusExpediente == (int)status.NOPROCEDENTE))
             {
                 MessageBox.Show("No se puede cambiar el estado. El expediente se encuentra cerrado.", "Información",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

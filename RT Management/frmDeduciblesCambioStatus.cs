@@ -67,8 +67,8 @@ namespace RT_Management
             else if (this.status == (int)estado.ARCHIVADO)
             {
                 lblStatus.Text = "Archivado";
-                comboEstado.Items.Add("Para envío");
-                comboEstado.Items.Add("En proceso");
+                comboEstado.Items.Add("Procedente");
+                comboEstado.Items.Add("No procedente");
             }
         }
 
@@ -105,35 +105,40 @@ namespace RT_Management
         private string getConsulta() 
         {
             string texto = "";
-            if (((this.status == 0) && (getEstado() == 2)) || ((this.status == 0) && (getEstado() == 3))) //En proceso - Procedente/No procedente               
+            if ( (this.status == (int)estado.ENPROCESO) && ((getEstado() == (int)estado.PROCEDENTE) || (getEstado() == (int)estado.NOPROCEDENTE)) )           
             {
-                texto = "UPDATE deducibles SET status=" + getEstado() + ", fechaDictamen='" + dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', diasProceso="
-                    + numDiasProceso.Value + ", candidato=0 WHERE clave='" + this.idDeducible + "';";
+                texto = $"UPDATE deducibles SET status={getEstado()}, fechaDictamen='{dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss")}, " +
+                    $"diasProceso={numDiasProceso.Value} WHERE clave='{this.idDeducible}';";
             }
-            else if ((this.status == 4) && (getEstado() == 5)) //Para envío - Entregado a PQR
+            else if ( (this.status == (int)estado.ARCHIVADO) && ((getEstado() == (int)estado.PROCEDENTE) || (getEstado() == (int)estado.NOPROCEDENTE)) )
+            {
+                texto = $"UPDATE deducibles SET status={getEstado()}, fechaRecepcion='{dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
+                    $"fechaPqr='{datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss")}', fechaC3='{dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
+                    $"fechaDictamen='{dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss")}', diasProceso={numDiasProceso.Value} WHERE clave='{this.idDeducible}';";
+            }
+            else if ((this.status == (int)estado.PARAENVIO) && (getEstado() == (int)estado.ENTREGADO)) 
             {
                 texto = $"UPDATE deducibles SET status=5, fechaPqr='{datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == 4) && (getEstado() == 1)) //Para envío - Incompleto
+            else if ((this.status == (int)estado.PARAENVIO) && (getEstado() == (int)estado.INCOMPLETO))
             {
                 texto = $"UPDATE deducibles SET status=1, fechaPqr='0000-00-00 00:00:00' WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == 5) && (getEstado() == 0)) //Entregado a PQR - En proceso
+            else if ((this.status == (int)estado.ENTREGADO) && (getEstado() == (int)estado.ENPROCESO))
             {
                 texto = $"UPDATE deducibles SET status=0, fechaC3='{dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == 1) && (getEstado() == 4)) //Incompleto a Para envío
+            else if ((this.status == (int)estado.INCOMPLETO) && (getEstado() == (int)estado.PARAENVIO))
             {
-                texto = "UPDATE deducibles SET status=4, fechaRecepcion='" + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE clave='"
-                    + this.idDeducible + "';";
+                texto = $"UPDATE deducibles SET status=4, fechaRecepcion='{dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{this.idDeducible}';";
             }
-            else if ((this.status == 1) && (getEstado() == 0)) //Incompleto - En proceso
+            else if ((this.status == (int)estado.INCOMPLETO) && (getEstado() == (int)estado.ENPROCESO))
             {
-                texto = "UPDATE deducibles SET status=0, fechaRecepcion='" + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaPqr='"
-                    + datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaC3='" + dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE clave='"
-                    + idDeducible + "';";
+                texto = $"UPDATE deducibles SET status=0, fechaRecepcion='{dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
+                    $"fechaPqr='{datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss")}', fechaC3='{dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss")}' " +
+                    $"WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == 5) && (getEstado() == 1)) //Entregado a PQR - Incompleto
+            else if ((this.status == (int)estado.ENTREGADO) && (getEstado() == (int)estado.INCOMPLETO))
             {
                 texto = $"UPDATE deducibles SET status=1, fechaRecepcion='0000-00-00 00:00:00' WHERE clave='{idDeducible}';";
             }
@@ -144,6 +149,10 @@ namespace RT_Management
             return texto;
         }
 
+        /// <summary>
+        /// Obtiene el equivalente numérico del estado seleccionado en el combo.
+        /// </summary>
+        /// <returns>Estado en formato entero.</returns>
         private int getEstado() 
         { 
             int estado = -1;
@@ -181,13 +190,13 @@ namespace RT_Management
 
         private string formateaFecha(string date)
         {
-            string fechaCadena = date.ToString();
-            return fechaCadena;            
+            return date.ToString();
         }
 
         private void comboEstado_SelectedValueChanged(object sender, EventArgs e)
         {
-            if ((this.status == 0) && ( ((comboEstado.Text == "Procedente")) || ((comboEstado.Text == "No procedente")) )) //En proceso a Procedente
+            // En proceso a Procedente o No procedente
+            if ( (this.status == (int)estado.ENPROCESO) && ((comboEstado.Text == "Procedente") || (comboEstado.Text == "No procedente")) )
             {
                 lblDictamen.Visible = true;
                 dateDictamen.Visible = true;
@@ -199,7 +208,22 @@ namespace RT_Management
                 dateC3.Visible = false;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == 1) && (getEstado() == 0)) //Incompleto a En proceso
+            // Archivado a Procedente o No procedente
+            else if ( (this.status == (int)estado.ARCHIVADO) && ((comboEstado.Text == "Procedente") || (comboEstado.Text == "No procedente")) )
+            {
+                lblDictamen.Visible = true;
+                dateDictamen.Visible = true;
+                lblDias.Visible = true;
+                numDiasProceso.Visible = true;
+                lblRecepcion.Visible = true;
+                dateRecepcion.Visible = true;
+                lblC3.Visible = true;
+                dateC3.Visible = true;
+                lblPqr.Visible = true;
+                datePqr.Visible = true;
+                btnAceptar.Enabled = true;
+            }
+            else if ((this.status == (int)estado.INCOMPLETO) && (getEstado() == (int)estado.ENPROCESO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -213,7 +237,7 @@ namespace RT_Management
                 dateC3.Visible = true;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == 1) && (getEstado() == 4)) // Incompleto a Para envío
+            else if ((this.status == (int)estado.INCOMPLETO) && (getEstado() == (int)estado.PARAENVIO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -227,7 +251,7 @@ namespace RT_Management
                 dateC3.Visible = false;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == 4) && (getEstado() == 0)) //Para envío - En proceso
+            else if ((this.status == (int)estado.PARAENVIO) && (getEstado() == (int)estado.ENPROCESO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -241,7 +265,7 @@ namespace RT_Management
                 dateC3.Visible = true;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == 4) && (getEstado() == 5)) //Para envío - Entregado
+            else if ((this.status == (int)estado.PARAENVIO) && (getEstado() == (int)estado.ENTREGADO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -254,8 +278,8 @@ namespace RT_Management
                 lblC3.Visible = false;
                 dateC3.Visible = false;
                 btnAceptar.Enabled = true;
-            } 
-            else if ((this.status == 5) && (getEstado() == 0)) //Entregado a PQR - En proceso
+            }
+            else if ((this.status == (int)estado.ENTREGADO) && (getEstado() == (int)estado.ENPROCESO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -267,9 +291,9 @@ namespace RT_Management
                 dateC3.Visible = true;
                 btnAceptar.Enabled = true;
             }
-            else if ((getEstado() == 6)) //Archivado
+            else if ((getEstado() == (int)estado.ARCHIVADO))
             {
-            	lblDictamen.Visible = false;
+                lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
                 lblDias.Visible = false;
                 numDiasProceso.Visible = false;
@@ -277,6 +301,8 @@ namespace RT_Management
                 dateRecepcion.Visible = false;
                 lblC3.Visible = false;
                 dateC3.Visible = false;
+                lblPqr.Visible = false;
+                datePqr.Visible = false;
                 btnAceptar.Enabled = true;
             }
             else

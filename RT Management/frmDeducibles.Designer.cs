@@ -1677,7 +1677,8 @@
             "2014",
             "2015",
             "2016",
-            "2017"});
+            "2017",
+            "2018"});
             this.comboGWyear.Location = new System.Drawing.Point(31, 6);
             this.comboGWyear.Name = "comboGWyear";
             this.comboGWyear.Size = new System.Drawing.Size(49, 21);

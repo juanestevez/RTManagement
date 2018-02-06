@@ -3,10 +3,12 @@
 ### 1.5.3 - 2018-02-06
 ##### Changed
 - Se elimina el campo 'acuse' de los formuilarios deducibles y la ventana 'agregar registro'.
+- Ya es posible cambiar el estatus a 'procedente' o 'no procedente' de un expediente archivado.
 
 ##### Added
 - Se agrega botón para limpar los campos de la ventana 'agregar registro'.
-- Se agrega dialogo para confirmar el marcado de expedientes como candidato a good will.
+- Se agrega confirmación para marcar o desmarcar un expediente como candidato a Good Will.
+- Se agrega año 2018 a la búsqueda de Good Will.
 
 ### 1.5.3 - 2018-01-09
 ##### Fixed
