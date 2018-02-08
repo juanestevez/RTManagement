@@ -38,6 +38,8 @@ namespace RT_Management
                 lblStatus.Text = "Incompleto";
                 comboEstado.Items.Add("Para envío");
                 comboEstado.Items.Add("En proceso");
+                comboEstado.Items.Add("Procedente");
+                comboEstado.Items.Add("No procedente");
                 comboEstado.Items.Add("Archivado");
             }
             else if (status == (int)Estado.PROCEDENTE)
@@ -110,7 +112,7 @@ namespace RT_Management
                 texto = $"UPDATE deducibles SET status={getEstado()}, fechaDictamen='{dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
                     $"diasProceso={numDiasProceso.Value} WHERE clave='{idDeducible}';";
             }
-            else if ((status == (int)Estado.ARCHIVADO) && ((getEstado() == (int)Estado.PROCEDENTE) || (getEstado() == (int)Estado.NOPROCEDENTE)))
+            else if (( (status == (int)Estado.ARCHIVADO) || (status == (int)Estado.INCOMPLETO) ) && ((getEstado() == (int)Estado.PROCEDENTE) || (getEstado() == (int)Estado.NOPROCEDENTE)))
             {
                 texto = $"UPDATE deducibles SET status={getEstado()}, fechaRecepcion='{dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
                     $"fechaPqr='{datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss")}', fechaC3='{dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
@@ -211,8 +213,8 @@ namespace RT_Management
                 dateC3.Visible = false;
                 btnAceptar.Enabled = true;
             }
-            // Archivado a Procedente o No procedente
-            else if ( (status == (int)Estado.ARCHIVADO) && ((comboEstado.Text == "Procedente") || (comboEstado.Text == "No procedente")) )
+            // Archivado o incompleto a Procedente o No procedente
+            else if ( ( (status == (int)Estado.ARCHIVADO) || (status == (int)Estado.INCOMPLETO) ) && ((comboEstado.Text == "Procedente") || (comboEstado.Text == "No procedente")) )
             {
                 lblDictamen.Visible = true;
                 dateDictamen.Visible = true;

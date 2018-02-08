@@ -4,6 +4,9 @@
 ##### Fixed
 - Se corrige problema que no permitía cambiar el estado de un expediente de 'en proceso' a 'procedente' o 'no procedente'.
 
+##### Changed
+- Se permite el cambio de estado de un expediente de 'incompleto' a 'procedente' o 'no procedente'.
+
 ### 1.5.4 - 2018-02-06
 ##### Changed
 - Se elimina el campo 'acuse' de los formuilarios deducibles y la ventana 'agregar registro'.
