@@ -11,60 +11,60 @@ namespace RT_Management
         private string titularDeducible;
         private string usuario;
 
-        enum estado { ENPROCESO, INCOMPLETO, PROCEDENTE, NOPROCEDENTE, PARAENVIO, ENTREGADO, ARCHIVADO };
+        private enum Estado { ENPROCESO, INCOMPLETO, PROCEDENTE, NOPROCEDENTE, PARAENVIO, ENTREGADO, ARCHIVADO };
 
         public frmDeduciblesCambioStatus(string id, int status, string titular, string user)
         {
             InitializeComponent();
-            this.idDeducible = id;
+            idDeducible = id;
             this.status = status;
-            this.titularDeducible = titular;
-            this.usuario = user;
+            titularDeducible = titular;
+            usuario = user;
         }
 
         private void frmCambioStatus_Load(object sender, EventArgs e)
         {
-            lblCliente.Text = this.titularDeducible;
+            lblCliente.Text = titularDeducible;
 
-            if (this.status == (int)estado.ENPROCESO)
+            if (status == (int)Estado.ENPROCESO)
             {
                 lblStatus.Text = "En proceso";
                 comboEstado.Items.Add("Procedente");
                 comboEstado.Items.Add("No procedente");
                 comboEstado.Items.Add("Archivado");
             }
-            else if (this.status == (int)estado.INCOMPLETO)
+            else if (status == (int)Estado.INCOMPLETO)
             {
                 lblStatus.Text = "Incompleto";
                 comboEstado.Items.Add("Para envío");
                 comboEstado.Items.Add("En proceso");
                 comboEstado.Items.Add("Archivado");
             }
-            else if (this.status == (int)estado.PROCEDENTE)
+            else if (status == (int)Estado.PROCEDENTE)
             {
                 lblStatus.Text = "Procedente";
                 comboEstado.Enabled = false;
             }
-            else if (this.status == (int)estado.NOPROCEDENTE)
+            else if (status == (int)Estado.NOPROCEDENTE)
             {
                 lblStatus.Text = "No procedente";
                 comboEstado.Enabled = false;
             }
-            else if (this.status == (int)estado.PARAENVIO)
+            else if (status == (int)Estado.PARAENVIO)
             {
                 lblStatus.Text = "Para envío";
                 comboEstado.Items.Add("Entregado a PQR");
                 comboEstado.Items.Add("Incompleto");
                 comboEstado.Items.Add("Archivado");
             }
-            else if (this.status == (int)estado.ENTREGADO)
+            else if (status == (int)Estado.ENTREGADO)
             {
                 lblStatus.Text = "Entregado a PQR";
                 comboEstado.Items.Add("En proceso");
                 comboEstado.Items.Add("Incompleto");
                 comboEstado.Items.Add("Archivado");
             }
-            else if (this.status == (int)estado.ARCHIVADO)
+            else if (status == (int)Estado.ARCHIVADO)
             {
                 lblStatus.Text = "Archivado";
                 comboEstado.Items.Add("Procedente");
@@ -74,7 +74,7 @@ namespace RT_Management
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -87,9 +87,9 @@ namespace RT_Management
                 db.Conectar();
                 db.Modificar(consulta);
                 MessageBox.Show("Se ha cambiado correctamente el estado del expediente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                db.lastModify(this.idDeducible, this.usuario, "Status Changed", comboEstado.Text);
+                db.lastModify(idDeducible, usuario, "Status Changed", comboEstado.Text);
                 db.Desconectar();
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {
@@ -102,47 +102,47 @@ namespace RT_Management
             
         }
 
-        private string getConsulta() 
+        private string getConsulta()
         {
             string texto = "";
-            if ( (this.status == (int)estado.ENPROCESO) && ((getEstado() == (int)estado.PROCEDENTE) || (getEstado() == (int)estado.NOPROCEDENTE)) )           
+            if ((status == (int)Estado.ENPROCESO) && ((getEstado() == (int)Estado.PROCEDENTE) || (getEstado() == (int)Estado.NOPROCEDENTE)))
             {
-                texto = $"UPDATE deducibles SET status={getEstado()}, fechaDictamen='{dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss")}, " +
-                    $"diasProceso={numDiasProceso.Value} WHERE clave='{this.idDeducible}';";
+                texto = $"UPDATE deducibles SET status={getEstado()}, fechaDictamen='{dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
+                    $"diasProceso={numDiasProceso.Value} WHERE clave='{idDeducible}';";
             }
-            else if ( (this.status == (int)estado.ARCHIVADO) && ((getEstado() == (int)estado.PROCEDENTE) || (getEstado() == (int)estado.NOPROCEDENTE)) )
+            else if ((status == (int)Estado.ARCHIVADO) && ((getEstado() == (int)Estado.PROCEDENTE) || (getEstado() == (int)Estado.NOPROCEDENTE)))
             {
                 texto = $"UPDATE deducibles SET status={getEstado()}, fechaRecepcion='{dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
                     $"fechaPqr='{datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss")}', fechaC3='{dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
-                    $"fechaDictamen='{dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss")}', diasProceso={numDiasProceso.Value} WHERE clave='{this.idDeducible}';";
+                    $"fechaDictamen='{dateDictamen.Value.ToString("yyyy-MM-dd HH:mm:ss")}', diasProceso={numDiasProceso.Value} WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == (int)estado.PARAENVIO) && (getEstado() == (int)estado.ENTREGADO)) 
+            else if ((status == (int)Estado.PARAENVIO) && (getEstado() == (int)Estado.ENTREGADO))
             {
                 texto = $"UPDATE deducibles SET status=5, fechaPqr='{datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == (int)estado.PARAENVIO) && (getEstado() == (int)estado.INCOMPLETO))
+            else if ((status == (int)Estado.PARAENVIO) && (getEstado() == (int)Estado.INCOMPLETO))
             {
                 texto = $"UPDATE deducibles SET status=1, fechaPqr='0000-00-00 00:00:00' WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == (int)estado.ENTREGADO) && (getEstado() == (int)estado.ENPROCESO))
+            else if ((status == (int)Estado.ENTREGADO) && (getEstado() == (int)Estado.ENPROCESO))
             {
                 texto = $"UPDATE deducibles SET status=0, fechaC3='{dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == (int)estado.INCOMPLETO) && (getEstado() == (int)estado.PARAENVIO))
+            else if ((status == (int)Estado.INCOMPLETO) && (getEstado() == (int)Estado.PARAENVIO))
             {
-                texto = $"UPDATE deducibles SET status=4, fechaRecepcion='{dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{this.idDeducible}';";
+                texto = $"UPDATE deducibles SET status=4, fechaRecepcion='{dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == (int)estado.INCOMPLETO) && (getEstado() == (int)estado.ENPROCESO))
+            else if ((status == (int)Estado.INCOMPLETO) && (getEstado() == (int)Estado.ENPROCESO))
             {
                 texto = $"UPDATE deducibles SET status=0, fechaRecepcion='{dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss")}', " +
                     $"fechaPqr='{datePqr.Value.ToString("yyyy-MM-dd HH:mm:ss")}', fechaC3='{dateC3.Value.ToString("yyyy-MM-dd HH:mm:ss")}' " +
                     $"WHERE clave='{idDeducible}';";
             }
-            else if ((this.status == (int)estado.ENTREGADO) && (getEstado() == (int)estado.INCOMPLETO))
+            else if ((status == (int)Estado.ENTREGADO) && (getEstado() == (int)Estado.INCOMPLETO))
             {
                 texto = $"UPDATE deducibles SET status=1, fechaRecepcion='0000-00-00 00:00:00' WHERE clave='{idDeducible}';";
             }
-            else if (getEstado() == (int)estado.ARCHIVADO)
+            else if (getEstado() == (int)Estado.ARCHIVADO)
             {
                 texto = $"UPDATE deducibles SET status=6, candidato=0 WHERE clave='{idDeducible}';";
             }
@@ -150,7 +150,7 @@ namespace RT_Management
         }
 
         /// <summary>
-        /// Obtiene el equivalente numérico del estado seleccionado en el combo.
+        /// Obtiene el equivalente numérico del estado seleccionado en el combo (nuevo estado).
         /// </summary>
         /// <returns>Estado en formato entero.</returns>
         private int getEstado() 
@@ -193,10 +193,13 @@ namespace RT_Management
             return date.ToString();
         }
 
+        /// <summary>
+        /// Al seleccionar el nuevo estado del combo se muestran u ocultan los campos de fecha.
+        /// </summary>
         private void comboEstado_SelectedValueChanged(object sender, EventArgs e)
         {
             // En proceso a Procedente o No procedente
-            if ( (this.status == (int)estado.ENPROCESO) && ((comboEstado.Text == "Procedente") || (comboEstado.Text == "No procedente")) )
+            if ( (status == (int)Estado.ENPROCESO) && ((comboEstado.Text == "Procedente") || (comboEstado.Text == "No procedente")) )
             {
                 lblDictamen.Visible = true;
                 dateDictamen.Visible = true;
@@ -209,7 +212,7 @@ namespace RT_Management
                 btnAceptar.Enabled = true;
             }
             // Archivado a Procedente o No procedente
-            else if ( (this.status == (int)estado.ARCHIVADO) && ((comboEstado.Text == "Procedente") || (comboEstado.Text == "No procedente")) )
+            else if ( (status == (int)Estado.ARCHIVADO) && ((comboEstado.Text == "Procedente") || (comboEstado.Text == "No procedente")) )
             {
                 lblDictamen.Visible = true;
                 dateDictamen.Visible = true;
@@ -223,7 +226,7 @@ namespace RT_Management
                 datePqr.Visible = true;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == (int)estado.INCOMPLETO) && (getEstado() == (int)estado.ENPROCESO))
+            else if ((status == (int)Estado.INCOMPLETO) && (getEstado() == (int)Estado.ENPROCESO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -237,7 +240,7 @@ namespace RT_Management
                 dateC3.Visible = true;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == (int)estado.INCOMPLETO) && (getEstado() == (int)estado.PARAENVIO))
+            else if ((status == (int)Estado.INCOMPLETO) && (getEstado() == (int)Estado.PARAENVIO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -251,7 +254,7 @@ namespace RT_Management
                 dateC3.Visible = false;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == (int)estado.PARAENVIO) && (getEstado() == (int)estado.ENPROCESO))
+            else if ((status == (int)Estado.PARAENVIO) && (getEstado() == (int)Estado.ENPROCESO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -265,7 +268,7 @@ namespace RT_Management
                 dateC3.Visible = true;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == (int)estado.PARAENVIO) && (getEstado() == (int)estado.ENTREGADO))
+            else if ((status == (int)Estado.PARAENVIO) && (getEstado() == (int)Estado.ENTREGADO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -279,7 +282,7 @@ namespace RT_Management
                 dateC3.Visible = false;
                 btnAceptar.Enabled = true;
             }
-            else if ((this.status == (int)estado.ENTREGADO) && (getEstado() == (int)estado.ENPROCESO))
+            else if ((status == (int)Estado.ENTREGADO) && (getEstado() == (int)Estado.ENPROCESO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
@@ -291,7 +294,7 @@ namespace RT_Management
                 dateC3.Visible = true;
                 btnAceptar.Enabled = true;
             }
-            else if ((getEstado() == (int)estado.ARCHIVADO))
+            else if ((getEstado() == (int)Estado.ARCHIVADO))
             {
                 lblDictamen.Visible = false;
                 dateDictamen.Visible = false;
