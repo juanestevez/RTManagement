@@ -240,6 +240,11 @@ namespace RT_Management
                 consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, fechaVisita AS 'Fecha de visita', "
                     + "platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE status=1 ORDER BY fechaVisita";
             }
+            else if (tipo == "por vencer")
+            {
+                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, fechaVisita AS 'Fecha de visita', "
+                    + "platinum AS Platinum, vin AS VIN, montoPendiente FROM deducibles WHERE status=1 AND fechaRobo < date_add(NOW(), INTERVAL -1 YEAR);";
+            }
             else if (tipo == "procedente")
             {
                 consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, fechaDictamen AS 'Envio de dictamen', "
@@ -1817,6 +1822,13 @@ namespace RT_Management
             verRegistros("incompleto");
         }
 
+        private void porVencerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControlSecciones.SelectedIndex = 0;
+            txtBusqueda.Text = "";
+            verRegistros("por vencer");
+        }
+
         private void btnProcedente_Click(object sender, EventArgs e)
         {
             tabControlSecciones.SelectedIndex = 0;
@@ -2177,5 +2189,7 @@ namespace RT_Management
             txtEmail.SelectionStart = 0;
             txtEmail.SelectionLength = txtEmail.Text.Length;
         }
+
+        
     }
 }

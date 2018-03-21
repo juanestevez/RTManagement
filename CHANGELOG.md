@@ -1,5 +1,9 @@
 # RT Management CHANGELOG
 
+### 1.5.6 - 2018-03-21
+##### Added
+- Se añade botón para ver los expedientes por vencer (siniestro mayor a un año).
+
 ### 1.5.5 - 2018-02-08
 ##### Fixed
 - Se corrige problema que no permitía cambiar el estado de un expediente de 'en proceso' a 'procedente' o 'no procedente'.
