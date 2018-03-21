@@ -4,6 +4,9 @@
 ##### Added
 - Se añade botón para ver los expedientes por vencer (siniestro mayor a un año).
 
+##### Fixed
+- Se muestra el botón para cancelar 'Good Will' en los expedientes procedentes.
+
 ### 1.5.5 - 2018-02-08
 ##### Fixed
 - Se corrige problema que no permitía cambiar el estado de un expediente de 'en proceso' a 'procedente' o 'no procedente'.

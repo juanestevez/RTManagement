@@ -979,6 +979,17 @@ namespace RT_Management
                     toolCgoodWillC.Visible = false;
 
                     marcaMontoPendiente(montoPendiente);
+
+                    if (candidato == "0") //No candidato
+                    {
+                        toolCgoodWill.Visible = true;
+                        toolCgoodWillC.Visible = false;
+                    }
+                    else if (candidato == "1")
+                    {
+                        toolCgoodWill.Visible = false;
+                        toolCgoodWillC.Visible = true;
+                    }
                 }
                 else if (this.statusExpediente == (int)status.NOPROCEDENTE)
                 {
