@@ -16,6 +16,7 @@ namespace RT_Management
         private int statusExpediente;
         private string titular = "";
         private int montoP = -1;
+        private int seguimiento = -1;
 
         enum status {ENPROCESO, INCOMPLETO, PROCEDENTE, NOPROCEDENTE, PARAENVIO, ENTREGADO, ARCHIVADO};
 
@@ -117,7 +118,7 @@ namespace RT_Management
         /// <summary>
         /// Genera la búsqueda a través del campo buscar y de acuerdo al filtro seleccionado.
         /// </summary>
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
             lblResultados.Text = "";
             resetControles();
@@ -178,7 +179,7 @@ namespace RT_Management
                         txtBusqueda.SelectionStart = 0;
                         txtBusqueda.SelectionLength = txtBusqueda.Text.Length;
                         gridDatos.DataSource = tabla;
-                        formatoEncabezados();
+                        FormatoEncabezados();
                         gridDatos.CurrentCell = gridDatos[2,0];
                         db.Desconectar();
 
@@ -330,7 +331,12 @@ namespace RT_Management
                 consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, "
                      + "platinum AS Platinum, vin AS VIN, fechaVisita AS 'Fecha de visita', montoPendiente FROM deducibles WHERE candidato=1 ORDER BY fechaDictamen";
             }
-
+            else if (tipo == "seguimiento")
+            {
+                consulta = "SELECT clave, status, titular AS Titular, grupo AS Contrato, aseguradora AS Aseguradora, "
+                     + "platinum AS Platinum, vin AS VIN, fechaVisita AS 'Fecha de visita', montoPendiente FROM deducibles WHERE seguimiento=1";
+            }
+            
             try
             {
                 int i = -1;
@@ -340,7 +346,7 @@ namespace RT_Management
 
                 datos.Fill(tabla);
                 gridDatos.DataSource = tabla;
-                formatoEncabezados();
+                FormatoEncabezados();
 
                 i = gridDatos.RowCount;
 
@@ -433,7 +439,7 @@ namespace RT_Management
             return mes;
         }
 
-        private void formatoEncabezados()
+        private void FormatoEncabezados()
         {
             gridDatos.Columns[0].Visible = false;
             gridDatos.Columns[1].HeaderText = "";
@@ -733,8 +739,8 @@ namespace RT_Management
         private void loadDataMod()
         {
             loadComment();   //Carga de comentarios
-            loadCallData();  //Carga de registro de llamadas
-            loadFile();      //Carga de expediente
+            LoadCallData();  //Carga de registro de llamadas
+            LoadFile();      //Carga de expediente
             toolsEditar.Enabled = true;
             toolsCambio.Enabled = true;
             toolsAddComment.Enabled = true;
@@ -785,7 +791,7 @@ namespace RT_Management
         /// <summary>
         /// Carga la lista de llamadas de acuerdo al id del expediente.
         /// </summary>
-        private void loadCallData()
+        private void LoadCallData()
         {
             string query = $"SELECT * FROM llamadas WHERE idExpediente='{idDeducible}' ORDER BY fecha DESC;";
             conexionBD db = new conexionBD();
@@ -834,7 +840,7 @@ namespace RT_Management
         /// <summary>
         /// Carga los datos del expediente.
         /// </summary>
-        private void loadFile()
+        private void LoadFile()
         {
             conexionBD db = new conexionBD();
             DateTime fechaActual = DateTime.Now;
@@ -843,26 +849,60 @@ namespace RT_Management
             try
             {
                 db.Conectar();
-                respuesta = db.Buscar("SELECT * FROM deducibles WHERE clave='" + this.idDeducible + "';");
+                respuesta = db.Buscar($"SELECT * FROM deducibles WHERE clave='{idDeducible}'");
                 respuesta.Read();
 
-                this.statusExpediente = Convert.ToInt32(respuesta[2]);
-                this.titular = respuesta[3].ToString();
+                statusExpediente = Convert.ToInt32(respuesta[2]);                
+                titular = respuesta[3].ToString();
+                txtTitular.Text = titular;
+                txtGrupo.Text = respuesta[4].ToString();
+                txtPlatinum.Text = respuesta[5].ToString();
+                txtVin.Text = respuesta[6].ToString();
+                string fechaRobo = respuesta[7].ToString();
+                string fechaVisita = respuesta[8].ToString();
+                string fechaRecepcion = respuesta[9].ToString();
+                string fechaEnvioC3 = respuesta[10].ToString();           
+                string fechaInicioC3 = respuesta[11].ToString();
+                string fechaDictamen = respuesta[12].ToString();
+                int diasEnProceso = Convert.ToInt32(respuesta[13]);
+                string telDomicilio = respuesta[14].ToString();
+                string telCelular = respuesta[15].ToString();
+                string telAlterno = respuesta[16].ToString();
+                txtTelAlterno.Text = (telAlterno.Length < 8) ? "" : telAlterno;
+                txtTelCelular.Text = (telCelular.Length < 8) ? "" : telCelular;
+                txtTelDomicilio.Text = (telDomicilio.Length < 8) ? "" : telDomicilio;
+                txtEmail.Text = respuesta[17].ToString();
+                cmbAseguradora.Text = respuesta[18].ToString();
+                numValorFactura.Value = Convert.ToDecimal(respuesta[19]);
+                numDeducible.Value = Convert.ToInt16(respuesta[20]);
+                numMonto.Value = Convert.ToDecimal(respuesta[21]);
+                txtExpediente.Text = respuesta[22].ToString();
+                numSumaA.Value = Convert.ToDecimal(respuesta[23]);
 
-                string pqr = respuesta[9].ToString();
-                string recepcion = respuesta[8].ToString();
-                string robo = respuesta[18].ToString();
-                string visita = respuesta[7].ToString();
-                string c3 = respuesta[11].ToString();
+                checkFiniquito.Checked = respuesta[24].ToString() == "True" ? true : false;
+                checkCartaPerdida.Checked = respuesta[25].ToString() == "True" ? true : false;
+                checkPoliza.Checked = respuesta[26].ToString() == "True" ? true : false;
+                checkFactura.Checked = respuesta[27].ToString() == "True" ? true : false;
+                checkActa.Checked = respuesta[28].ToString() == "True" ? true : false;
+                checkAcred.Checked = respuesta[29].ToString() == "True" ? true : false;
+                checkBaja.Checked = respuesta[30].ToString() == "True" ? true : false;
+                checkPagoBaja.Checked = respuesta[31].ToString() == "True" ? true : false;
+                checkTenencia.Checked = respuesta[32].ToString() == "True" ? true : false;
+                checkIdentificacion.Checked = respuesta[33].ToString() == "True" ? true : false;
+                checkPfp.Checked = respuesta[34].ToString() == "True" ? true : false;
+                checkContrato.Checked = respuesta[35].ToString() == "True" ? true : false;
 
-                string goodWill = respuesta[38].ToString();
-                string candidato = respuesta[41].ToString();
-                string montoPendiente = respuesta[42].ToString();
+                string tieneGoodWill = respuesta[36].ToString();
+                string fechaGoodWill = respuesta[37].ToString();
+                int porcentajeGoodWill = Convert.ToInt32(respuesta[38]);
+                string candidatoGoodWill = respuesta[39].ToString();
+                string tieneMontoPendiente = respuesta[40].ToString();
+                seguimiento = Convert.ToInt32(respuesta[41]);
 
-                if (this.statusExpediente == (int)status.ENPROCESO)
+                if (statusExpediente == (int)status.ENPROCESO)
                 {
                     boxEstado.BackColor = Color.Yellow;
-                    numDiasProceso.Value = diasProceso(Convert.ToDateTime(c3), fechaActual);
+                    numDiasProceso.Value = diasProceso(Convert.ToDateTime(fechaInicioC3), fechaActual);
                     groupGoodWill.Visible = false;
                     lblFechaProbable.Visible = true;
                     dateFechaProbable.Visible = true;
@@ -883,26 +923,26 @@ namespace RT_Management
                     lblFechaDictamen.Visible = false;
                     dateDictamen.Visible = false;
 
-                    datePqr.Value = Convert.ToDateTime(pqr);
-                    dateRecepcion.Value = Convert.ToDateTime(recepcion);
-                    dateRobo.Value = Convert.ToDateTime(robo);
-                    dateVisita.Value = Convert.ToDateTime(visita);
-                    dateC3.Value = Convert.ToDateTime(c3);
+                    datePqr.Value = Convert.ToDateTime(fechaEnvioC3);
+                    dateRecepcion.Value = Convert.ToDateTime(fechaRecepcion);
+                    dateRobo.Value = Convert.ToDateTime(fechaRobo);
+                    dateVisita.Value = Convert.ToDateTime(fechaVisita);
+                    dateC3.Value = Convert.ToDateTime(fechaInicioC3);
 
-                    if (candidato == "0") //No candidato
+                    if (candidatoGoodWill == "False") //No candidato
                     {
                         toolCgoodWill.Visible = true;
                         toolCgoodWillC.Visible = false;
                     }
-                    else if (candidato == "1")
+                    else if (candidatoGoodWill == "True")
                     {
                         toolCgoodWill.Visible = false;
                         toolCgoodWillC.Visible = true;
                     }
 
-                    marcaMontoPendiente(montoPendiente);
+                    marcaMontoPendiente(tieneMontoPendiente);
                 }
-                else if (this.statusExpediente == (int)status.INCOMPLETO)
+                else if (statusExpediente == (int)status.INCOMPLETO)
                 {
                     boxEstado.BackColor = Color.Orange;
                     numDiasProceso.Value = 0;
@@ -928,28 +968,27 @@ namespace RT_Management
 
                     datePqr.Value = DateTime.Now;
                     dateRecepcion.Value = DateTime.Now;
-                    dateRobo.Value = Convert.ToDateTime(robo);
-                    dateVisita.Value = Convert.ToDateTime(visita);
+                    dateRobo.Value = Convert.ToDateTime(fechaRobo);
+                    dateVisita.Value = Convert.ToDateTime(fechaVisita);
                     dateC3.Value = DateTime.Now;
 
-                    if (candidato == "0") //No candidato
+                    if (candidatoGoodWill == "False") //No candidato
                     {
                         toolCgoodWill.Visible = true;
                         toolCgoodWillC.Visible = false;
                     }
-                    else if (candidato == "1")
+                    else if (candidatoGoodWill == "True")
                     {
                         toolCgoodWill.Visible = false;
                         toolCgoodWillC.Visible = true;
                     }
 
                 }
-                else if (this.statusExpediente == (int)status.PROCEDENTE)
+                else if (statusExpediente == (int)status.PROCEDENTE)
                 {
                     boxEstado.BackColor = Color.Green;
-                    string fechaDictamen = respuesta[10].ToString();
-                    dateDictamen.Text = String.Format("{0:dd/MM/yyyy HH:mm:ss}", fechaDictamen);
-                    numDiasProceso.Value = Convert.ToInt32(respuesta[12]);
+                    dateDictamen.Text = string.Format("{0:dd/MM/yyyy HH:mm:ss}", fechaDictamen);
+                    numDiasProceso.Value = diasEnProceso;
                     groupGoodWill.Visible = false;
                     numDiasProceso.Visible = true;
                     lblDiasProceso.Visible = true;
@@ -969,34 +1008,33 @@ namespace RT_Management
                     lblFechaDictamen.Visible = true;
                     dateDictamen.Visible = true;
 
-                    datePqr.Value = Convert.ToDateTime(pqr);
-                    dateRecepcion.Value = Convert.ToDateTime(recepcion);
-                    dateRobo.Value = Convert.ToDateTime(robo);
-                    dateVisita.Value = Convert.ToDateTime(visita);
-                    dateC3.Value = Convert.ToDateTime(c3);
+                    datePqr.Value = Convert.ToDateTime(fechaEnvioC3);
+                    dateRecepcion.Value = Convert.ToDateTime(fechaRecepcion);
+                    dateRobo.Value = Convert.ToDateTime(fechaRobo);
+                    dateVisita.Value = Convert.ToDateTime(fechaVisita);
+                    dateC3.Value = Convert.ToDateTime(fechaInicioC3);
 
                     toolCgoodWill.Visible = false;
                     toolCgoodWillC.Visible = false;
 
-                    marcaMontoPendiente(montoPendiente);
+                    marcaMontoPendiente(tieneMontoPendiente);
 
-                    if (candidato == "0") //No candidato
+                    if (candidatoGoodWill == "False") //No candidato
                     {
                         toolCgoodWill.Visible = true;
                         toolCgoodWillC.Visible = false;
                     }
-                    else if (candidato == "1")
+                    else if (candidatoGoodWill == "True")
                     {
                         toolCgoodWill.Visible = false;
                         toolCgoodWillC.Visible = true;
                     }
                 }
-                else if (this.statusExpediente == (int)status.NOPROCEDENTE)
+                else if (statusExpediente == (int)status.NOPROCEDENTE)
                 {
                     boxEstado.BackColor = Color.Red;
-                    string fechaDictamen = respuesta[10].ToString();
                     dateDictamen.Text = String.Format("{0:dd/MM/yyyy HH:mm:ss}", fechaDictamen);
-                    numDiasProceso.Value = Convert.ToInt32(respuesta[12]);
+                    numDiasProceso.Value = diasEnProceso;
                     groupGoodWill.Visible = true;
                     lblFechaProbable.Visible = false;
                     dateFechaProbable.Visible = false;
@@ -1016,10 +1054,10 @@ namespace RT_Management
                     lblFechaDictamen.Visible = true;
                     dateDictamen.Visible = true;
 
-                    if (goodWill == "1")
+                    if (tieneGoodWill == "True")
                     {
-                        string fechaGW = respuesta[39].ToString();
-                        string[] fecha = fechaGW.Split('-');
+                        
+                        string[] fecha = fechaGoodWill.Split('-');
 
                         checkGoodWill.Checked = true;
                         lblGoodWillYear.Visible = true;
@@ -1027,12 +1065,12 @@ namespace RT_Management
                         lblGoodWillMes.Visible = true;
                         comboGWdataMes.Visible = true;
                         lblGoodWillPorc.Visible = true;
-                        numGoodWillPorc.Value = Convert.ToInt32(respuesta[40]);
+                        numGoodWillPorc.Value = porcentajeGoodWill;
                         comboGWdataYear.Text = fecha[0];
                         comboGWdataMes.Text = mesAnumero(fecha[1]);
                         toolCgoodWill.Visible = false;
                         toolCgoodWillC.Visible = false;
-                        marcaMontoPendiente(montoPendiente);
+                        marcaMontoPendiente(tieneMontoPendiente);
                     }
                     else
                     {
@@ -1046,25 +1084,25 @@ namespace RT_Management
                         comboGWdataMes.Visible = false;
                         toolCmontoPendiente.Visible = false;
 
-                        if (candidato == "0")
+                        if (candidatoGoodWill == "False")
                         {
                             toolCgoodWill.Visible = true;
                             toolCgoodWillC.Visible = false;
                         }
-                        else if (candidato == "1")
+                        else if (candidatoGoodWill == "True")
                         {
                             toolCgoodWill.Visible = false;
                             toolCgoodWillC.Visible = true;
                         }
                     }
 
-                    datePqr.Value = Convert.ToDateTime(pqr);
-                    dateRecepcion.Value = Convert.ToDateTime(recepcion);
-                    dateRobo.Value = Convert.ToDateTime(robo);
-                    dateVisita.Value = Convert.ToDateTime(visita);
-                    dateC3.Value = Convert.ToDateTime(c3);
+                    datePqr.Value = Convert.ToDateTime(fechaEnvioC3);
+                    dateRecepcion.Value = Convert.ToDateTime(fechaRecepcion);
+                    dateRobo.Value = Convert.ToDateTime(fechaRobo);
+                    dateVisita.Value = Convert.ToDateTime(fechaVisita);
+                    dateC3.Value = Convert.ToDateTime(fechaInicioC3);
                 }
-                else if (this.statusExpediente == (int)status.PARAENVIO)
+                else if (statusExpediente == (int)status.PARAENVIO)
                 {
                     boxEstado.BackColor = Color.Navy;
                     numDiasProceso.Value = 0;
@@ -1090,24 +1128,24 @@ namespace RT_Management
                     dateDictamen.Visible = false;
 
                     datePqr.Value = DateTime.Now;
-                    dateRecepcion.Value = Convert.ToDateTime(recepcion);
-                    dateRobo.Value = Convert.ToDateTime(robo);
-                    dateVisita.Value = Convert.ToDateTime(visita);
+                    dateRecepcion.Value = Convert.ToDateTime(fechaRecepcion);
+                    dateRobo.Value = Convert.ToDateTime(fechaRobo);
+                    dateVisita.Value = Convert.ToDateTime(fechaVisita);
                     dateC3.Value = DateTime.Now;
                     dateDictamen.Value = DateTime.Now;
 
-                    if (candidato == "0") //No candidato
+                    if (candidatoGoodWill == "False") //No candidato
                     {
                         toolCgoodWill.Visible = true;
                         toolCgoodWillC.Visible = false;
                     }
-                    else if (candidato == "1")
+                    else if (candidatoGoodWill == "True")
                     {
                         toolCgoodWill.Visible = false;
                         toolCgoodWillC.Visible = true;
                     }
                 }
-                else if (this.statusExpediente == (int)status.ENTREGADO)
+                else if (statusExpediente == (int)status.ENTREGADO)
                 {
                     boxEstado.BackColor = Color.Chartreuse;
                     numDiasProceso.Value = 0;
@@ -1116,7 +1154,7 @@ namespace RT_Management
                     dateFechaProbable.Visible = true;
                     numDiasProceso.Visible = true;
                     lblDiasProceso.Visible = true;
-                    numDiasProceso.Value = diasProceso(Convert.ToDateTime(pqr), fechaActual);
+                    numDiasProceso.Value = diasProceso(Convert.ToDateTime(fechaEnvioC3), fechaActual);
                     toolCmontoPendiente.Visible = false;
 
                     lblFechaRobo.Visible = true;
@@ -1132,25 +1170,25 @@ namespace RT_Management
                     lblFechaDictamen.Visible = false;
                     dateDictamen.Visible = false;
 
-                    datePqr.Value = Convert.ToDateTime(pqr);
-                    dateRecepcion.Value = Convert.ToDateTime(recepcion);
-                    dateRobo.Value = Convert.ToDateTime(robo);
-                    dateVisita.Value = Convert.ToDateTime(visita);
+                    datePqr.Value = Convert.ToDateTime(fechaEnvioC3);
+                    dateRecepcion.Value = Convert.ToDateTime(fechaRecepcion);
+                    dateRobo.Value = Convert.ToDateTime(fechaRobo);
+                    dateVisita.Value = Convert.ToDateTime(fechaVisita);
                     dateC3.Value = DateTime.Now;
                     dateDictamen.Value = DateTime.Now;
 
-                    if (candidato == "0") //No candidato
+                    if (candidatoGoodWill == "False") //No candidato
                     {
                         toolCgoodWill.Visible = true;
                         toolCgoodWillC.Visible = false;
                     }
-                    else if (candidato == "1")
+                    else if (candidatoGoodWill == "True")
                     {
                         toolCgoodWill.Visible = false;
                         toolCgoodWillC.Visible = true;
                     }
                 }
-                else if (this.statusExpediente == (int)status.ARCHIVADO)
+                else if (statusExpediente == (int)status.ARCHIVADO)
                 {
                     boxEstado.BackColor = Color.Sienna;
                     numDiasProceso.Value = 0;
@@ -1174,8 +1212,8 @@ namespace RT_Management
                     lblFechaDictamen.Visible = false;
                     dateDictamen.Visible = false;
 
-                    dateRobo.Value = Convert.ToDateTime(robo);
-                    dateVisita.Value = Convert.ToDateTime(visita);
+                    dateRobo.Value = Convert.ToDateTime(fechaRobo);
+                    dateVisita.Value = Convert.ToDateTime(fechaVisita);
 
                     /* TODO: Añadir validación para la fecha de recepción*/
                     dateRecepcion.Value = DateTime.Now;
@@ -1190,34 +1228,11 @@ namespace RT_Management
                     toolCgoodWillC.Visible = false;
                 }
 
-                numDeducible.Value = Convert.ToInt16(respuesta[21]);
-                numMonto.Value = Convert.ToDecimal(respuesta[22]);
-                numValorFactura.Value = Convert.ToDecimal(respuesta[20]);
-
-                txtEmail.Text = respuesta[17].ToString();
-                txtGrupo.Text = respuesta[4].ToString();
-                txtPlatinum.Text = respuesta[5].ToString();
-
-                String telDomicilio = respuesta[14].ToString();
-                String telCelular = respuesta[15].ToString();
-                String telAlterno = respuesta[16].ToString();
-
-                txtTelAlterno.Text =   (telAlterno.Length < 8)   ? "" : telAlterno;
-                txtTelCelular.Text =   (telCelular.Length < 8)   ? "" : telCelular;
-                txtTelDomicilio.Text = (telDomicilio.Length < 8) ? "" : telDomicilio;
-
-                txtTitular.Text = respuesta[3].ToString();
-                txtVin.Text = respuesta[6].ToString();
-
-                cmbAseguradora.Text = respuesta[19].ToString();
-
-                txtExpediente.Text = respuesta[23].ToString();
-
-                if (this.statusExpediente == (int)status.ENPROCESO)
+                if (statusExpediente == (int)status.ENPROCESO)
                 {
                     dateFechaProbable.Value = diasLaborales(dateC3.Value);
                 }
-                else if (this.statusExpediente == (int)status.ENTREGADO)
+                else if (statusExpediente == (int)status.ENTREGADO)
                 {
                     dateFechaProbable.Value = diasLaborales(datePqr.Value);
                 }
@@ -1225,24 +1240,6 @@ namespace RT_Management
                 {
                     dateFechaProbable.Value = DateTime.Now;
                 }
-
-                checkFiniquito.Checked = respuesta[25].ToString() == "1" ? true : false;
-
-                numSumaA.Value = Convert.ToDecimal(respuesta[26]);
-
-                checkCartaPerdida.Checked = respuesta[27].ToString() == "1" ? true : false;
-                checkPoliza.Checked = respuesta[28].ToString() == "1" ? true : false;
-                checkFactura.Checked = respuesta[29].ToString() == "1" ? true : false;
-                checkActa.Checked = respuesta[30].ToString() == "1" ? true : false;
-                checkAcred.Checked = respuesta[31].ToString() == "1" ? true : false;
-                checkBaja.Checked = respuesta[32].ToString() == "1" ? true : false;
-                checkPagoBaja.Checked = respuesta[33].ToString() == "1" ? true : false;
-                checkTenencia.Checked = respuesta[34].ToString() == "1" ? true : false;
-                checkIdentificacion.Checked = respuesta[35].ToString() == "1" ? true : false;
-                checkPfp.Checked = respuesta[36].ToString() == "1" ? true : false;
-                checkContrato.Checked = respuesta[37].ToString() == "1" ? true : false;
-
-                db.Desconectar();
             }
             catch (Exception ex)
             {
@@ -1577,7 +1574,7 @@ namespace RT_Management
             {
                 frmLlamadasAgregar frm = new frmLlamadasAgregar(UsuarioActivo, tel, "domicilio", idDeducible, "Outbound");
                 frm.ShowDialog();
-                loadCallData();
+                LoadCallData();
             }
             else
             {
@@ -1594,7 +1591,7 @@ namespace RT_Management
             {
                 frmLlamadasAgregar frm = new frmLlamadasAgregar(UsuarioActivo, tel, "celular", idDeducible, "Outbound");
                 frm.ShowDialog();
-                loadCallData();
+                LoadCallData();
             }
             else
             {
@@ -1611,7 +1608,7 @@ namespace RT_Management
             {
                 frmLlamadasAgregar frm = new frmLlamadasAgregar(UsuarioActivo, tel, "alterno", idDeducible, "Outbound");
                 frm.ShowDialog();
-                loadCallData();
+                LoadCallData();
             }
             else
             {
@@ -1715,7 +1712,7 @@ namespace RT_Management
             toolsEditar.Enabled = true;
             toolsCancelar.Enabled = false;
             estadoControles(false);
-            loadFile();
+            LoadFile();
         }
 
         private void toolsGuardar_Click(object sender, EventArgs e)
@@ -1911,7 +1908,7 @@ namespace RT_Management
         {
             frmLlamadasAgregar frm = new frmLlamadasAgregar(UsuarioActivo, "", "Llamada entrante", idDeducible, "Inbound");
             frm.ShowDialog();
-            loadCallData();
+            LoadCallData();
         }
 
         private void btnExecuteQuery_Click(object sender, EventArgs e)
@@ -1946,7 +1943,7 @@ namespace RT_Management
                         txtBusqueda.SelectionStart = 0;
                         txtBusqueda.SelectionLength = txtBusqueda.Text.Length;
                         gridDatos.DataSource = tabla;
-                        formatoEncabezados();
+                        FormatoEncabezados();
                         gridDatos.CurrentCell = gridDatos[2, 0];
                         db.Desconectar();
 
@@ -2201,6 +2198,58 @@ namespace RT_Management
             txtEmail.SelectionLength = txtEmail.Text.Length;
         }
 
-        
+        private void btnSeguimiento_Click(object sender, EventArgs e)
+        {
+            tabControlSecciones.SelectedIndex = 0;
+            txtBusqueda.Text = "";
+            verRegistros("seguimiento");
+        }
+
+        private void toolCseguimiento_Click(object sender, EventArgs e)
+        {
+            if (seguimiento == 0)
+            {
+                if (MessageBox.Show("Se marcará el expediente para seguimiento, ¿desea continuar", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    marcarSeguimiento(1);
+                }
+            }
+            else if (seguimiento == 1)
+            {
+                if (MessageBox.Show("Se quitará la marca de seguimiento, ¿desea continuar", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    marcarSeguimiento(0);
+                }
+            }
+            
+        }
+
+        private void marcarSeguimiento(int v)
+        {
+            conexionBD db = new conexionBD();
+            int i = -1;
+            string consulta = $"UPDATE deducibles SET seguimiento={v.ToString()} WHERE clave='{this.idDeducible}';";
+
+            try
+            {
+                db.Conectar();
+                i = db.Modificar(consulta);
+                if (i > 0)
+                {
+                    MessageBox.Show("Operación exitosa.", "Marcar para seguimiento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadDataMod();
+                    db.Desconectar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Marcar para seguimiento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                db.Desconectar();
+            }
+            finally
+            {
+                db.Desconectar();
+            }
+        }
     }
 }

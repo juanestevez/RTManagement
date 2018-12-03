@@ -46,6 +46,7 @@
             this.txtTitularC = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtContratoI = new System.Windows.Forms.TextBox();
             this.txtPlatinumI = new System.Windows.Forms.MaskedTextBox();
             this.txtVinI = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
-            this.txtContratoI = new System.Windows.Forms.TextBox();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -106,7 +106,7 @@
             // dateSolicitud
             // 
             this.dateSolicitud.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            this.dateSolicitud.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateSolicitud.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateSolicitud.Location = new System.Drawing.Point(80, 17);
             this.dateSolicitud.Name = "dateSolicitud";
             this.dateSolicitud.Size = new System.Drawing.Size(143, 20);
@@ -235,6 +235,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos incorrectos";
             // 
+            // txtContratoI
+            // 
+            this.txtContratoI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtContratoI.Location = new System.Drawing.Point(64, 45);
+            this.txtContratoI.Name = "txtContratoI";
+            this.txtContratoI.Size = new System.Drawing.Size(100, 20);
+            this.txtContratoI.TabIndex = 7;
+            // 
             // txtPlatinumI
             // 
             this.txtPlatinumI.Location = new System.Drawing.Point(63, 97);
@@ -326,14 +334,6 @@
             this.btnCancelar.Size = new System.Drawing.Size(23, 22);
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // txtContratoI
-            // 
-            this.txtContratoI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtContratoI.Location = new System.Drawing.Point(64, 45);
-            this.txtContratoI.Name = "txtContratoI";
-            this.txtContratoI.Size = new System.Drawing.Size(100, 20);
-            this.txtContratoI.TabIndex = 7;
             // 
             // frmCorreccionesGpoIntAgregar
             // 

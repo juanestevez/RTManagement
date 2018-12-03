@@ -68,8 +68,8 @@
             this.comboEstado.Name = "comboEstado";
             this.comboEstado.Size = new System.Drawing.Size(102, 21);
             this.comboEstado.TabIndex = 2;
-            this.comboEstado.SelectedIndexChanged += new System.EventHandler(this.comboEstado_SelectedIndexChanged);
-            this.comboEstado.SelectedValueChanged += new System.EventHandler(this.comboEstado_SelectedValueChanged);
+            this.comboEstado.SelectedIndexChanged += new System.EventHandler(this.ComboEstado_SelectedIndexChanged);
+            this.comboEstado.SelectedValueChanged += new System.EventHandler(this.ComboEstado_SelectedValueChanged);
             // 
             // label1
             // 
@@ -217,9 +217,9 @@
             this.lblPqr.AutoSize = true;
             this.lblPqr.Location = new System.Drawing.Point(129, 126);
             this.lblPqr.Name = "lblPqr";
-            this.lblPqr.Size = new System.Drawing.Size(66, 13);
+            this.lblPqr.Size = new System.Drawing.Size(64, 13);
             this.lblPqr.TabIndex = 18;
-            this.lblPqr.Text = "Fecha PQR:";
+            this.lblPqr.Text = "Envío a C3:";
             this.lblPqr.Visible = false;
             // 
             // datePqr
@@ -265,7 +265,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cambio de estado";
-            this.Load += new System.EventHandler(this.frmCambioStatus_Load);
+            this.Load += new System.EventHandler(this.FrmCambioStatus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numDiasProceso)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

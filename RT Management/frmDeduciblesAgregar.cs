@@ -28,7 +28,8 @@ namespace RT_Management
         {
             //Comprueba si alguno de los campos obligatorios está vacío
             Boolean valido = false;
-            if ((cmbEstado.Text == "") || (txtTitular.Text == "") || (txtGrupo.Text == "") || (txtVin.Text == "") || (txtPlatinum.Text == "") || (txtTelCelular.Text == "") || (txtEmail.Text == "") || (cmbAseguradora.Text == "")) 
+            if ((cmbEstado.Text == "") || (txtTitular.Text == "") || (txtGrupo.Text == "") || (txtVin.Text == "") 
+                || (txtPlatinum.Text == "") || (txtEmail.Text == "") || (cmbAseguradora.Text == "")) 
             {
                 valido = false;
             }
@@ -308,20 +309,22 @@ namespace RT_Management
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            string idNuevo = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string idNuevo = DateTime.Now.ToString("yyMMddHHmmss");
             MySqlCommand cmd;
             int valor = 9;
             conexionBD conexion = new conexionBD();
 
-            string cadena = "INSERT INTO deducibles(id, clave, status, titular, grupo, platinum, vin, fechaVisita, "
-                + "fechaRecepcion, FechaPQR, fechaDictamen, fechaC3, diasProceso, comentarios, telefonoDomicilio, "
-                + "telefonoCelular, telefonoAdicional, email, fechaRobo, aseguradora, valorFactura, valorDeducible, montoPago, expediente, "
-                + "acuse, finiquito, sumaAsegurada, cartaPerdida, poliza, factura, acta, acred, baja, pagoBaja, tenencia, identificacion, "
-                + "pfp, contrato, goodWill, fechaGoodWill, porcentajeGoodWill) VALUES (NULL, @clave, @status, @titular, @grupo, @platinum, "
-                + "@vin, @fechaVisita, @fechaRecepcion, @fechaPQR, @fechaDictamen, @fechaC3, @diasProceso, NULL, @telefonoDomicilio, "
-                + "@telefonoCelular, @telefonoAdicional, @email, @fechaRobo, @aseguradora, @valorFactura, @valorDeducible, @montoPago, " 
-                + "@expediente, @acuse, @finiquito, @sumaAsegurada, @cartaPerdida, @poliza, @factura, @acta, @acred, @baja, @pagoBaja, "
-                + "@tenencia, @identificacion, @pfp, @contrato, @goodWill, @fechaGoodWill, @porcentajeGoodWill);";
+            string cadena = "INSERT INTO deducibles(id, clave, status, titular, grupo, platinum, vin, " +
+                "fechaVisita, fechaRecepcion, FechaPQR, fechaDictamen, fechaC3, diasProceso, " +
+                "telefonoDomicilio, telefonoCelular, telefonoAdicional, email, fechaRobo, aseguradora, " +
+                "valorFactura, valorDeducible, montoPago, expediente, finiquito, sumaAsegurada, " +
+                "cartaPerdida, poliza, factura, acta, acred, baja, pagoBaja, tenencia, identificacion, " +
+                "pfp, contrato, goodWill, fechaGoodWill, porcentajeGoodWill) VALUES (NULL, @clave, @status, " +
+                "@titular, @grupo, @platinum, @vin, @fechaVisita, @fechaRecepcion, @fechaPQR, " +
+                "@fechaDictamen, @fechaC3, @diasProceso, @telefonoDomicilio, @telefonoCelular, @telefonoAdicional, " +
+                "@email, @fechaRobo, @aseguradora, @valorFactura, @valorDeducible, @montoPago, @expediente, @finiquito, " +
+                "@sumaAsegurada, @cartaPerdida, @poliza, @factura, @acta, @acred, @baja, @pagoBaja, @tenencia, " +
+                "@identificacion, @pfp, @contrato, @goodWill, @fechaGoodWill, @porcentajeGoodWill);";
 
             if (validaCampos())
             {
@@ -422,7 +425,14 @@ namespace RT_Management
                             cmd.Parameters.AddWithValue("telefonoDomicilio", Convert.ToInt64(txtTelDomicilio.Text));
                         }
 
-                        cmd.Parameters.AddWithValue("telefonoCelular", Convert.ToInt64(txtTelCelular.Text));
+                        if (txtTelCelular.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("telefonoCelular", 0);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("telefonoCelular", Convert.ToInt64(txtTelCelular.Text));
+                        }
 
 
                         if (txtTelAlterno.Text == "")

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using RT_Management.Properties;
-using System.Configuration;
 
 namespace RT_Management
 {
@@ -13,14 +11,8 @@ namespace RT_Management
         private MySqlDataReader reader;
         private MySqlDataAdapter adaptador;
 
-        /// <summary>
-        /// Obtiene la cadena de conexión desde app.config
-        /// </summary>
-        /// <returns>Cadena de conexión</returns>
-        private string getCadenaConexion()
-        {
-            return "server=127.0.0.1;user id=manux;password=PiQuFIx1Wi;database=rtmanagement;Convert Zero Datetime=True";
-        }
+        string cadenaConexion = "server=127.0.0.1;user id=manux;password=PiQuFIx1Wi;database=rtmanagement;" +
+            "Convert Zero Datetime=True; SslMode = none";
 
         /// <summary>
         /// Conecta a la base de datos, si la conexión se encuentra abierta primero se cerrará.
@@ -31,8 +23,6 @@ namespace RT_Management
             {
                 conexionMySQL.Close();
             }
-
-            string cadenaConexion = getCadenaConexion();
 
             try
             {

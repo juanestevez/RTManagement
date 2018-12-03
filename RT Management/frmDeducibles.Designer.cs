@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDeducibles));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnParaEnvio = new System.Windows.Forms.ToolStripButton();
@@ -46,10 +46,14 @@
             this.separadorTodo = new System.Windows.Forms.ToolStripSeparator();
             this.lblResultados = new System.Windows.Forms.ToolStripLabel();
             this.toolMain = new System.Windows.Forms.ToolStrip();
+            this.btnIncompletos = new System.Windows.Forms.ToolStripDropDownButton();
+            this.porVencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnIncompleto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnArchivados = new System.Windows.Forms.ToolStripButton();
             this.btnMontos = new System.Windows.Forms.ToolStripButton();
             this.btnCandidato = new System.Windows.Forms.ToolStripButton();
+            this.btnSeguimiento = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.boxEstado = new System.Windows.Forms.PictureBox();
@@ -61,6 +65,7 @@
             this.toolsCambio = new System.Windows.Forms.ToolStripButton();
             this.toolCgoodWill = new System.Windows.Forms.ToolStripButton();
             this.toolCgoodWillC = new System.Windows.Forms.ToolStripButton();
+            this.toolCseguimiento = new System.Windows.Forms.ToolStripButton();
             this.toolCmontoPendiente = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolsAddComment = new System.Windows.Forms.ToolStripButton();
@@ -172,9 +177,6 @@
             this.layoutBase = new System.Windows.Forms.TableLayoutPanel();
             this.panelFile = new System.Windows.Forms.Panel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.btnIncompletos = new System.Windows.Forms.ToolStripDropDownButton();
-            this.porVencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnIncompleto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolMain.SuspendLayout();
             this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxEstado)).BeginInit();
@@ -315,6 +317,7 @@
             this.btnArchivados,
             this.btnMontos,
             this.btnCandidato,
+            this.btnSeguimiento,
             this.toolStripSeparator3,
             this.btnTodos,
             this.separadorTodo,
@@ -324,6 +327,34 @@
             this.toolMain.Size = new System.Drawing.Size(1284, 25);
             this.toolMain.TabIndex = 0;
             this.toolMain.Text = "toolStrip1";
+            // 
+            // btnIncompletos
+            // 
+            this.btnIncompletos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnIncompletos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.porVencerToolStripMenuItem,
+            this.btnIncompleto});
+            this.btnIncompletos.Image = ((System.Drawing.Image)(resources.GetObject("btnIncompletos.Image")));
+            this.btnIncompletos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnIncompletos.Name = "btnIncompletos";
+            this.btnIncompletos.Size = new System.Drawing.Size(29, 22);
+            this.btnIncompletos.Text = "Incompletos";
+            // 
+            // porVencerToolStripMenuItem
+            // 
+            this.porVencerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("porVencerToolStripMenuItem.Image")));
+            this.porVencerToolStripMenuItem.Name = "porVencerToolStripMenuItem";
+            this.porVencerToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.porVencerToolStripMenuItem.Text = "Por vencer";
+            this.porVencerToolStripMenuItem.Click += new System.EventHandler(this.porVencerToolStripMenuItem_Click);
+            // 
+            // btnIncompleto
+            // 
+            this.btnIncompleto.Image = ((System.Drawing.Image)(resources.GetObject("btnIncompleto.Image")));
+            this.btnIncompleto.Name = "btnIncompleto";
+            this.btnIncompleto.Size = new System.Drawing.Size(130, 22);
+            this.btnIncompleto.Text = "Ver todos";
+            this.btnIncompleto.Click += new System.EventHandler(this.btnIncompleto_Click);
             // 
             // toolStripSeparator5
             // 
@@ -359,6 +390,16 @@
             this.btnCandidato.Size = new System.Drawing.Size(23, 22);
             this.btnCandidato.Text = "Candidatos a good will";
             this.btnCandidato.Click += new System.EventHandler(this.btnCandidato_Click);
+            // 
+            // btnSeguimiento
+            // 
+            this.btnSeguimiento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSeguimiento.Image = ((System.Drawing.Image)(resources.GetObject("btnSeguimiento.Image")));
+            this.btnSeguimiento.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSeguimiento.Name = "btnSeguimiento";
+            this.btnSeguimiento.Size = new System.Drawing.Size(23, 22);
+            this.btnSeguimiento.Text = "Expedientes con seguimiento";
+            this.btnSeguimiento.Click += new System.EventHandler(this.btnSeguimiento_Click);
             // 
             // toolStripSeparator3
             // 
@@ -407,6 +448,7 @@
             this.toolsCambio,
             this.toolCgoodWill,
             this.toolCgoodWillC,
+            this.toolCseguimiento,
             this.toolCmontoPendiente,
             this.toolStripSeparator2,
             this.toolsAddComment,
@@ -483,6 +525,17 @@
             this.toolCgoodWillC.Text = "Cancelar good will";
             this.toolCgoodWillC.Visible = false;
             this.toolCgoodWillC.Click += new System.EventHandler(this.toolCgoodWillC_Click);
+            // 
+            // toolCseguimiento
+            // 
+            this.toolCseguimiento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolCseguimiento.Image = ((System.Drawing.Image)(resources.GetObject("toolCseguimiento.Image")));
+            this.toolCseguimiento.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCseguimiento.Name = "toolCseguimiento";
+            this.toolCseguimiento.Size = new System.Drawing.Size(23, 22);
+            this.toolCseguimiento.Text = "Seguimiento seguros";
+            this.toolCseguimiento.ToolTipText = "Marcar para seguimiento";
+            this.toolCseguimiento.Click += new System.EventHandler(this.toolCseguimiento_Click);
             // 
             // toolCmontoPendiente
             // 
@@ -706,14 +759,14 @@
             this.gridComentarios.AllowUserToDeleteRows = false;
             this.gridComentarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridComentarios.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridComentarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridComentarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridComentarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridComentarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridComentarios.Location = new System.Drawing.Point(3, 16);
@@ -751,14 +804,14 @@
             this.gridLlamadas.AllowUserToDeleteRows = false;
             this.gridLlamadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridLlamadas.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridLlamadas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridLlamadas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridLlamadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridLlamadas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridLlamadas.Location = new System.Drawing.Point(3, 16);
@@ -1505,7 +1558,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(24, 25);
             this.btnBuscar.TabIndex = 7;
             this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // txtBusqueda
             // 
@@ -1762,18 +1815,18 @@
             this.gridDatos.AllowUserToAddRows = false;
             this.gridDatos.AllowUserToDeleteRows = false;
             this.gridDatos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridDatos.Location = new System.Drawing.Point(3, 68);
@@ -1823,34 +1876,6 @@
             this.panelFile.Size = new System.Drawing.Size(870, 545);
             this.panelFile.TabIndex = 35;
             this.panelFile.Visible = false;
-            // 
-            // btnIncompletos
-            // 
-            this.btnIncompletos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnIncompletos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.porVencerToolStripMenuItem,
-            this.btnIncompleto});
-            this.btnIncompletos.Image = ((System.Drawing.Image)(resources.GetObject("btnIncompletos.Image")));
-            this.btnIncompletos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnIncompletos.Name = "btnIncompletos";
-            this.btnIncompletos.Size = new System.Drawing.Size(29, 22);
-            this.btnIncompletos.Text = "Incompletos";
-            // 
-            // porVencerToolStripMenuItem
-            // 
-            this.porVencerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("porVencerToolStripMenuItem.Image")));
-            this.porVencerToolStripMenuItem.Name = "porVencerToolStripMenuItem";
-            this.porVencerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.porVencerToolStripMenuItem.Text = "Por vencer";
-            this.porVencerToolStripMenuItem.Click += new System.EventHandler(this.porVencerToolStripMenuItem_Click);
-            // 
-            // btnIncompleto
-            // 
-            this.btnIncompleto.Image = ((System.Drawing.Image)(resources.GetObject("btnIncompleto.Image")));
-            this.btnIncompleto.Name = "btnIncompleto";
-            this.btnIncompleto.Size = new System.Drawing.Size(152, 22);
-            this.btnIncompleto.Text = "Ver todos";
-            this.btnIncompleto.Click += new System.EventHandler(this.btnIncompleto_Click);
             // 
             // frmDeducibles
             // 
@@ -2058,5 +2083,7 @@
         private System.Windows.Forms.ToolStripDropDownButton btnIncompletos;
         private System.Windows.Forms.ToolStripMenuItem porVencerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnIncompleto;
+        private System.Windows.Forms.ToolStripButton toolCseguimiento;
+        private System.Windows.Forms.ToolStripButton btnSeguimiento;
     }
 }

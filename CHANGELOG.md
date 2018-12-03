@@ -1,5 +1,18 @@
 # RT Management CHANGELOG
 
+### 1.5.8 - 2018-12-03
+##### Changed
+- Se eliminan dos campos de la base de datos (tabla deducibles), se aplican correcciones para que la aplicación siga funcionando.
+- Se optimiza la función para obtener la consulta al cambiar el estado de un expediente.
+- Mejoras menores de legibilidad en el código.
+
+##### Added
+- El sistema ahora permite cambiar un expediente "Archivado" a "Para envío".
+
+### 1.5.7 - 2018-09-26
+##### Added
+- Se agrega, en el módulo de deducibles, opción para marcar los expedientes para seguimiento.
+
 ### 1.5.6 - 2018-03-21
 ##### Added
 - Se añade botón para ver los expedientes por vencer (siniestro mayor a un año).

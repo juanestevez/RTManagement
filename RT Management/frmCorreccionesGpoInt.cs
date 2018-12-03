@@ -188,7 +188,7 @@ namespace RT_Management
         private void exportarAcsv(DataGridView grid)
         {
             SaveFileDialog dlGuardar = new SaveFileDialog();
-            dlGuardar.Filter = "Fichero CSV (*.csv)|*.csv";
+            dlGuardar.Filter = "Archivo CSV (*.csv)|*.csv";
             dlGuardar.FileName = "Correccion de contratos " + DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss");
             dlGuardar.Title = "Exportar a CSV";
             if (dlGuardar.ShowDialog() == DialogResult.OK)
