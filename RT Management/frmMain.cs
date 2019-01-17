@@ -156,7 +156,7 @@ namespace RT_Management
         {
             conexionBD bd = new conexionBD();
             bd.Conectar();
-            bd.Modificar("UPDATE login SET active=0 WHERE user='" + user + "';");
+            bd.Modificar($"UPDATE login SET active=0 WHERE user='{user}';");
             bd.Desconectar();
             Application.Exit();
         }
@@ -180,7 +180,7 @@ namespace RT_Management
             try
             {
                 //Localización del programa mysqldump
-                ProcessStartInfo psi = new ProcessStartInfo(@"C:\Program Files\MariaDB 10.1\bin\mysqldump", tablas);
+                ProcessStartInfo psi = new ProcessStartInfo(@"C:\Program Files\MariaDB 10.2\bin\mysqldump", tablas);
 
                // string directorio = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                 string nombreArchivo = DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss");
@@ -248,12 +248,12 @@ namespace RT_Management
 
         private void menuBackupInfo_Click(object sender, EventArgs e)
         {
-            backup("-u jsaucedo -p\"PiQuFIx1Wi\" rtmanagement --add-drop-table --complete-insert --ignore-table=rtmanagement.instalaciones", "data");
+            backup("-u rtmanagement -p\"rtmanagement\" rtmanagement --add-drop-table --complete-insert --ignore-table=rtmanagement.instalaciones", "data");
         }
 
         private void menuBackupInstalaciones_Click(object sender, EventArgs e)
         {
-            backup("-u jsaucedo -p\"PiQuFIx1Wi\" rtmanagement --add-drop-table --complete-insert --extended-insert --tables instalaciones", "instalaciones");
+            backup("-u rtmanagement -p\"rtmanagement\" rtmanagement --add-drop-table --complete-insert --extended-insert --tables instalaciones", "instalaciones");
         }
 
         private void correccionesSolicitadasToolStripMenuItem_Click(object sender, EventArgs e)

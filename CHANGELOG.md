@@ -1,9 +1,14 @@
 # RT Management CHANGELOG
 
+### 1.5.8.1 - 2019-01-17
+##### Changed
+- Se agrega el año 2019 para la búsqueda y al agragar un expediente como Good Will.
+
 ### 1.5.8 - 2018-12-03
 ##### Changed
 - Se eliminan dos campos de la base de datos (tabla deducibles), se aplican correcciones para que la aplicación siga funcionando.
 - Se optimiza la función para obtener la consulta al cambiar el estado de un expediente.
+- Al guardar un nuevo expediente, el teléfono celular ya no es un campo obligatorio.
 - Mejoras menores de legibilidad en el código.
 
 ##### Added

@@ -10,8 +10,7 @@ namespace RT_Management
         private MySqlConnection conexionMySQL = null;
         private MySqlDataReader reader;
         private MySqlDataAdapter adaptador;
-
-        string cadenaConexion = "server=127.0.0.1;user id=manux;password=PiQuFIx1Wi;database=rtmanagement;" +
+        readonly string cadenaConexion = "server=127.0.0.1;user id=manux;password=PiQuFIx1Wi;database=rtmanagement;" +
             "Convert Zero Datetime=True; SslMode = none";
 
         /// <summary>
@@ -31,7 +30,8 @@ namespace RT_Management
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error al conectarse a la base de datos: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al conectarse a la base de datos: " + e.Message, "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         

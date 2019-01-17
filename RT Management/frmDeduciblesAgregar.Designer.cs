@@ -462,7 +462,7 @@
             this.lblMonto.TabIndex = 28;
             this.lblMonto.TabStop = true;
             this.lblMonto.Text = "Monto:";
-            this.lblMonto.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblMonto_LinkClicked);
+            this.lblMonto.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblMonto_LinkClicked);
             // 
             // numSumaA
             // 
@@ -674,7 +674,7 @@
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(119, 21);
             this.cmbEstado.TabIndex = 14;
-            this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
+            this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.CmbEstado_SelectedIndexChanged);
             // 
             // label18
             // 
@@ -825,7 +825,7 @@
             this.toolStripCancelar.Name = "toolStripCancelar";
             this.toolStripCancelar.Size = new System.Drawing.Size(23, 22);
             this.toolStripCancelar.Text = "Limpiar campos";
-            this.toolStripCancelar.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.toolStripCancelar.Click += new System.EventHandler(this.ToolStripButton2_Click);
             // 
             // contextMenuStrip1
             // 

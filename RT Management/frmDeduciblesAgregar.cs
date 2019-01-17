@@ -11,11 +11,11 @@ namespace RT_Management
         public frmDeduciblesAgregar(string user)
         {
             InitializeComponent();
-            this.usuario = user;
-            limpiarCampos();
+            usuario = user;
+            LimpiarCampos();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -24,7 +24,7 @@ namespace RT_Management
         /// Valida si los campos obligatorios están capturados.
         /// </summary>
         /// <returns></returns>
-        private Boolean validaCampos() 
+        private Boolean ValidaCamposObligatorios() 
         {
             //Comprueba si alguno de los campos obligatorios está vacío
             Boolean valido = false;
@@ -44,7 +44,7 @@ namespace RT_Management
         /// <summary>
         /// Muestra y oculta los campos de acuerdo al estado del expediente.
         /// </summary>
-        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
             if ((cmbEstado.SelectedIndex == 2) || (cmbEstado.SelectedIndex == 3)) //Procedente, No procedente
             {
@@ -142,7 +142,7 @@ namespace RT_Management
             }
         }
 
-        private void limpiarCampos() 
+        private void LimpiarCampos() 
         {
             txtEmail.Text = "";
             txtGrupo.Text = "";
@@ -193,7 +193,7 @@ namespace RT_Management
             dateDictamen.Visible = false;
         }
 
-        private void txtGrupo_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtGrupo_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Para obligar a que sólo se introduzcan números
             if (Char.IsDigit(e.KeyChar))
@@ -326,9 +326,9 @@ namespace RT_Management
                 "@sumaAsegurada, @cartaPerdida, @poliza, @factura, @acta, @acred, @baja, @pagoBaja, @tenencia, " +
                 "@identificacion, @pfp, @contrato, @goodWill, @fechaGoodWill, @porcentajeGoodWill);";
 
-            if (validaCampos())
+            if (ValidaCamposObligatorios())
             {
-                if (checkVIN(txtVin.Text))
+                if (CheckVIN(txtVin.Text))
                 {
                     try
                     {
@@ -473,7 +473,7 @@ namespace RT_Management
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Registro añadido correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         conexion.lastModify(idNuevo, this.usuario, "Created", cmbEstado.Text);
-                        limpiarCampos();
+                        LimpiarCampos();
                         conexion.Desconectar();
                     }
                     catch (Exception ex)
@@ -502,7 +502,7 @@ namespace RT_Management
         /// </summary>
         /// <param name="vin"></param>
         /// <returns></returns>
-        private bool checkVIN(string vin)
+        private bool CheckVIN(string vin)
         {
             bool resultado = false;
             string consulta = $"SELECT vin FROM deducibles WHERE vin ='{vin}'";
@@ -521,9 +521,9 @@ namespace RT_Management
             return resultado;
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void ToolStripButton2_Click(object sender, EventArgs e)
         {
-            limpiarCampos();
+            LimpiarCampos();
         }
 
         private void frmDeduciblesAgregar_KeyDown(object sender, KeyEventArgs e)
@@ -566,7 +566,7 @@ namespace RT_Management
             }
         }
 
-        private void calculaPago()
+        private void CalculaPago()
         {
             decimal porcentaje = numDeducible.Value;
             decimal sumaAsegurada = numSumaA.Value;
@@ -593,24 +593,26 @@ namespace RT_Management
                         montoPago = montoDeducible / IVA;
                         numMonto.Value = montoDeducible;
                         MessageBox.Show("El monto del deducible es de " + montoDeducible.ToString("c2") 
-                            + "\nEl monto a pagar es de " + montoPago.ToString("c2"), "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);                        
+                            + "\nEl monto a pagar es de " + montoPago.ToString("c2"), "Información", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);                        
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Es necesario capturar la suma asegurada.", "No es posible realizar el cálculo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Es necesario capturar la suma asegurada.", "No es posible realizar el cálculo", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else //Porcentaje es cero
             {
-                MessageBox.Show("Es necesario capturar el porcentaje del deducible.", "No es posible realizar el cálculo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Es necesario capturar el porcentaje del deducible.", "No es posible realizar el cálculo", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
-        private void lblMonto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LblMonto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            calculaPago();
+            CalculaPago();
         }
     } //
 }//

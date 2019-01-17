@@ -1270,7 +1270,7 @@ namespace RT_Management
         /// <returns>Consulta SQL para carga de expediente.</returns>
         private string getConsulta()
         {
-            string texto = "";
+            string query = "";
             int finiquito = 9;
             int montoPendiente = -1;
 
@@ -1307,7 +1307,7 @@ namespace RT_Management
             {
                 montoPendiente = isMontoPendiente();
 
-                texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
+                query = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                     + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                     + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
                     + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaPqr='"
@@ -1318,12 +1318,11 @@ namespace RT_Management
                     + "', valorFactura=" + numValorFactura.Value + ", valorDeducible=" + numDeducible.Value + ", montoPago="
                     + numMonto.Value + ", expediente='" + txtExpediente.Text + "', finiquito="
                     + finiquito + ", sumaAsegurada=" + numSumaA.Value + ", " + getDocs() + ", montoPendiente="
-                    + montoPendiente + " WHERE clave='" + this.idDeducible
-                    + "';";
+                    + montoPendiente + " WHERE clave='" + this.idDeducible + "';";
             }
             else if ((this.statusExpediente == (int)status.INCOMPLETO) || (this.statusExpediente == (int)status.ARCHIVADO))
             {
-                texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
+                query = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                     + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                     + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', telefonoDomicilio=" + telCasa
                     + ", telefonoCelular=" + telCel + ", telefonoAdicional=" + telAlt + ", email='" + txtEmail.Text
@@ -1337,7 +1336,7 @@ namespace RT_Management
             {
                 montoPendiente = isMontoPendiente();
 
-                texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
+                query = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                     + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                     + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
                     + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaPqr='"
@@ -1358,7 +1357,7 @@ namespace RT_Management
                 {
                     montoPendiente = isMontoPendiente();
 
-                    texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
+                    query = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                         + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                         + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
                         + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaPqr='"
@@ -1376,7 +1375,7 @@ namespace RT_Management
                 }
                 else
                 {
-                    texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
+                    query = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                         + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                         + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
                         + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaPqr='"
@@ -1394,7 +1393,7 @@ namespace RT_Management
             }
             else if (this.statusExpediente == (int)status.PARAENVIO)
             {
-                texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
+                query = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                     + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                     + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
                     + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', telefonoDomicilio=" + telCasa
@@ -1407,7 +1406,7 @@ namespace RT_Management
             }
             else if (this.statusExpediente == (int)status.ENTREGADO)
             {
-                texto = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
+                query = "UPDATE deducibles SET titular='" + txtTitular.Text + "', grupo=" + Convert.ToInt32(txtGrupo.Text)
                    + ", platinum='" + txtPlatinum.Text + "', vin='" + txtVin.Text + "', fechavisita='"
                    + dateVisita.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaRecepcion='"
                    + dateRecepcion.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', fechaPqr='"
@@ -1420,7 +1419,7 @@ namespace RT_Management
                    + "';";
             }
 
-            return texto;
+            return query;
         }
 
         private int isMontoPendiente()
@@ -2095,7 +2094,7 @@ namespace RT_Management
         {
             conexionBD db = new conexionBD();
             int i = -1;
-            string consulta = "UPDATE deducibles SET candidato=" + op.ToString() + " WHERE clave='" + this.idDeducible + "';";
+            string consulta = $"UPDATE deducibles SET candidato={ op.ToString()} WHERE clave='{idDeducible}';";
 
             try
             {
@@ -2136,7 +2135,7 @@ namespace RT_Management
         {
             conexionBD db = new conexionBD();
             int i = -1;
-            string consulta = "UPDATE deducibles SET montoPendiente=" + op.ToString() + " WHERE clave='" + this.idDeducible + "';";
+            string consulta = $"UPDATE deducibles SET montoPendiente={op.ToString()} WHERE clave='{idDeducible}';";
 
             try
             {

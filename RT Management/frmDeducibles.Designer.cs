@@ -667,6 +667,7 @@
             this.comboGWdataYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboGWdataYear.FormattingEnabled = true;
             this.comboGWdataYear.Items.AddRange(new object[] {
+            "2019",
             "2018",
             "2017",
             "2016",
@@ -1723,7 +1724,8 @@
             "2015",
             "2016",
             "2017",
-            "2018"});
+            "2018",
+            "2019"});
             this.comboGWyear.Location = new System.Drawing.Point(31, 6);
             this.comboGWyear.Name = "comboGWyear";
             this.comboGWyear.Size = new System.Drawing.Size(49, 21);
