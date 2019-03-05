@@ -54,7 +54,7 @@ namespace RT_Management
                 toolStripMenuItem2.Visible = false;
             }
 
-            this.Text = $"RT Management v{Assembly.GetExecutingAssembly().GetName().Version.ToString()} Test";
+            this.Text = $"RT Management v{Assembly.GetExecutingAssembly().GetName().Version.ToString()}";
         }
 
         private void SalirToolStripMenuItem_Click(object sender, EventArgs e)

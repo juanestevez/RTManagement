@@ -87,19 +87,19 @@
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Text = "Listado de usuarios";
             // 
             // activosToolStripMenuItemActivos
             // 
             this.activosToolStripMenuItemActivos.Name = "activosToolStripMenuItemActivos";
-            this.activosToolStripMenuItemActivos.Size = new System.Drawing.Size(118, 22);
+            this.activosToolStripMenuItemActivos.Size = new System.Drawing.Size(180, 22);
             this.activosToolStripMenuItemActivos.Text = "Activos";
             this.activosToolStripMenuItemActivos.Click += new System.EventHandler(this.ActivosToolStripMenuItemActivos_Click);
             // 
             // verTodoToolStripMenuItemVerTodo
             // 
             this.verTodoToolStripMenuItemVerTodo.Name = "verTodoToolStripMenuItemVerTodo";
-            this.verTodoToolStripMenuItemVerTodo.Size = new System.Drawing.Size(118, 22);
+            this.verTodoToolStripMenuItemVerTodo.Size = new System.Drawing.Size(180, 22);
             this.verTodoToolStripMenuItemVerTodo.Text = "Ver todo";
             this.verTodoToolStripMenuItemVerTodo.Click += new System.EventHandler(this.VerTodoToolStripMenuItemVerTodo_Click);
             // 

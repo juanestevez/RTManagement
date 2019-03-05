@@ -1,8 +1,16 @@
 # RT Management CHANGELOG
 
+### 1.6.0.1 - 2019.03-05
+##### Fixed
+- **[Usuarios Portal]**
+ - Se eliminan etiquetas de debug.
+ - Se corrige error que cerraba la aplicación al consultar los usuarios cuando no hay resultados.
+ - Las columnas de resultado se muestran correctamente (mismo tamaño) al realizar una búsqueda por nombre.
+
 ### 1.6 - 2019-03-05
 #### Changed
 - Nuevos íconos para la aplicación.
+- Al ingresar al sistema ya no se abre el modulo de deducibles de forma automática.
 
 ##### Fixed
 - **[Ventana principal]** Al entrar como invitado se ocultan correctamente los menús, únicamente se muestra el módulo de deducibles y la opción de cambiar contraseña.

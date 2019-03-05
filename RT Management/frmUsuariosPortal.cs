@@ -13,6 +13,7 @@ namespace RT_Management
         public frmUsuariosPortal()
         {
             InitializeComponent();
+            txtEstatus.Text = "";
         }
 
         public static frmUsuariosPortal DefInstance
@@ -53,7 +54,7 @@ namespace RT_Management
 
             if (nombreAbuscar != "")
             {
-                BuscarRegistros("nombre AS Nombre, pass AS Password, activo AS Activo", $"nombre LIKE '%{nombreAbuscar}%'");
+                BuscarRegistros("nombre AS Nombre, pass AS Password, activo AS Activo", $"nombre LIKE '%{nombreAbuscar}%'", 2);
             }
             else
             {
@@ -61,7 +62,7 @@ namespace RT_Management
             }
         }
 
-        private void BuscarRegistros(string campos, string condicion)
+        private void BuscarRegistros(string campos, string condicion, int tipo)
         {
             string query = $"SELECT id, {campos} FROM usuariosportal WHERE {condicion};";
             conexionBD db = new conexionBD();
@@ -85,6 +86,16 @@ namespace RT_Management
                 {
                     gridUsuarios.DataSource = tabla;
                     gridUsuarios.Columns[0].Visible = false;
+
+                    if (tipo == 1)
+                    {
+                        gridUsuarios.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    }
+                    else
+                    {
+                        gridUsuarios.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                    
 
                     if (i == 1)
                     {
@@ -119,8 +130,7 @@ namespace RT_Management
                 "rastreo AS 'Rastreo de registros', masivo AS 'Comandos masivo', individual AS 'Comandos individual', " +
                 "diez AS 10P, veinte AS 20P, inmovilizar AS Inmovilizar, movilizar AS Movilizar, cancelar AS Cancelar, " +
                 "localizacion AS Localizacion, comandos AS 'Reporte de comandos', reportegral AS 'Reporte general'", 
-                "activo = 1;");
-            gridUsuarios.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                "activo = 1;", 1);
         }
 
         private void VerTodoToolStripMenuItemVerTodo_Click(object sender, EventArgs e)
@@ -130,8 +140,7 @@ namespace RT_Management
                 "baja AS Baja, revision AS Revision, rastreo AS 'Rastreo de registros', masivo AS 'Comandos masivo', " +
                 "individual AS 'Comandos individual', diez AS 10P, veinte AS 20P, inmovilizar AS Inmovilizar, " +
                 "movilizar AS Movilizar, cancelar AS Cancelar, localizacion AS Localizacion, " +
-                "comandos AS 'Reporte de comandos', reportegral AS 'Reporte general'", "activo = 1 OR activo = 0;");
-            gridUsuarios.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                "comandos AS 'Reporte de comandos', reportegral AS 'Reporte general'", "activo = 1 OR activo = 0;", 1);
         }
 
         private void GridUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
