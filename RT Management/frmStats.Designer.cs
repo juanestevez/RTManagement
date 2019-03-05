@@ -60,7 +60,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Estadísticas";
-            this.Load += new System.EventHandler(this.frmStats_Load);
+            this.Load += new System.EventHandler(this.FrmStats_Load);
             this.ResumeLayout(false);
 
         }

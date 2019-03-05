@@ -41,7 +41,7 @@ namespace RT_Management
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
             conexionBD db = new conexionBD();
             string texto = txtBusqueda.Text;
@@ -67,7 +67,7 @@ namespace RT_Management
                     else
                     {
                         gridDatos.DataSource = tabla;
-                        formatoEncabezados();
+                        FormatoEncabezados();
                     }
                 }
                 catch (Exception ex)
@@ -81,12 +81,12 @@ namespace RT_Management
             }
         }
 
-        private void frmUsuarios_Load(object sender, EventArgs e)
+        private void FrmUsuarios_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
         }
 
-        private void formatoEncabezados()
+        private void FormatoEncabezados()
         {
             gridDatos.Columns[0].HeaderText = "Usuario";
             gridDatos.Columns[1].HeaderText = "Nombre";
@@ -96,13 +96,13 @@ namespace RT_Management
             gridDatos.Columns[5].HeaderText = "Administrador";
         }
 
-        private void btnNuevoUsuario_Click(object sender, EventArgs e)
+        private void BtnNuevoUsuario_Click(object sender, EventArgs e)
         {
             frmUsuariosAgregar agregarUsuario = new frmUsuariosAgregar(user);
             agregarUsuario.ShowDialog();
         }
 
-        private void gridDatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void GridDatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string usuario = gridDatos.CurrentRow.Cells["user"].Value.ToString();
             frmUsuariosVer frmUsuario = new frmUsuariosVer(usuario);

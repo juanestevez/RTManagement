@@ -40,22 +40,24 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDesbloquea = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBoxFondo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFondo)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUser
             // 
             this.txtUser.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txtUser.Location = new System.Drawing.Point(65, 126);
+            this.txtUser.Location = new System.Drawing.Point(60, 126);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(119, 20);
             this.txtUser.TabIndex = 2;
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(65, 152);
+            this.txtPass.Location = new System.Drawing.Point(60, 152);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(119, 20);
             this.txtPass.TabIndex = 3;
@@ -64,7 +66,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(28, 178);
+            this.btnCancel.Location = new System.Drawing.Point(36, 181);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -74,7 +76,7 @@
             // 
             // btnEntrar
             // 
-            this.btnEntrar.Location = new System.Drawing.Point(109, 178);
+            this.btnEntrar.Location = new System.Drawing.Point(117, 181);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(75, 23);
             this.btnEntrar.TabIndex = 5;
@@ -94,24 +96,25 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(30, 124);
+            this.pictureBox2.Location = new System.Drawing.Point(36, 128);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
             this.pictureBox2.TabIndex = 8;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(30, 150);
+            this.pictureBox3.Location = new System.Drawing.Point(36, 154);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
             this.pictureBox3.TabIndex = 9;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(62, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(96, 96);
@@ -131,13 +134,23 @@
             this.btnDesbloquea.Visible = false;
             this.btnDesbloquea.Click += new System.EventHandler(this.btnDesbloquea_Click);
             // 
+            // pictureBoxFondo
+            // 
+            this.pictureBoxFondo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxFondo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxFondo.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxFondo.Name = "pictureBoxFondo";
+            this.pictureBoxFondo.Size = new System.Drawing.Size(220, 230);
+            this.pictureBoxFondo.TabIndex = 12;
+            this.pictureBoxFondo.TabStop = false;
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnEntrar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(219, 228);
+            this.ClientSize = new System.Drawing.Size(220, 230);
             this.Controls.Add(this.btnDesbloquea);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
@@ -147,15 +160,16 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.txtUser);
+            this.Controls.Add(this.pictureBoxFondo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogin";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingreso al sistema";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFondo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +187,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnDesbloquea;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.PictureBox pictureBoxFondo;
     }
 }
 

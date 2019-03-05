@@ -846,7 +846,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1260, 536);
             this.Name = "frmCorreccionesGpoInt";
-            this.Text = "Correcciones de grupo integrante";
+            this.Text = "Correcciones de contrato";
             this.Load += new System.EventHandler(this.frmCorreccionesGpoInt_Load);
             this.BarraHerramientas.ResumeLayout(false);
             this.BarraHerramientas.PerformLayout();

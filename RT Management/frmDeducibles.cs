@@ -121,7 +121,7 @@ namespace RT_Management
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             lblResultados.Text = "";
-            resetControles();
+            ResetControles();
             string filtro = comboFiltro.Text;
             string filtroColumna = "";
             string tipo = comboTipo.Text;
@@ -181,7 +181,6 @@ namespace RT_Management
                         gridDatos.DataSource = tabla;
                         FormatoEncabezados();
                         gridDatos.CurrentCell = gridDatos[2,0];
-                        db.Desconectar();
 
                         if (i == 1)
                         {
@@ -227,7 +226,7 @@ namespace RT_Management
         /// <param name="tipo">Tipo de búsqueda.</param>
         private void verRegistros(string tipo)
         {
-            resetControles();
+            ResetControles();
             string consulta = "";
             conexionBD db = new conexionBD();
 
@@ -558,7 +557,7 @@ namespace RT_Management
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             gridDatos.DataSource = null;
-            resetControles();
+            ResetControles();
 
             if (tabControlSecciones.SelectedIndex == 0)
             {
@@ -675,7 +674,7 @@ namespace RT_Management
         /// <summary>
         /// Reestablece los campos a sus valores predeterminados al cambiar de expediente o realizar busquedas.
         /// </summary>
-        private void resetControles()
+        private void ResetControles()
         {
             panelFile.Visible = false;
             panelStatus.Visible = false;
@@ -738,7 +737,7 @@ namespace RT_Management
         /// </summary>
         private void loadDataMod()
         {
-            loadComment();   //Carga de comentarios
+            LoadComment();   //Carga de comentarios
             LoadCallData();  //Carga de registro de llamadas
             LoadFile();      //Carga de expediente
             toolsEditar.Enabled = true;
@@ -749,7 +748,7 @@ namespace RT_Management
         /// <summary>
         /// Carga la lista de comentarios de acuerdo al id del expediente.
         /// </summary>
-        private void loadComment()
+        private void LoadComment()
         {
 
             string query = $"SELECT fecha, comentario, usuario FROM comentarios WHERE idExpediente='{this.idDeducible}' ORDER BY fecha DESC";
@@ -1620,7 +1619,7 @@ namespace RT_Management
         {
             frmAddComment frm = new frmAddComment(this.idDeducible, UsuarioActivo, "deducibles");
             frm.ShowDialog();
-            loadComment();
+            LoadComment();
         }
 
         private void toolsCambio_Click(object sender, EventArgs e)
@@ -1714,7 +1713,7 @@ namespace RT_Management
             LoadFile();
         }
 
-        private void toolsGuardar_Click(object sender, EventArgs e)
+        private void ToolsGuardar_Click(object sender, EventArgs e)
         {
             estadoControles(false);
             toolsCancelar.Enabled = false;
@@ -1912,10 +1911,10 @@ namespace RT_Management
 
         private void btnExecuteQuery_Click(object sender, EventArgs e)
         {
-            ejecutarConsulta();
+            EjecutarConsulta();
         }
 
-        private void ejecutarConsulta()
+        private void EjecutarConsulta()
         {
             if (txtQuery.Text != "")
             {
@@ -2073,7 +2072,7 @@ namespace RT_Management
         {
             if (MessageBox.Show("¿Marcar como candidato a Good Will?", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                candidatoAgoodWill(1);
+                CandidatoAgoodWill(1);
             }            
         }
 
@@ -2081,7 +2080,7 @@ namespace RT_Management
         {
             if (MessageBox.Show("¿Quitar marca de Good Will?", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                candidatoAgoodWill(0);
+                CandidatoAgoodWill(0);
             }                
         }
 
@@ -2090,7 +2089,7 @@ namespace RT_Management
         /// Genera una marca en la tabla de modificaciones.
         /// </summary>
         /// <param name="op">1: Marca como candidato. 0: Quita la marca.</param>
-        private void candidatoAgoodWill(int op)
+        private void CandidatoAgoodWill(int op)
         {
             conexionBD db = new conexionBD();
             int i = -1;
@@ -2131,7 +2130,7 @@ namespace RT_Management
         /// Marca un expediente para tenerlo como monto pendiente de solicitar.
         /// </summary>
         /// <param name="op">1: Marca como pendiente. 0: Quita la marca.</param>
-        private void montoPendiente(int op)
+        private void MontoPendiente(int op)
         {
             conexionBD db = new conexionBD();
             int i = -1;
@@ -2188,7 +2187,7 @@ namespace RT_Management
 
         private void toolCmontoPendiente_Click(object sender, EventArgs e)
         {
-            montoPendiente(1);
+            MontoPendiente(1);
         }
 
         private void txtEmail_DoubleClick(object sender, EventArgs e)
@@ -2210,20 +2209,20 @@ namespace RT_Management
             {
                 if (MessageBox.Show("Se marcará el expediente para seguimiento, ¿desea continuar", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    marcarSeguimiento(1);
+                    MarcarSeguimiento(1);
                 }
             }
             else if (seguimiento == 1)
             {
                 if (MessageBox.Show("Se quitará la marca de seguimiento, ¿desea continuar", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    marcarSeguimiento(0);
+                    MarcarSeguimiento(0);
                 }
             }
             
         }
 
-        private void marcarSeguimiento(int v)
+        private void MarcarSeguimiento(int v)
         {
             conexionBD db = new conexionBD();
             int i = -1;

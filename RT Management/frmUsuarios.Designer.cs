@@ -64,7 +64,7 @@
             this.btnNuevoUsuario.Name = "btnNuevoUsuario";
             this.btnNuevoUsuario.Size = new System.Drawing.Size(23, 22);
             this.btnNuevoUsuario.Text = "Agregar usuario";
-            this.btnNuevoUsuario.Click += new System.EventHandler(this.btnNuevoUsuario_Click);
+            this.btnNuevoUsuario.Click += new System.EventHandler(this.BtnNuevoUsuario_Click);
             // 
             // layoutBase
             // 
@@ -106,7 +106,7 @@
             this.gridDatos.ReadOnly = true;
             this.gridDatos.Size = new System.Drawing.Size(613, 311);
             this.gridDatos.TabIndex = 1;
-            this.gridDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDatos_CellDoubleClick);
+            this.gridDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDatos_CellDoubleClick);
             // 
             // groupBox1
             // 
@@ -138,7 +138,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(24, 25);
             this.btnBuscar.TabIndex = 1;
             this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // txtBusqueda
             // 
@@ -158,7 +158,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmUsuarios";
             this.Text = "Administración de usuarios";
-            this.Load += new System.EventHandler(this.frmUsuarios_Load);
+            this.Load += new System.EventHandler(this.FrmUsuarios_Load);
             this.toolsBar.ResumeLayout(false);
             this.toolsBar.PerformLayout();
             this.layoutBase.ResumeLayout(false);

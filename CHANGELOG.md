@@ -1,8 +1,18 @@
 # RT Management CHANGELOG
 
+### 1.6 - 2019-03-05
+#### Changed
+- Nuevos íconos para la aplicación.
+
+##### Fixed
+- **[Ventana principal]** Al entrar como invitado se ocultan correctamente los menús, únicamente se muestra el módulo de deducibles y la opción de cambiar contraseña.
+
+##### Added
+- Se agrega módulo para gestión de usuarios para el portal.
+
 ### 1.5.8.1 - 2019-01-17
 ##### Changed
-- Se agrega el año 2019 para la búsqueda y al agragar un expediente como Good Will.
+- Se agrega el año 2019 para la búsqueda y al agregar un expediente como Good Will.
 
 ### 1.5.8 - 2018-12-03
 ##### Changed

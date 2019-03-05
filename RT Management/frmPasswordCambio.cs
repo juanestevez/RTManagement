@@ -14,18 +14,18 @@ namespace RT_Management
             this.user = usuario;
         }
 
-        private void frmPass_Load(object sender, EventArgs e)
+        private void FrmPass_Load(object sender, EventArgs e)
         {
             lblUsuario.Text = user;
             lblInvitado.Text = "";            
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void BtnAceptar_Click(object sender, EventArgs e)
         {
             conexionBD db = new conexionBD();
             MySqlDataReader respuesta = null;
@@ -90,19 +90,19 @@ namespace RT_Management
             db.Desconectar();
         }
 
-        private void txtActual_Enter(object sender, EventArgs e)
+        private void TxtActual_Enter(object sender, EventArgs e)
         {
             txtActual.SelectionStart = 0;
             txtActual.SelectionLength = txtActual.Text.Length;
         }
 
-        private void txtNueva_Enter(object sender, EventArgs e)
+        private void TxtNueva_Enter(object sender, EventArgs e)
         {
             txtNueva.SelectionStart = 0;
             txtNueva.SelectionLength = txtNueva.Text.Length;
         }
 
-        private void txtConfirma_Enter(object sender, EventArgs e)
+        private void TxtConfirma_Enter(object sender, EventArgs e)
         {
             txtConfirma.SelectionStart = 0;
             txtConfirma.SelectionLength = txtConfirma.Text.Length;

@@ -16,22 +16,22 @@ namespace RT_Management
             usuarioActivo = usuario;
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            guardar();
+            Guardar();
         }
 
-        private void guardar() 
+        private void Guardar() 
         {
             string consulta = "";
             MySqlCommand cmd;
             conexionBD conexion = new conexionBD();         
 
-            if (validaUsuario()) 
+            if (ValidaUsuario()) 
             {
-                if (validaCampos())
+                if (ValidaCampos())
                 {
-                    if (validaPass())
+                    if (ValidaPass())
                     {
                         try
                         {
@@ -41,10 +41,10 @@ namespace RT_Management
                             cmd = conexion.Insertar(consulta);
 
                             cmd.Parameters.AddWithValue("user", txtUsuario.Text);
-                            cmd.Parameters.AddWithValue("pass", encriptar(txtPass.Text));
+                            cmd.Parameters.AddWithValue("pass", Encriptar(txtPass.Text));
                             cmd.Parameters.AddWithValue("name", txtNombre.Text);
                             cmd.Parameters.AddWithValue("lastname", txtApellidos.Text);
-                            cmd.Parameters.AddWithValue("level", getLevel(comboLevel.Text));
+                            cmd.Parameters.AddWithValue("level", GetLevel(comboLevel.Text));
                             cmd.Parameters.AddWithValue("last", "0000-00-00 00:00:00");
                             cmd.Parameters.AddWithValue("created", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                             cmd.Parameters.AddWithValue("usercreated", usuarioActivo);
@@ -78,7 +78,7 @@ namespace RT_Management
             }
         }
 
-        private Boolean validaPass() 
+        private Boolean ValidaPass() 
         {
             Boolean respuesta = false;
 
@@ -94,7 +94,7 @@ namespace RT_Management
             return respuesta;
         }
 
-        private Boolean validaUsuario() 
+        private Boolean ValidaUsuario() 
         {
             Boolean respuesta = false;
             conexionBD db = new conexionBD();
@@ -133,7 +133,7 @@ namespace RT_Management
             return respuesta;
         }
 
-        private Boolean validaCampos() 
+        private Boolean ValidaCampos() 
         {
             Boolean respuesta = false;
 
@@ -149,7 +149,7 @@ namespace RT_Management
             return respuesta;
         }
 
-        private int getLevel(string nivel) 
+        private int GetLevel(string nivel) 
         {
             int level = 0;
 
@@ -169,7 +169,7 @@ namespace RT_Management
             return level;
         }
 
-        public static string encriptar(string str)
+        public static string Encriptar(string str)
         {
             SHA1 sha1 = SHA1Managed.Create();
             ASCIIEncoding encoding = new ASCIIEncoding();

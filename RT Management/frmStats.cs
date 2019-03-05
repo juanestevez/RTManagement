@@ -12,22 +12,22 @@ namespace RT_Management
             InitializeComponent();
         }
 
-        private void frmStats_Load(object sender, EventArgs e)
+        private void FrmStats_Load(object sender, EventArgs e)
         {
-            loadData();
+            LoadData();
         }
 
-        private void loadData() 
+        private void LoadData() 
         {
-            int incompleto = getStatus(1);
-            int proceso = getStatus(0);
-            int procedente = getStatus(2);
-            int improcedente = getStatus(3);
+            int incompleto = GetStatus(1);
+            int proceso = GetStatus(0);
+            int procedente = GetStatus(2);
+            int improcedente = GetStatus(3);
             int totales = incompleto + proceso + procedente + improcedente;
-            representacion(zedGrafico, incompleto, proceso, procedente, improcedente, totales);
+            Representacion(zedGrafico, incompleto, proceso, procedente, improcedente, totales);
         }
 
-        private int getStatus(int estado)
+        private int GetStatus(int estado)
         {
             int valor = 0;
             conexionBD db = new conexionBD();
@@ -37,7 +37,7 @@ namespace RT_Management
             return valor;
         }
 
-        private void representacion(ZedGraphControl zedControl, int incompleto, int proceso, int procedente, int improcedente, int totales) 
+        private void Representacion(ZedGraphControl zedControl, int incompleto, int proceso, int procedente, int improcedente, int totales) 
         {
             GraphPane grafico = zedGrafico.GraphPane;
             double[] values = {incompleto, proceso, procedente, improcedente};

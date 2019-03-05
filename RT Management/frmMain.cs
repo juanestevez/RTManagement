@@ -19,17 +19,19 @@ namespace RT_Management
             this.level = nivel;
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void FrmMain_Load(object sender, EventArgs e)
         {
             string estado = "Usuario activo: " + this.user;
             lblUser.Text = estado;
             if (this.level == 0 || this.level == 1)
             {
                 menuAdmin.Visible = true;
+                usuariosPortalToolStripMenuItem.Visible = true;
             }
             else
             {
                 menuAdmin.Visible = false;
+                usuariosPortalToolStripMenuItem.Visible = false;
             }
 
             if (this.level == 0)
@@ -43,116 +45,113 @@ namespace RT_Management
                 deduciblesToolStripMenuItem1.Visible = false;
             }
 
-            frmDeducibles.DefInstance.MdiParent = this;
-            frmDeducibles.UsuarioActivo = this.user;
-            frmDeducibles.levelUser = this.level;
-            frmDeducibles.DefInstance.Activate();
-            frmDeducibles.DefInstance.Show();
-            fixMenu();
-            this.Text = "RT Management v" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            if (this.level == 3)
+            {
+                correccionesSolicitadasToolStripMenuItem.Visible = false;
+                pendientesToolStripMenuItem.Visible = false;
+                estadísticasToolStripMenuItem.Visible = false;
+                toolStripMenuItem5.Visible = false;
+                toolStripMenuItem2.Visible = false;
+            }
 
+            this.Text = $"RT Management v{Assembly.GetExecutingAssembly().GetName().Version.ToString()} Test";
         }
 
-        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SalirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void deduciblesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeduciblesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDeducibles.DefInstance.MdiParent = this;
             frmDeducibles.UsuarioActivo = this.user;
             frmDeducibles.levelUser = this.level;
             frmDeducibles.DefInstance.Activate();
             frmDeducibles.DefInstance.Show();
-            fixMenu();
+            FixMenu();
         }
 
-        private void telefonosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Módulo Teléfonos", "Módulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPasswordCambio pass = new frmPasswordCambio(this.user);
             pass.ShowDialog();
         }
 
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUsuarios.DefInstance.MdiParent = this;
             frmUsuarios.DefInstance.Activate();
             frmUsuarios.UsuarioActivo = user;
             frmUsuarios.DefInstance.Show();
-            fixMenu();
+            FixMenu();
         }
 
-        private void enCascadaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EnCascadaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.Cascade);
         }
 
-        private void apiladasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ApiladasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.TileVertical);
         }
 
-        private void enParaleloToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EnParaleloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.TileHorizontal);
         }
 
-        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AcercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAbout about = new frmAbout();
             about.ShowDialog();
         }
 
-        public string getUsuario()
+        public string GetUsuario()
         {
             return this.user;
         }
 
-        private void deduciblesToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void DeduciblesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmAdminDeducibles.DefInstance.MdiParent = this;
             frmAdminDeducibles.DefInstance.Show();
             frmAdminDeducibles.DefInstance.Activate();
-            fixMenu();
+            FixMenu();
         }
 
-        private void verModificacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void VerModificacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAdminModificaciones.DefInstance.MdiParent = this;
             frmAdminModificaciones.DefInstance.Activate();
             frmAdminModificaciones.DefInstance.Show();
-            fixMenu();
+            FixMenu();
         }
 
-        private void fixMenu()
+        private void FixMenu()
         {
             this.menu.Visible = false;
             this.menu.Visible = true;
             this.menu.ResumeLayout();
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        private void ToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             frmInstalaciones.DefInstance.MdiParent = this;
             frmInstalaciones.DefInstance.Activate();
             frmInstalaciones.levelUser = this.level;
             frmInstalaciones.DefInstance.Show();
-            fixMenu();
+            FixMenu();
         }
 
-        private void estadísticasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EstadísticasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmStats stats = new frmStats();
             stats.ShowDialog();
         }
 
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             conexionBD bd = new conexionBD();
             bd.Conectar();
@@ -161,13 +160,13 @@ namespace RT_Management
             Application.Exit();
         }
 
-        private void pendientesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PendientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPendientes.DefInstance.MdiParent = this;
             frmPendientes.UsuarioActivo = this.user;
             frmPendientes.DefInstance.Activate();            
             frmPendientes.DefInstance.Show();
-            fixMenu();
+            FixMenu();
         }
 
         /// <summary>
@@ -175,7 +174,7 @@ namespace RT_Management
         /// </summary>
         /// <param name="tablas">Parámetro con el nombre de las tablas al respaldar y sus opciones.</param>
         /// <param name="tipo">Tipo de respaldo: data o instalaciones.</param>
-        public void backup(string tablas, string tipo)
+        public void Backup(string tablas, string tipo)
         {
             try
             {
@@ -186,7 +185,7 @@ namespace RT_Management
                 string nombreArchivo = DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss");
                 string filename = "";
 
-                filename = getRutaBackup(tipo);
+                filename = GetRutaBackup(tipo);
 
                 if (filename != "")
                 {
@@ -228,7 +227,7 @@ namespace RT_Management
         /// </summary>
         /// <param name="tipo">Tipo de respaldo: data o instalaciones.</param>
         /// <returns>Ruta del archivo a guardar</returns>
-        private string getRutaBackup(string tipo)
+        private string GetRutaBackup(string tipo)
         {
             SaveFileDialog dlGuardar = new SaveFileDialog();
             dlGuardar.Filter = "Archivo SQL (*.sql)|*.sql";
@@ -246,24 +245,33 @@ namespace RT_Management
             return filename;
         }
 
-        private void menuBackupInfo_Click(object sender, EventArgs e)
+        private void MenuBackupInfo_Click(object sender, EventArgs e)
         {
-            backup("-u rtmanagement -p\"rtmanagement\" rtmanagement --add-drop-table --complete-insert --ignore-table=rtmanagement.instalaciones", "data");
+            Backup("-u rtmanagement -p\"rtmanagement\" rtmanagement --add-drop-table --complete-insert --ignore-table=rtmanagement.instalaciones", "data");
         }
 
-        private void menuBackupInstalaciones_Click(object sender, EventArgs e)
+        private void MenuBackupInstalaciones_Click(object sender, EventArgs e)
         {
-            backup("-u rtmanagement -p\"rtmanagement\" rtmanagement --add-drop-table --complete-insert --extended-insert --tables instalaciones", "instalaciones");
+            Backup("-u rtmanagement -p\"rtmanagement\" rtmanagement --add-drop-table --complete-insert --extended-insert --tables instalaciones", "instalaciones");
         }
 
-        private void correccionesSolicitadasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CorreccionesSolicitadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCorreccionesGpoInt.DefInstance.MdiParent = this;
             frmCorreccionesGpoInt.UsuarioActivo = this.user;
             frmCorreccionesGpoInt.levelUser = this.level;
             frmCorreccionesGpoInt.DefInstance.Activate();
             frmCorreccionesGpoInt.DefInstance.Show();
-            fixMenu();
+            FixMenu();
+        }
+
+        private void UsuariosPortalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUsuariosPortal.DefInstance.MdiParent = this;
+            frmUsuariosPortal.UsuarioActivo = this.user;
+            frmUsuariosPortal.DefInstance.Activate();
+            frmUsuariosPortal.DefInstance.Show();
+            FixMenu();
         }
     } //Clase
 } //Namespace

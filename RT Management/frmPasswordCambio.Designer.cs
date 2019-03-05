@@ -95,7 +95,7 @@
             this.txtNueva.Size = new System.Drawing.Size(100, 20);
             this.txtNueva.TabIndex = 2;
             this.txtNueva.UseSystemPasswordChar = true;
-            this.txtNueva.Enter += new System.EventHandler(this.txtNueva_Enter);
+            this.txtNueva.Enter += new System.EventHandler(this.TxtNueva_Enter);
             // 
             // txtActual
             // 
@@ -112,7 +112,7 @@
             this.txtConfirma.Size = new System.Drawing.Size(100, 20);
             this.txtConfirma.TabIndex = 3;
             this.txtConfirma.UseSystemPasswordChar = true;
-            this.txtConfirma.Enter += new System.EventHandler(this.txtConfirma_Enter);
+            this.txtConfirma.Enter += new System.EventHandler(this.TxtConfirma_Enter);
             // 
             // btnAceptar
             // 
@@ -124,7 +124,7 @@
             this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -137,7 +137,7 @@
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // lblInvitado
             // 
@@ -174,7 +174,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cambio de contraseña";
-            this.Load += new System.EventHandler(this.frmPass_Load);
+            this.Load += new System.EventHandler(this.FrmPass_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

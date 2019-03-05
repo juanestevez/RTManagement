@@ -156,45 +156,49 @@
             // todoToolStripMenuItem
             // 
             this.todoToolStripMenuItem.Name = "todoToolStripMenuItem";
-            this.todoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.todoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.todoToolStripMenuItem.Text = "Todo";
             this.todoToolStripMenuItem.Click += new System.EventHandler(this.todoToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(155, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // noProcedentesToolStripMenuItem
             // 
+            this.noProcedentesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("noProcedentesToolStripMenuItem.Image")));
             this.noProcedentesToolStripMenuItem.Name = "noProcedentesToolStripMenuItem";
-            this.noProcedentesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.noProcedentesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.noProcedentesToolStripMenuItem.Text = "No procedentes";
             this.noProcedentesToolStripMenuItem.Click += new System.EventHandler(this.noProcedentesToolStripMenuItem_Click);
             // 
             // procedentesToolStripMenuItem
             // 
+            this.procedentesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("procedentesToolStripMenuItem.Image")));
             this.procedentesToolStripMenuItem.Name = "procedentesToolStripMenuItem";
-            this.procedentesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.procedentesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.procedentesToolStripMenuItem.Text = "Procedentes";
             this.procedentesToolStripMenuItem.Click += new System.EventHandler(this.procedentesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(155, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // incompletosToolStripMenuItem
             // 
+            this.incompletosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("incompletosToolStripMenuItem.Image")));
             this.incompletosToolStripMenuItem.Name = "incompletosToolStripMenuItem";
-            this.incompletosToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.incompletosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.incompletosToolStripMenuItem.Text = "Incompletos";
             this.incompletosToolStripMenuItem.Click += new System.EventHandler(this.incompletosToolStripMenuItem_Click);
             // 
             // enProcesoToolStripMenuItem
             // 
+            this.enProcesoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("enProcesoToolStripMenuItem.Image")));
             this.enProcesoToolStripMenuItem.Name = "enProcesoToolStripMenuItem";
-            this.enProcesoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.enProcesoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.enProcesoToolStripMenuItem.Text = "En proceso";
             this.enProcesoToolStripMenuItem.Click += new System.EventHandler(this.enProcesoToolStripMenuItem_Click);
             // 

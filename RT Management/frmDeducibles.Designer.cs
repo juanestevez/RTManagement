@@ -469,7 +469,7 @@
             this.toolsGuardar.Name = "toolsGuardar";
             this.toolsGuardar.Size = new System.Drawing.Size(23, 22);
             this.toolsGuardar.Text = "Guardar";
-            this.toolsGuardar.Click += new System.EventHandler(this.toolsGuardar_Click);
+            this.toolsGuardar.Click += new System.EventHandler(this.ToolsGuardar_Click);
             // 
             // toolsEditar
             // 
@@ -952,9 +952,9 @@
             // btnMakeCallAlt
             // 
             this.btnMakeCallAlt.Image = ((System.Drawing.Image)(resources.GetObject("btnMakeCallAlt.Image")));
-            this.btnMakeCallAlt.Location = new System.Drawing.Point(190, 74);
+            this.btnMakeCallAlt.Location = new System.Drawing.Point(190, 73);
             this.btnMakeCallAlt.Name = "btnMakeCallAlt";
-            this.btnMakeCallAlt.Size = new System.Drawing.Size(23, 21);
+            this.btnMakeCallAlt.Size = new System.Drawing.Size(24, 24);
             this.btnMakeCallAlt.TabIndex = 32;
             this.btnMakeCallAlt.TabStop = false;
             this.btnMakeCallAlt.UseVisualStyleBackColor = true;
@@ -963,9 +963,9 @@
             // bntMakeCallCell
             // 
             this.bntMakeCallCell.Image = ((System.Drawing.Image)(resources.GetObject("bntMakeCallCell.Image")));
-            this.bntMakeCallCell.Location = new System.Drawing.Point(190, 48);
+            this.bntMakeCallCell.Location = new System.Drawing.Point(190, 47);
             this.bntMakeCallCell.Name = "bntMakeCallCell";
-            this.bntMakeCallCell.Size = new System.Drawing.Size(23, 21);
+            this.bntMakeCallCell.Size = new System.Drawing.Size(24, 24);
             this.bntMakeCallCell.TabIndex = 31;
             this.bntMakeCallCell.TabStop = false;
             this.bntMakeCallCell.UseVisualStyleBackColor = true;
@@ -985,9 +985,10 @@
             // btnMakeCallHome
             // 
             this.btnMakeCallHome.Image = ((System.Drawing.Image)(resources.GetObject("btnMakeCallHome.Image")));
-            this.btnMakeCallHome.Location = new System.Drawing.Point(190, 24);
+            this.btnMakeCallHome.Location = new System.Drawing.Point(190, 22);
+            this.btnMakeCallHome.Margin = new System.Windows.Forms.Padding(0);
             this.btnMakeCallHome.Name = "btnMakeCallHome";
-            this.btnMakeCallHome.Size = new System.Drawing.Size(23, 21);
+            this.btnMakeCallHome.Size = new System.Drawing.Size(24, 24);
             this.btnMakeCallHome.TabIndex = 30;
             this.btnMakeCallHome.TabStop = false;
             this.btnMakeCallHome.UseVisualStyleBackColor = true;

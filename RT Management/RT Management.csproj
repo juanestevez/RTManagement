@@ -35,8 +35,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <PublisherName>Xawan Solutions</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.5.8.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.6.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -79,7 +79,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>vector_309_13-32.ico</ApplicationIcon>
+    <ApplicationIcon>main.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
@@ -277,6 +277,24 @@
     <Compile Include="frmUsuariosAgregar.Designer.cs">
       <DependentUpon>frmUsuariosAgregar.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUsuariosPortal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuariosPortal.Designer.cs">
+      <DependentUpon>frmUsuariosPortal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuariosPortalAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuariosPortalAgregar.Designer.cs">
+      <DependentUpon>frmUsuariosPortalAgregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuariosPortalModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuariosPortalModificar.Designer.cs">
+      <DependentUpon>frmUsuariosPortalModificar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUsuariosVer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,6 +370,15 @@
     <EmbeddedResource Include="frmUsuariosAgregar.resx">
       <DependentUpon>frmUsuariosAgregar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuariosPortal.resx">
+      <DependentUpon>frmUsuariosPortal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuariosPortalAgregar.resx">
+      <DependentUpon>frmUsuariosPortalAgregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuariosPortalModificar.resx">
+      <DependentUpon>frmUsuariosPortalModificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUsuariosVer.resx">
       <DependentUpon>frmUsuariosVer.cs</DependentUpon>
     </EmbeddedResource>
@@ -399,7 +426,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="vector_309_13-32.ico" />
+    <Content Include="main.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
